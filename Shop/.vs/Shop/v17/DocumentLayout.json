@@ -1,289 +1,301 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\",
+  "WorkspaceRootPath": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.domain\\orderaggregate\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|solutionrelative:shop.domain\\orderaggregate\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.domain\\services\\ordercreationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|solutionrelative:shop.domain\\services\\ordercreationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.domain\\interfaces\\repositories\\iproductrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.domain\\interfaces\\repositories\\iproductrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|solutionrelative:shop.domain\\interfaces\\repositories\\iproductrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.domain\\interfaces\\repositories\\iorderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|solutionrelative:shop.domain\\interfaces\\repositories\\iorderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.domain\\enums\\drinktype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|solutionrelative:shop.domain\\enums\\drinktype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.domain\\interfaces\\repositories\\iingredientrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|solutionrelative:shop.domain\\interfaces\\repositories\\iingredientrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.domain\\drinkaggregate\\drink.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|solutionrelative:shop.domain\\drinkaggregate\\drink.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.domain\\interfaces\\repositories\\icartrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|solutionrelative:shop.domain\\interfaces\\repositories\\icartrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.domain\\toppingaggregate\\topping.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|solutionrelative:shop.domain\\toppingaggregate\\topping.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.domain\\interfaces\\repositories\\icartitemrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|solutionrelative:shop.domain\\interfaces\\repositories\\icartitemrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.domain\\ingredientaggregate\\ingredient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|solutionrelative:shop.domain\\ingredientaggregate\\ingredient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.domain\\cartaggregate\\cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|solutionrelative:shop.domain\\cartaggregate\\cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.domain\\services\\cartproductadditionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|solutionrelative:shop.domain\\services\\cartproductadditionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.domain\\productaggregate\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.domain\\productaggregate\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|solutionrelative:shop.domain\\productaggregate\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.domain\\productaggregate\\productingredient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|solutionrelative:shop.domain\\productaggregate\\productingredient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.application\\usecases\\createproduct\\createproductcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|solutionrelative:shop.application\\usecases\\createproduct\\createproductcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.application\\common\\interfaces\\uow\\iunitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|solutionrelative:shop.application\\common\\interfaces\\uow\\iunitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.application\\common\\dtos\\addingredienttoproductdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|solutionrelative:shop.application\\common\\dtos\\addingredienttoproductdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.domain\\valueobjects\\nutrition.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|solutionrelative:shop.domain\\valueobjects\\nutrition.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.domain\\valueobjects\\quantity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|solutionrelative:shop.domain\\valueobjects\\quantity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.application\\usecases\\updatecartitemquantity\\updatecartitemquantitycommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|solutionrelative:shop.application\\usecases\\updatecartitemquantity\\updatecartitemquantitycommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.domain\\enums\\productcategory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|solutionrelative:shop.domain\\enums\\productcategory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.domain\\enums\\orderstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|solutionrelative:shop.domain\\enums\\orderstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.infrastructure\\shop.infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|solutionrelative:shop.infrastructure\\shop.infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.application\\usecases\\createorder\\createordercommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|solutionrelative:shop.application\\usecases\\createorder\\createordercommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.application\\usecases\\additemtocart\\additemtocartcommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|solutionrelative:shop.application\\usecases\\additemtocart\\additemtocartcommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.infrastructure\\persistence\\repositories\\cartitemrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|solutionrelative:shop.infrastructure\\persistence\\repositories\\cartitemrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.infrastructure\\persistence\\uow\\unitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|solutionrelative:shop.infrastructure\\persistence\\uow\\unitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.infrastructure\\persistence\\repositories\\icartitemrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|solutionrelative:shop.infrastructure\\persistence\\repositories\\icartitemrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.infrastructure\\persistence\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|solutionrelative:shop.infrastructure\\persistence\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.infrastructure\\persistence\\configurations\\cartconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|solutionrelative:shop.infrastructure\\persistence\\configurations\\cartconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.infrastructure\\persistence\\configurations\\cartitemconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|solutionrelative:shop.infrastructure\\persistence\\configurations\\cartitemconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.domain\\abstractions\\aggregate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|solutionrelative:shop.domain\\abstractions\\aggregate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.domain\\domainevents\\domainevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.domain\\domainevents\\domainevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|solutionrelative:shop.domain\\domainevents\\domainevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.domain\\abstractions\\entity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.domain\\orderaggregate\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|solutionrelative:shop.domain\\orderaggregate\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.domain\\services\\ordercreationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|solutionrelative:shop.domain\\services\\ordercreationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.domain\\interfaces\\repositories\\iorderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|solutionrelative:shop.domain\\interfaces\\repositories\\iorderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.domain\\interfaces\\repositories\\iingredientrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|solutionrelative:shop.domain\\interfaces\\repositories\\iingredientrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.domain\\interfaces\\repositories\\icartrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|solutionrelative:shop.domain\\interfaces\\repositories\\icartrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.domain\\interfaces\\repositories\\icartitemrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|solutionrelative:shop.domain\\interfaces\\repositories\\icartitemrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.domain\\ingredientaggregate\\ingredient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|solutionrelative:shop.domain\\ingredientaggregate\\ingredient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.domain\\cartaggregate\\cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|solutionrelative:shop.domain\\cartaggregate\\cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.domain\\services\\cartproductadditionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|solutionrelative:shop.domain\\services\\cartproductadditionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.domain\\productaggregate\\productingredient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|solutionrelative:shop.domain\\productaggregate\\productingredient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.application\\usecases\\createproduct\\createproductcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|solutionrelative:shop.application\\usecases\\createproduct\\createproductcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.application\\common\\interfaces\\uow\\iunitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|solutionrelative:shop.application\\common\\interfaces\\uow\\iunitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.application\\common\\dtos\\addingredienttoproductdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|solutionrelative:shop.application\\common\\dtos\\addingredienttoproductdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.domain\\valueobjects\\nutrition.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|solutionrelative:shop.domain\\valueobjects\\nutrition.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.domain\\valueobjects\\quantity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|solutionrelative:shop.domain\\valueobjects\\quantity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.application\\usecases\\updatecartitemquantity\\updatecartitemquantitycommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|solutionrelative:shop.application\\usecases\\updatecartitemquantity\\updatecartitemquantitycommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.domain\\enums\\productcategory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|solutionrelative:shop.domain\\enums\\productcategory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.domain\\enums\\orderstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|solutionrelative:shop.domain\\enums\\orderstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.infrastructure\\shop.infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|solutionrelative:shop.infrastructure\\shop.infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.application\\usecases\\createorder\\createordercommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|solutionrelative:shop.application\\usecases\\createorder\\createordercommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.application\\usecases\\additemtocart\\additemtocartcommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|solutionrelative:shop.application\\usecases\\additemtocart\\additemtocartcommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.infrastructure\\persistence\\repositories\\cartitemrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|solutionrelative:shop.infrastructure\\persistence\\repositories\\cartitemrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.infrastructure\\persistence\\uow\\unitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|solutionrelative:shop.infrastructure\\persistence\\uow\\unitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.infrastructure\\persistence\\repositories\\icartitemrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|solutionrelative:shop.infrastructure\\persistence\\repositories\\icartitemrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.infrastructure\\persistence\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|solutionrelative:shop.infrastructure\\persistence\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.infrastructure\\persistence\\configurations\\cartconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|solutionrelative:shop.infrastructure\\persistence\\configurations\\cartconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.infrastructure\\persistence\\configurations\\cartitemconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|solutionrelative:shop.infrastructure\\persistence\\configurations\\cartitemconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.domain\\abstractions\\aggregate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|solutionrelative:shop.domain\\abstractions\\aggregate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.domain\\abstractions\\entity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|solutionrelative:shop.domain\\abstractions\\entity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8C74B20E-D37F-406E-9C64-7F9B5E353841}|Shop.API\\Shop.API.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "AbsoluteMoniker": "D:0:0:{8C74B20E-D37F-406E-9C64-7F9B5E353841}|Shop.API\\Shop.API.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{8C74B20E-D37F-406E-9C64-7F9B5E353841}|Shop.API\\Shop.API.csproj|solutionrelative:shop.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.infrastructure\\persistence\\repositories\\cartrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.infrastructure\\persistence\\repositories\\cartrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|solutionrelative:shop.infrastructure\\persistence\\repositories\\cartrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8C74B20E-D37F-406E-9C64-7F9B5E353841}|Shop.API\\Shop.API.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{8C74B20E-D37F-406E-9C64-7F9B5E353841}|Shop.API\\Shop.API.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8C74B20E-D37F-406E-9C64-7F9B5E353841}|Shop.API\\Shop.API.csproj|solutionrelative:shop.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8C74B20E-D37F-406E-9C64-7F9B5E353841}|Shop.API\\Shop.API.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.api\\extensions\\applicationbuilderextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{8C74B20E-D37F-406E-9C64-7F9B5E353841}|Shop.API\\Shop.API.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.api\\extensions\\applicationbuilderextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8C74B20E-D37F-406E-9C64-7F9B5E353841}|Shop.API\\Shop.API.csproj|solutionrelative:shop.api\\extensions\\applicationbuilderextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.infrastructure\\persistence\\configurations\\orderconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.infrastructure\\persistence\\configurations\\orderconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|solutionrelative:shop.infrastructure\\persistence\\configurations\\orderconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.infrastructure\\persistence\\configurations\\orderitemconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.infrastructure\\persistence\\configurations\\orderitemconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|solutionrelative:shop.infrastructure\\persistence\\configurations\\orderitemconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.application\\common\\dependencyinjection\\applicationlayerdependencies.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.application\\common\\dependencyinjection\\applicationlayerdependencies.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|solutionrelative:shop.application\\common\\dependencyinjection\\applicationlayerdependencies.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.application\\common\\interfaces\\notifiers\\iworkernotifier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.application\\common\\interfaces\\notifiers\\iworkernotifier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|solutionrelative:shop.application\\common\\interfaces\\notifiers\\iworkernotifier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.application\\usecases\\removecartitem\\removecartitemcommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.application\\usecases\\removecartitem\\removecartitemcommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|solutionrelative:shop.application\\usecases\\removecartitem\\removecartitemcommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.infrastructure\\signalr\\signalrworkernotifier .cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.infrastructure\\signalr\\signalrworkernotifier .cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|solutionrelative:shop.infrastructure\\signalr\\signalrworkernotifier .cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.infrastructure\\persistence\\configurations\\productconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.infrastructure\\persistence\\configurations\\productconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|solutionrelative:shop.infrastructure\\persistence\\configurations\\productconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.infrastructure\\persistence\\configurations\\outboxconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.infrastructure\\persistence\\configurations\\outboxconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|solutionrelative:shop.infrastructure\\persistence\\configurations\\outboxconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8C74B20E-D37F-406E-9C64-7F9B5E353841}|Shop.API\\Shop.API.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.api\\controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{8C74B20E-D37F-406E-9C64-7F9B5E353841}|Shop.API\\Shop.API.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.api\\controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8C74B20E-D37F-406E-9C64-7F9B5E353841}|Shop.API\\Shop.API.csproj|solutionrelative:shop.api\\controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8C74B20E-D37F-406E-9C64-7F9B5E353841}|Shop.API\\Shop.API.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.api\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{8C74B20E-D37F-406E-9C64-7F9B5E353841}|Shop.API\\Shop.API.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.api\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8C74B20E-D37F-406E-9C64-7F9B5E353841}|Shop.API\\Shop.API.csproj|solutionrelative:shop.api\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.infrastructure\\persistence\\repositories\\orderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.infrastructure\\persistence\\repositories\\orderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|solutionrelative:shop.infrastructure\\persistence\\repositories\\orderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.infrastructure\\persistence\\repositories\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.infrastructure\\persistence\\repositories\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|solutionrelative:shop.infrastructure\\persistence\\repositories\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.domain\\domainevents\\productupdateddomainevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.domain\\domainevents\\productupdateddomainevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|solutionrelative:shop.domain\\domainevents\\productupdateddomainevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.infrastructure\\signalr\\interfaces\\iworkerhub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.infrastructure\\signalr\\interfaces\\iworkerhub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|solutionrelative:shop.infrastructure\\signalr\\interfaces\\iworkerhub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8C74B20E-D37F-406E-9C64-7F9B5E353841}|Shop.API\\Shop.API.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.api\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{8C74B20E-D37F-406E-9C64-7F9B5E353841}|Shop.API\\Shop.API.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.api\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8C74B20E-D37F-406E-9C64-7F9B5E353841}|Shop.API\\Shop.API.csproj|solutionrelative:shop.api\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.application\\usecases\\additemtocart\\additemtocartcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.application\\usecases\\additemtocart\\additemtocartcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|solutionrelative:shop.application\\usecases\\additemtocart\\additemtocartcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.application\\usecases\\removecartitem\\removecartitemcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.application\\usecases\\removecartitem\\removecartitemcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|solutionrelative:shop.application\\usecases\\removecartitem\\removecartitemcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.infrastructure\\backgroundservices\\outboxprocessingbackgroundservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.infrastructure\\backgroundservices\\outboxprocessingbackgroundservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|solutionrelative:shop.infrastructure\\backgroundservices\\outboxprocessingbackgroundservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.domain\\domainevents\\ordercreateddomainevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.domain\\domainevents\\ordercreateddomainevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|solutionrelative:shop.domain\\domainevents\\ordercreateddomainevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.infrastructure\\outbox\\outbox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.infrastructure\\outbox\\outbox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|solutionrelative:shop.infrastructure\\outbox\\outbox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.application\\common\\dispatcher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.application\\common\\dispatcher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|solutionrelative:shop.application\\common\\dispatcher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.infrastructure\\signalr\\workerhub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.infrastructure\\signalr\\workerhub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|solutionrelative:shop.infrastructure\\signalr\\workerhub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.application\\usecases\\createorder\\createordercommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.application\\usecases\\createorder\\createordercommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|solutionrelative:shop.application\\usecases\\createorder\\createordercommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8C74B20E-D37F-406E-9C64-7F9B5E353841}|Shop.API\\Shop.API.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "AbsoluteMoniker": "D:0:0:{8C74B20E-D37F-406E-9C64-7F9B5E353841}|Shop.API\\Shop.API.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{8C74B20E-D37F-406E-9C64-7F9B5E353841}|Shop.API\\Shop.API.csproj|solutionrelative:shop.api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.infrastructure\\dependencyinjection\\infrastructurelayerdependencies.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.infrastructure\\dependencyinjection\\infrastructurelayerdependencies.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{93AA7026-DE57-45F0-AB7A-B179660D23FD}|Shop.Infrastructure\\Shop.Infrastructure.csproj|solutionrelative:shop.infrastructure\\dependencyinjection\\infrastructurelayerdependencies.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8C74B20E-D37F-406E-9C64-7F9B5E353841}|Shop.API\\Shop.API.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.api\\shop.api.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
+      "AbsoluteMoniker": "D:0:0:{8C74B20E-D37F-406E-9C64-7F9B5E353841}|Shop.API\\Shop.API.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.api\\shop.api.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
       "RelativeMoniker": "D:0:0:{8C74B20E-D37F-406E-9C64-7F9B5E353841}|Shop.API\\Shop.API.csproj|solutionrelative:shop.api\\shop.api.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.application\\usecases\\clearcart\\clearcartcommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.application\\usecases\\clearcart\\clearcartcommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|solutionrelative:shop.application\\usecases\\clearcart\\clearcartcommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.application\\usecases\\clearcart\\clearcartcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.application\\usecases\\clearcart\\clearcartcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|solutionrelative:shop.application\\usecases\\clearcart\\clearcartcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.application\\usecases\\getcart\\getcartqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.application\\usecases\\getcart\\getcartqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|solutionrelative:shop.application\\usecases\\getcart\\getcartqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.domain\\exceptions\\domainexception .cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.domain\\exceptions\\domainexception .cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|solutionrelative:shop.domain\\exceptions\\domainexception .cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.application\\usecases\\getcart\\getcartquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.application\\usecases\\getcart\\getcartquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|solutionrelative:shop.application\\usecases\\getcart\\getcartquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.application\\shop.application.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "AbsoluteMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.application\\shop.application.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|solutionrelative:shop.application\\shop.application.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.application\\common\\interfaces\\mediator\\icommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.application\\common\\interfaces\\mediator\\icommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3E1F450B-E8FD-42E8-85E1-78980FF604B5}|Shop.Application\\Shop.Application.csproj|solutionrelative:shop.application\\common\\interfaces\\mediator\\icommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8C74B20E-D37F-406E-9C64-7F9B5E353841}|Shop.API\\Shop.API.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.api\\shop.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "AbsoluteMoniker": "D:0:0:{8C74B20E-D37F-406E-9C64-7F9B5E353841}|Shop.API\\Shop.API.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.api\\shop.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{8C74B20E-D37F-406E-9C64-7F9B5E353841}|Shop.API\\Shop.API.csproj|solutionrelative:shop.api\\shop.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\shop\\shop\\shop.domain\\shop.domain.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "AbsoluteMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|c:\\users\\\u0440\u043E\u0434\u0438\u043E\u043D\\desktop\\my-kfc\\kfc\\shop\\shop.domain\\shop.domain.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{4D85335C-B5A7-4AE2-BC89-0B15DAE3BA35}|Shop.Domain\\Shop.Domain.csproj|solutionrelative:shop.domain\\shop.domain.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     }
   ],
@@ -294,41 +306,54 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "IIngredientRepository.cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Domain\\Interfaces\\Repositories\\IIngredientRepository.cs",
-              "RelativeDocumentMoniker": "Shop.Domain\\Interfaces\\Repositories\\IIngredientRepository.cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Domain\\Interfaces\\Repositories\\IIngredientRepository.cs",
-              "RelativeToolTip": "Shop.Domain\\Interfaces\\Repositories\\IIngredientRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAcAAAAnAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "Topping.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Domain\\ToppingAggregate\\Topping.cs",
+              "RelativeDocumentMoniker": "Shop.Domain\\ToppingAggregate\\Topping.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Domain\\ToppingAggregate\\Topping.cs",
+              "RelativeToolTip": "Shop.Domain\\ToppingAggregate\\Topping.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-12T18:04:56.723Z",
+              "WhenOpened": "2025-09-20T16:32:13.583Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "IOrderRepository.cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Domain\\Interfaces\\Repositories\\IOrderRepository.cs",
-              "RelativeDocumentMoniker": "Shop.Domain\\Interfaces\\Repositories\\IOrderRepository.cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Domain\\Interfaces\\Repositories\\IOrderRepository.cs",
-              "RelativeToolTip": "Shop.Domain\\Interfaces\\Repositories\\IOrderRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAVAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "DrinkType.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Domain\\Enums\\DrinkType.cs",
+              "RelativeDocumentMoniker": "Shop.Domain\\Enums\\DrinkType.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Domain\\Enums\\DrinkType.cs",
+              "RelativeToolTip": "Shop.Domain\\Enums\\DrinkType.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-01T15:19:07.228Z",
+              "WhenOpened": "2025-09-20T15:10:53.599Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "Drink.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Domain\\DrinkAggregate\\Drink.cs",
+              "RelativeDocumentMoniker": "Shop.Domain\\DrinkAggregate\\Drink.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Domain\\DrinkAggregate\\Drink.cs",
+              "RelativeToolTip": "Shop.Domain\\DrinkAggregate\\Drink.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAIwCcAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-20T13:52:04.98Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "IProductRepository.cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Domain\\Interfaces\\Repositories\\IProductRepository.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Domain\\Interfaces\\Repositories\\IProductRepository.cs",
               "RelativeDocumentMoniker": "Shop.Domain\\Interfaces\\Repositories\\IProductRepository.cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Domain\\Interfaces\\Repositories\\IProductRepository.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Domain\\Interfaces\\Repositories\\IProductRepository.cs",
               "RelativeToolTip": "Shop.Domain\\Interfaces\\Repositories\\IProductRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAABWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -337,24 +362,23 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 7,
               "Title": "OrderCreationService.cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Domain\\Services\\OrderCreationService.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Domain\\Services\\OrderCreationService.cs",
               "RelativeDocumentMoniker": "Shop.Domain\\Services\\OrderCreationService.cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Domain\\Services\\OrderCreationService.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Domain\\Services\\OrderCreationService.cs",
               "RelativeToolTip": "Shop.Domain\\Services\\OrderCreationService.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAAAsAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-01T15:29:35.293Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-01T15:29:35.293Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 6,
               "Title": "Order.cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Domain\\OrderAggregate\\Order.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Domain\\OrderAggregate\\Order.cs",
               "RelativeDocumentMoniker": "Shop.Domain\\OrderAggregate\\Order.cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Domain\\OrderAggregate\\Order.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Domain\\OrderAggregate\\Order.cs",
               "RelativeToolTip": "Shop.Domain\\OrderAggregate\\Order.cs",
               "ViewState": "AgIAAC4AAAAAAAAAAADwvwAAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -364,54 +388,52 @@
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "ICartRepository.cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Domain\\Interfaces\\Repositories\\ICartRepository.cs",
-              "RelativeDocumentMoniker": "Shop.Domain\\Interfaces\\Repositories\\ICartRepository.cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Domain\\Interfaces\\Repositories\\ICartRepository.cs",
-              "RelativeToolTip": "Shop.Domain\\Interfaces\\Repositories\\ICartRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAWAAAAAAAAAA==",
+              "Title": "DomainEvent.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Domain\\DomainEvents\\DomainEvent.cs",
+              "RelativeDocumentMoniker": "Shop.Domain\\DomainEvents\\DomainEvent.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Domain\\DomainEvents\\DomainEvent.cs",
+              "RelativeToolTip": "Shop.Domain\\DomainEvents\\DomainEvent.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-01T15:19:00.447Z",
+              "WhenOpened": "2025-09-07T10:39:18.397Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "ICartItemRepository.cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Domain\\Interfaces\\Repositories\\ICartItemRepository.cs",
-              "RelativeDocumentMoniker": "Shop.Domain\\Interfaces\\Repositories\\ICartItemRepository.cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Domain\\Interfaces\\Repositories\\ICartItemRepository.cs",
-              "RelativeToolTip": "Shop.Domain\\Interfaces\\Repositories\\ICartItemRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "Product.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Domain\\ProductAggregate\\Product.cs",
+              "RelativeDocumentMoniker": "Shop.Domain\\ProductAggregate\\Product.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Domain\\ProductAggregate\\Product.cs",
+              "RelativeToolTip": "Shop.Domain\\ProductAggregate\\Product.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-12T11:57:36.879Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Ingredient.cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Domain\\IngredientAggregate\\Ingredient.cs",
-              "RelativeDocumentMoniker": "Shop.Domain\\IngredientAggregate\\Ingredient.cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Domain\\IngredientAggregate\\Ingredient.cs",
-              "RelativeToolTip": "Shop.Domain\\IngredientAggregate\\Ingredient.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAQwBkAAABIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-14T11:18:22.527Z",
+              "WhenOpened": "2025-08-30T13:58:09.619Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
-              "Title": "Cart.cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Domain\\CartAggregate\\Cart.cs",
-              "RelativeDocumentMoniker": "Shop.Domain\\CartAggregate\\Cart.cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Domain\\CartAggregate\\Cart.cs",
-              "RelativeToolTip": "Shop.Domain\\CartAggregate\\Cart.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGIAAAAAAAAAAAAAAA==",
+              "Title": "IOrderRepository.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Domain\\Interfaces\\Repositories\\IOrderRepository.cs",
+              "RelativeDocumentMoniker": "Shop.Domain\\Interfaces\\Repositories\\IOrderRepository.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Domain\\Interfaces\\Repositories\\IOrderRepository.cs",
+              "RelativeToolTip": "Shop.Domain\\Interfaces\\Repositories\\IOrderRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-30T14:11:07.804Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-01T15:19:07.228Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "IIngredientRepository.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Domain\\Interfaces\\Repositories\\IIngredientRepository.cs",
+              "RelativeDocumentMoniker": "Shop.Domain\\Interfaces\\Repositories\\IIngredientRepository.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Domain\\Interfaces\\Repositories\\IIngredientRepository.cs",
+              "RelativeToolTip": "Shop.Domain\\Interfaces\\Repositories\\IIngredientRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAcAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-12T18:04:56.723Z"
             },
             {
               "$type": "Bookmark",
@@ -419,11 +441,59 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
+              "Title": "ICartRepository.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Domain\\Interfaces\\Repositories\\ICartRepository.cs",
+              "RelativeDocumentMoniker": "Shop.Domain\\Interfaces\\Repositories\\ICartRepository.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Domain\\Interfaces\\Repositories\\ICartRepository.cs",
+              "RelativeToolTip": "Shop.Domain\\Interfaces\\Repositories\\ICartRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-01T15:19:00.447Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "ICartItemRepository.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Domain\\Interfaces\\Repositories\\ICartItemRepository.cs",
+              "RelativeDocumentMoniker": "Shop.Domain\\Interfaces\\Repositories\\ICartItemRepository.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Domain\\Interfaces\\Repositories\\ICartItemRepository.cs",
+              "RelativeToolTip": "Shop.Domain\\Interfaces\\Repositories\\ICartItemRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-12T11:57:36.879Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Ingredient.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Domain\\IngredientAggregate\\Ingredient.cs",
+              "RelativeDocumentMoniker": "Shop.Domain\\IngredientAggregate\\Ingredient.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Domain\\IngredientAggregate\\Ingredient.cs",
+              "RelativeToolTip": "Shop.Domain\\IngredientAggregate\\Ingredient.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAQwBkAAABIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-14T11:18:22.527Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Cart.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Domain\\CartAggregate\\Cart.cs",
+              "RelativeDocumentMoniker": "Shop.Domain\\CartAggregate\\Cart.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Domain\\CartAggregate\\Cart.cs",
+              "RelativeToolTip": "Shop.Domain\\CartAggregate\\Cart.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-30T14:11:07.804Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
               "Title": "CartProductAdditionService.cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Domain\\Services\\CartProductAdditionService.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Domain\\Services\\CartProductAdditionService.cs",
               "RelativeDocumentMoniker": "Shop.Domain\\Services\\CartProductAdditionService.cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Domain\\Services\\CartProductAdditionService.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Domain\\Services\\CartProductAdditionService.cs",
               "RelativeToolTip": "Shop.Domain\\Services\\CartProductAdditionService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAuwBYAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -431,11 +501,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 15,
               "Title": "ProductIngredient.cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Domain\\ProductAggregate\\ProductIngredient.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Domain\\ProductAggregate\\ProductIngredient.cs",
               "RelativeDocumentMoniker": "Shop.Domain\\ProductAggregate\\ProductIngredient.cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Domain\\ProductAggregate\\ProductIngredient.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Domain\\ProductAggregate\\ProductIngredient.cs",
               "RelativeToolTip": "Shop.Domain\\ProductAggregate\\ProductIngredient.cs",
               "ViewState": "AgIAABYAAAAAAAAAAAAQwCAAAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -443,23 +513,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Product.cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Domain\\ProductAggregate\\Product.cs",
-              "RelativeDocumentMoniker": "Shop.Domain\\ProductAggregate\\Product.cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Domain\\ProductAggregate\\Product.cs",
-              "RelativeToolTip": "Shop.Domain\\ProductAggregate\\Product.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAAYwFgAAABTAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-30T13:58:09.619Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 16,
               "Title": "CreateProductCommand.cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Application\\UseCases\\CreateProduct\\CreateProductCommand.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Application\\UseCases\\CreateProduct\\CreateProductCommand.cs",
               "RelativeDocumentMoniker": "Shop.Application\\UseCases\\CreateProduct\\CreateProductCommand.cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Application\\UseCases\\CreateProduct\\CreateProductCommand.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Application\\UseCases\\CreateProduct\\CreateProductCommand.cs",
               "RelativeToolTip": "Shop.Application\\UseCases\\CreateProduct\\CreateProductCommand.cs",
               "ViewState": "AgIAAAsAAAAAAAAAAAAAwBUAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -467,11 +525,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 17,
               "Title": "IUnitOfWork.cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Application\\Common\\Interfaces\\UoW\\IUnitOfWork.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Application\\Common\\Interfaces\\UoW\\IUnitOfWork.cs",
               "RelativeDocumentMoniker": "Shop.Application\\Common\\Interfaces\\UoW\\IUnitOfWork.cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Application\\Common\\Interfaces\\UoW\\IUnitOfWork.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Application\\Common\\Interfaces\\UoW\\IUnitOfWork.cs",
               "RelativeToolTip": "Shop.Application\\Common\\Interfaces\\UoW\\IUnitOfWork.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -479,11 +537,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 18,
               "Title": "AddIngredientToProductDto.cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Application\\Common\\Dtos\\AddIngredientToProductDto.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Application\\Common\\Dtos\\AddIngredientToProductDto.cs",
               "RelativeDocumentMoniker": "Shop.Application\\Common\\Dtos\\AddIngredientToProductDto.cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Application\\Common\\Dtos\\AddIngredientToProductDto.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Application\\Common\\Dtos\\AddIngredientToProductDto.cs",
               "RelativeToolTip": "Shop.Application\\Common\\Dtos\\AddIngredientToProductDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -491,11 +549,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 19,
               "Title": "Nutrition.cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Domain\\ValueObjects\\Nutrition.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Domain\\ValueObjects\\Nutrition.cs",
               "RelativeDocumentMoniker": "Shop.Domain\\ValueObjects\\Nutrition.cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Domain\\ValueObjects\\Nutrition.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Domain\\ValueObjects\\Nutrition.cs",
               "RelativeToolTip": "Shop.Domain\\ValueObjects\\Nutrition.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAB6AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -503,11 +561,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 20,
               "Title": "Quantity.cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Domain\\ValueObjects\\Quantity.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Domain\\ValueObjects\\Quantity.cs",
               "RelativeDocumentMoniker": "Shop.Domain\\ValueObjects\\Quantity.cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Domain\\ValueObjects\\Quantity.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Domain\\ValueObjects\\Quantity.cs",
               "RelativeToolTip": "Shop.Domain\\ValueObjects\\Quantity.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -515,11 +573,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 21,
               "Title": "UpdateCartItemQuantityCommand.cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Application\\UseCases\\UpdateCartItemQuantity\\UpdateCartItemQuantityCommand.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Application\\UseCases\\UpdateCartItemQuantity\\UpdateCartItemQuantityCommand.cs",
               "RelativeDocumentMoniker": "Shop.Application\\UseCases\\UpdateCartItemQuantity\\UpdateCartItemQuantityCommand.cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Application\\UseCases\\UpdateCartItemQuantity\\UpdateCartItemQuantityCommand.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Application\\UseCases\\UpdateCartItemQuantity\\UpdateCartItemQuantityCommand.cs",
               "RelativeToolTip": "Shop.Application\\UseCases\\UpdateCartItemQuantity\\UpdateCartItemQuantityCommand.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAuwAYAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -527,11 +585,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 22,
               "Title": "ProductCategory.cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Domain\\Enums\\ProductCategory.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Domain\\Enums\\ProductCategory.cs",
               "RelativeDocumentMoniker": "Shop.Domain\\Enums\\ProductCategory.cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Domain\\Enums\\ProductCategory.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Domain\\Enums\\ProductCategory.cs",
               "RelativeToolTip": "Shop.Domain\\Enums\\ProductCategory.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -539,11 +597,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 24,
               "Title": "Shop.Infrastructure.csproj",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Infrastructure\\Shop.Infrastructure.csproj",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Infrastructure\\Shop.Infrastructure.csproj",
               "RelativeDocumentMoniker": "Shop.Infrastructure\\Shop.Infrastructure.csproj",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Infrastructure\\Shop.Infrastructure.csproj",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Infrastructure\\Shop.Infrastructure.csproj",
               "RelativeToolTip": "Shop.Infrastructure\\Shop.Infrastructure.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
@@ -551,11 +609,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 23,
               "Title": "OrderStatus.cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Domain\\Enums\\OrderStatus.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Domain\\Enums\\OrderStatus.cs",
               "RelativeDocumentMoniker": "Shop.Domain\\Enums\\OrderStatus.cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Domain\\Enums\\OrderStatus.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Domain\\Enums\\OrderStatus.cs",
               "RelativeToolTip": "Shop.Domain\\Enums\\OrderStatus.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -563,11 +621,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 25,
               "Title": "CreateOrderCommandHandler.cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Application\\UseCases\\CreateOrder\\CreateOrderCommandHandler.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Application\\UseCases\\CreateOrder\\CreateOrderCommandHandler.cs",
               "RelativeDocumentMoniker": "Shop.Application\\UseCases\\CreateOrder\\CreateOrderCommandHandler.cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Application\\UseCases\\CreateOrder\\CreateOrderCommandHandler.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Application\\UseCases\\CreateOrder\\CreateOrderCommandHandler.cs",
               "RelativeToolTip": "Shop.Application\\UseCases\\CreateOrder\\CreateOrderCommandHandler.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAABMAAABLAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -575,11 +633,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 26,
               "Title": "AddItemToCartCommandHandler.cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Application\\UseCases\\AddItemToCart\\AddItemToCartCommandHandler.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Application\\UseCases\\AddItemToCart\\AddItemToCartCommandHandler.cs",
               "RelativeDocumentMoniker": "Shop.Application\\UseCases\\AddItemToCart\\AddItemToCartCommandHandler.cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Application\\UseCases\\AddItemToCart\\AddItemToCartCommandHandler.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Application\\UseCases\\AddItemToCart\\AddItemToCartCommandHandler.cs",
               "RelativeToolTip": "Shop.Application\\UseCases\\AddItemToCart\\AddItemToCartCommandHandler.cs",
               "ViewState": "AgIAAAgAAAAAAAAAAAAAwBgAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -587,11 +645,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 27,
               "Title": "CartItemRepository.cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Infrastructure\\Persistence\\Repositories\\CartItemRepository.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Infrastructure\\Persistence\\Repositories\\CartItemRepository.cs",
               "RelativeDocumentMoniker": "Shop.Infrastructure\\Persistence\\Repositories\\CartItemRepository.cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Infrastructure\\Persistence\\Repositories\\CartItemRepository.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Infrastructure\\Persistence\\Repositories\\CartItemRepository.cs",
               "RelativeToolTip": "Shop.Infrastructure\\Persistence\\Repositories\\CartItemRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAABkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -599,11 +657,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 29,
               "Title": "ICartItemRepository.cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Infrastructure\\Persistence\\Repositories\\ICartItemRepository.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Infrastructure\\Persistence\\Repositories\\ICartItemRepository.cs",
               "RelativeDocumentMoniker": "Shop.Infrastructure\\Persistence\\Repositories\\ICartItemRepository.cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Infrastructure\\Persistence\\Repositories\\ICartItemRepository.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Infrastructure\\Persistence\\Repositories\\ICartItemRepository.cs",
               "RelativeToolTip": "Shop.Infrastructure\\Persistence\\Repositories\\ICartItemRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAABYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -611,11 +669,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 32,
               "Title": "CartItemConfiguration.cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Infrastructure\\Persistence\\Configurations\\CartItemConfiguration.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Infrastructure\\Persistence\\Configurations\\CartItemConfiguration.cs",
               "RelativeDocumentMoniker": "Shop.Infrastructure\\Persistence\\Configurations\\CartItemConfiguration.cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Infrastructure\\Persistence\\Configurations\\CartItemConfiguration.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Infrastructure\\Persistence\\Configurations\\CartItemConfiguration.cs",
               "RelativeToolTip": "Shop.Infrastructure\\Persistence\\Configurations\\CartItemConfiguration.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAAAwAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -623,11 +681,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 28,
               "Title": "UnitOfWork.cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Infrastructure\\Persistence\\UoW\\UnitOfWork.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Infrastructure\\Persistence\\UoW\\UnitOfWork.cs",
               "RelativeDocumentMoniker": "Shop.Infrastructure\\Persistence\\UoW\\UnitOfWork.cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Infrastructure\\Persistence\\UoW\\UnitOfWork.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Infrastructure\\Persistence\\UoW\\UnitOfWork.cs",
               "RelativeToolTip": "Shop.Infrastructure\\Persistence\\UoW\\UnitOfWork.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAAA0AAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -635,11 +693,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 30,
               "Title": "ApplicationDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Infrastructure\\Persistence\\ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Infrastructure\\Persistence\\ApplicationDbContext.cs",
               "RelativeDocumentMoniker": "Shop.Infrastructure\\Persistence\\ApplicationDbContext.cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Infrastructure\\Persistence\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Infrastructure\\Persistence\\ApplicationDbContext.cs",
               "RelativeToolTip": "Shop.Infrastructure\\Persistence\\ApplicationDbContext.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAAAoAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -647,11 +705,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 31,
               "Title": "CartConfiguration.cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Infrastructure\\Persistence\\Configurations\\CartConfiguration.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Infrastructure\\Persistence\\Configurations\\CartConfiguration.cs",
               "RelativeDocumentMoniker": "Shop.Infrastructure\\Persistence\\Configurations\\CartConfiguration.cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Infrastructure\\Persistence\\Configurations\\CartConfiguration.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Infrastructure\\Persistence\\Configurations\\CartConfiguration.cs",
               "RelativeToolTip": "Shop.Infrastructure\\Persistence\\Configurations\\CartConfiguration.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -659,11 +717,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 33,
               "Title": "Aggregate.cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Domain\\Abstractions\\Aggregate.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Domain\\Abstractions\\Aggregate.cs",
               "RelativeDocumentMoniker": "Shop.Domain\\Abstractions\\Aggregate.cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Domain\\Abstractions\\Aggregate.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Domain\\Abstractions\\Aggregate.cs",
               "RelativeToolTip": "Shop.Domain\\Abstractions\\Aggregate.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -671,23 +729,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
-              "Title": "DomainEvent.cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Domain\\DomainEvents\\DomainEvent.cs",
-              "RelativeDocumentMoniker": "Shop.Domain\\DomainEvents\\DomainEvent.cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Domain\\DomainEvents\\DomainEvent.cs",
-              "RelativeToolTip": "Shop.Domain\\DomainEvents\\DomainEvent.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAA1AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T10:39:18.397Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 34,
               "Title": "Entity.cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Domain\\Abstractions\\Entity.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Domain\\Abstractions\\Entity.cs",
               "RelativeDocumentMoniker": "Shop.Domain\\Abstractions\\Entity.cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Domain\\Abstractions\\Entity.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Domain\\Abstractions\\Entity.cs",
               "RelativeToolTip": "Shop.Domain\\Abstractions\\Entity.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAC0AAABKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -695,11 +741,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 35,
               "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.API\\appsettings.json",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.API\\appsettings.json",
               "RelativeDocumentMoniker": "Shop.API\\appsettings.json",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.API\\appsettings.json",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.API\\appsettings.json",
               "RelativeToolTip": "Shop.API\\appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
@@ -707,11 +753,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 36,
               "Title": "CartRepository.cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Infrastructure\\Persistence\\Repositories\\CartRepository.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Infrastructure\\Persistence\\Repositories\\CartRepository.cs",
               "RelativeDocumentMoniker": "Shop.Infrastructure\\Persistence\\Repositories\\CartRepository.cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Infrastructure\\Persistence\\Repositories\\CartRepository.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Infrastructure\\Persistence\\Repositories\\CartRepository.cs",
               "RelativeToolTip": "Shop.Infrastructure\\Persistence\\Repositories\\CartRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAABPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -719,11 +765,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 37,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.API\\Program.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.API\\Program.cs",
               "RelativeDocumentMoniker": "Shop.API\\Program.cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.API\\Program.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.API\\Program.cs",
               "RelativeToolTip": "Shop.API\\Program.cs",
               "ViewState": "AgIAABYAAAAAAAAAAAAAABwAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -731,11 +777,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 38,
               "Title": "ApplicationBuilderExtensions.cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.API\\Extensions\\ApplicationBuilderExtensions.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.API\\Extensions\\ApplicationBuilderExtensions.cs",
               "RelativeDocumentMoniker": "Shop.API\\Extensions\\ApplicationBuilderExtensions.cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.API\\Extensions\\ApplicationBuilderExtensions.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.API\\Extensions\\ApplicationBuilderExtensions.cs",
               "RelativeToolTip": "Shop.API\\Extensions\\ApplicationBuilderExtensions.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -743,11 +789,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 39,
               "Title": "OrderConfiguration.cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Infrastructure\\Persistence\\Configurations\\OrderConfiguration.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Infrastructure\\Persistence\\Configurations\\OrderConfiguration.cs",
               "RelativeDocumentMoniker": "Shop.Infrastructure\\Persistence\\Configurations\\OrderConfiguration.cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Infrastructure\\Persistence\\Configurations\\OrderConfiguration.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Infrastructure\\Persistence\\Configurations\\OrderConfiguration.cs",
               "RelativeToolTip": "Shop.Infrastructure\\Persistence\\Configurations\\OrderConfiguration.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -755,11 +801,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 40,
               "Title": "OrderItemConfiguration.cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Infrastructure\\Persistence\\Configurations\\OrderItemConfiguration.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Infrastructure\\Persistence\\Configurations\\OrderItemConfiguration.cs",
               "RelativeDocumentMoniker": "Shop.Infrastructure\\Persistence\\Configurations\\OrderItemConfiguration.cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Infrastructure\\Persistence\\Configurations\\OrderItemConfiguration.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Infrastructure\\Persistence\\Configurations\\OrderItemConfiguration.cs",
               "RelativeToolTip": "Shop.Infrastructure\\Persistence\\Configurations\\OrderItemConfiguration.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAAAwAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -767,11 +813,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 42,
               "Title": "IWorkerNotifier.cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Application\\Common\\Interfaces\\Notifiers\\IWorkerNotifier.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Application\\Common\\Interfaces\\Notifiers\\IWorkerNotifier.cs",
               "RelativeDocumentMoniker": "Shop.Application\\Common\\Interfaces\\Notifiers\\IWorkerNotifier.cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Application\\Common\\Interfaces\\Notifiers\\IWorkerNotifier.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Application\\Common\\Interfaces\\Notifiers\\IWorkerNotifier.cs",
               "RelativeToolTip": "Shop.Application\\Common\\Interfaces\\Notifiers\\IWorkerNotifier.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -779,11 +825,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 41,
               "Title": "ApplicationLayerDependencies.cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Application\\Common\\DependencyInjection\\ApplicationLayerDependencies.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Application\\Common\\DependencyInjection\\ApplicationLayerDependencies.cs",
               "RelativeDocumentMoniker": "Shop.Application\\Common\\DependencyInjection\\ApplicationLayerDependencies.cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Application\\Common\\DependencyInjection\\ApplicationLayerDependencies.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Application\\Common\\DependencyInjection\\ApplicationLayerDependencies.cs",
               "RelativeToolTip": "Shop.Application\\Common\\DependencyInjection\\ApplicationLayerDependencies.cs",
               "ViewState": "AgIAAAgAAAAAAAAAAAAAABMAAABcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -791,11 +837,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 43,
               "Title": "RemoveCartItemCommandHandler.cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Application\\UseCases\\RemoveCartItem\\RemoveCartItemCommandHandler.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Application\\UseCases\\RemoveCartItem\\RemoveCartItemCommandHandler.cs",
               "RelativeDocumentMoniker": "Shop.Application\\UseCases\\RemoveCartItem\\RemoveCartItemCommandHandler.cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Application\\UseCases\\RemoveCartItem\\RemoveCartItemCommandHandler.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Application\\UseCases\\RemoveCartItem\\RemoveCartItemCommandHandler.cs",
               "RelativeToolTip": "Shop.Application\\UseCases\\RemoveCartItem\\RemoveCartItemCommandHandler.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -803,11 +849,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 44,
               "Title": "SignalRWorkerNotifier .cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Infrastructure\\SignalR\\SignalRWorkerNotifier .cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Infrastructure\\SignalR\\SignalRWorkerNotifier .cs",
               "RelativeDocumentMoniker": "Shop.Infrastructure\\SignalR\\SignalRWorkerNotifier .cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Infrastructure\\SignalR\\SignalRWorkerNotifier .cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Infrastructure\\SignalR\\SignalRWorkerNotifier .cs",
               "RelativeToolTip": "Shop.Infrastructure\\SignalR\\SignalRWorkerNotifier .cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAABFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -815,11 +861,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 45,
               "Title": "ProductConfiguration.cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Infrastructure\\Persistence\\Configurations\\ProductConfiguration.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Infrastructure\\Persistence\\Configurations\\ProductConfiguration.cs",
               "RelativeDocumentMoniker": "Shop.Infrastructure\\Persistence\\Configurations\\ProductConfiguration.cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Infrastructure\\Persistence\\Configurations\\ProductConfiguration.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Infrastructure\\Persistence\\Configurations\\ProductConfiguration.cs",
               "RelativeToolTip": "Shop.Infrastructure\\Persistence\\Configurations\\ProductConfiguration.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -827,11 +873,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 43,
+              "DocumentIndex": 46,
               "Title": "OutboxConfiguration.cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Infrastructure\\Persistence\\Configurations\\OutboxConfiguration.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Infrastructure\\Persistence\\Configurations\\OutboxConfiguration.cs",
               "RelativeDocumentMoniker": "Shop.Infrastructure\\Persistence\\Configurations\\OutboxConfiguration.cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Infrastructure\\Persistence\\Configurations\\OutboxConfiguration.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Infrastructure\\Persistence\\Configurations\\OutboxConfiguration.cs",
               "RelativeToolTip": "Shop.Infrastructure\\Persistence\\Configurations\\OutboxConfiguration.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAwAoAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -839,11 +885,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 44,
+              "DocumentIndex": 47,
               "Title": "CartController.cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.API\\Controllers\\CartController.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.API\\Controllers\\CartController.cs",
               "RelativeDocumentMoniker": "Shop.API\\Controllers\\CartController.cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.API\\Controllers\\CartController.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.API\\Controllers\\CartController.cs",
               "RelativeToolTip": "Shop.API\\Controllers\\CartController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAABkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -851,11 +897,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 45,
+              "DocumentIndex": 48,
               "Title": "OrderController.cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.API\\Controllers\\OrderController.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.API\\Controllers\\OrderController.cs",
               "RelativeDocumentMoniker": "Shop.API\\Controllers\\OrderController.cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.API\\Controllers\\OrderController.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.API\\Controllers\\OrderController.cs",
               "RelativeToolTip": "Shop.API\\Controllers\\OrderController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -863,11 +909,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 46,
+              "DocumentIndex": 49,
               "Title": "OrderRepository.cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Infrastructure\\Persistence\\Repositories\\OrderRepository.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Infrastructure\\Persistence\\Repositories\\OrderRepository.cs",
               "RelativeDocumentMoniker": "Shop.Infrastructure\\Persistence\\Repositories\\OrderRepository.cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Infrastructure\\Persistence\\Repositories\\OrderRepository.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Infrastructure\\Persistence\\Repositories\\OrderRepository.cs",
               "RelativeToolTip": "Shop.Infrastructure\\Persistence\\Repositories\\OrderRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -875,11 +921,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 47,
+              "DocumentIndex": 50,
               "Title": "ProductRepository.cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Infrastructure\\Persistence\\Repositories\\ProductRepository.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Infrastructure\\Persistence\\Repositories\\ProductRepository.cs",
               "RelativeDocumentMoniker": "Shop.Infrastructure\\Persistence\\Repositories\\ProductRepository.cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Infrastructure\\Persistence\\Repositories\\ProductRepository.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Infrastructure\\Persistence\\Repositories\\ProductRepository.cs",
               "RelativeToolTip": "Shop.Infrastructure\\Persistence\\Repositories\\ProductRepository.cs",
               "ViewState": "AgIAAAEAAAAAAAAAAAAqwAoAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -887,11 +933,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 48,
+              "DocumentIndex": 51,
               "Title": "ProductUpdatedDomainEvent.cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Domain\\DomainEvents\\ProductUpdatedDomainEvent.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Domain\\DomainEvents\\ProductUpdatedDomainEvent.cs",
               "RelativeDocumentMoniker": "Shop.Domain\\DomainEvents\\ProductUpdatedDomainEvent.cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Domain\\DomainEvents\\ProductUpdatedDomainEvent.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Domain\\DomainEvents\\ProductUpdatedDomainEvent.cs",
               "RelativeToolTip": "Shop.Domain\\DomainEvents\\ProductUpdatedDomainEvent.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAABXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -899,11 +945,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 49,
+              "DocumentIndex": 52,
               "Title": "IWorkerHub.cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Infrastructure\\SignalR\\Interfaces\\IWorkerHub.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Infrastructure\\SignalR\\Interfaces\\IWorkerHub.cs",
               "RelativeDocumentMoniker": "Shop.Infrastructure\\SignalR\\Interfaces\\IWorkerHub.cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Infrastructure\\SignalR\\Interfaces\\IWorkerHub.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Infrastructure\\SignalR\\Interfaces\\IWorkerHub.cs",
               "RelativeToolTip": "Shop.Infrastructure\\SignalR\\Interfaces\\IWorkerHub.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -911,11 +957,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 51,
+              "DocumentIndex": 54,
               "Title": "AddItemToCartCommand.cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Application\\UseCases\\AddItemToCart\\AddItemToCartCommand.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Application\\UseCases\\AddItemToCart\\AddItemToCartCommand.cs",
               "RelativeDocumentMoniker": "Shop.Application\\UseCases\\AddItemToCart\\AddItemToCartCommand.cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Application\\UseCases\\AddItemToCart\\AddItemToCartCommand.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Application\\UseCases\\AddItemToCart\\AddItemToCartCommand.cs",
               "RelativeToolTip": "Shop.Application\\UseCases\\AddItemToCart\\AddItemToCartCommand.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -923,11 +969,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 50,
+              "DocumentIndex": 53,
               "Title": "ProductController.cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.API\\Controllers\\ProductController.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.API\\Controllers\\ProductController.cs",
               "RelativeDocumentMoniker": "Shop.API\\Controllers\\ProductController.cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.API\\Controllers\\ProductController.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.API\\Controllers\\ProductController.cs",
               "RelativeToolTip": "Shop.API\\Controllers\\ProductController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -935,11 +981,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 52,
+              "DocumentIndex": 55,
               "Title": "RemoveCartItemCommand.cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Application\\UseCases\\RemoveCartItem\\RemoveCartItemCommand.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Application\\UseCases\\RemoveCartItem\\RemoveCartItemCommand.cs",
               "RelativeDocumentMoniker": "Shop.Application\\UseCases\\RemoveCartItem\\RemoveCartItemCommand.cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Application\\UseCases\\RemoveCartItem\\RemoveCartItemCommand.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Application\\UseCases\\RemoveCartItem\\RemoveCartItemCommand.cs",
               "RelativeToolTip": "Shop.Application\\UseCases\\RemoveCartItem\\RemoveCartItemCommand.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -947,11 +993,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 53,
+              "DocumentIndex": 56,
               "Title": "OutboxProcessingBackgroundService.cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Infrastructure\\BackgroundServices\\OutboxProcessingBackgroundService.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Infrastructure\\BackgroundServices\\OutboxProcessingBackgroundService.cs",
               "RelativeDocumentMoniker": "Shop.Infrastructure\\BackgroundServices\\OutboxProcessingBackgroundService.cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Infrastructure\\BackgroundServices\\OutboxProcessingBackgroundService.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Infrastructure\\BackgroundServices\\OutboxProcessingBackgroundService.cs",
               "RelativeToolTip": "Shop.Infrastructure\\BackgroundServices\\OutboxProcessingBackgroundService.cs",
               "ViewState": "AgIAAB8AAAAAAAAAAAAQwCwAAABNAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -959,11 +1005,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 54,
+              "DocumentIndex": 57,
               "Title": "OrderCreatedDomainEvent.cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Domain\\DomainEvents\\OrderCreatedDomainEvent.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Domain\\DomainEvents\\OrderCreatedDomainEvent.cs",
               "RelativeDocumentMoniker": "Shop.Domain\\DomainEvents\\OrderCreatedDomainEvent.cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Domain\\DomainEvents\\OrderCreatedDomainEvent.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Domain\\DomainEvents\\OrderCreatedDomainEvent.cs",
               "RelativeToolTip": "Shop.Domain\\DomainEvents\\OrderCreatedDomainEvent.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -971,11 +1017,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 55,
+              "DocumentIndex": 58,
               "Title": "Outbox.cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Infrastructure\\Outbox\\Outbox.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Infrastructure\\Outbox\\Outbox.cs",
               "RelativeDocumentMoniker": "Shop.Infrastructure\\Outbox\\Outbox.cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Infrastructure\\Outbox\\Outbox.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Infrastructure\\Outbox\\Outbox.cs",
               "RelativeToolTip": "Shop.Infrastructure\\Outbox\\Outbox.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -983,11 +1029,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 56,
+              "DocumentIndex": 59,
               "Title": "Dispatcher.cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Application\\Common\\Dispatcher.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Application\\Common\\Dispatcher.cs",
               "RelativeDocumentMoniker": "Shop.Application\\Common\\Dispatcher.cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Application\\Common\\Dispatcher.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Application\\Common\\Dispatcher.cs",
               "RelativeToolTip": "Shop.Application\\Common\\Dispatcher.cs",
               "ViewState": "AgIAAB4AAAAAAAAAAAAowCsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -995,11 +1041,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 57,
+              "DocumentIndex": 60,
               "Title": "WorkerHub.cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Infrastructure\\SignalR\\WorkerHub.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Infrastructure\\SignalR\\WorkerHub.cs",
               "RelativeDocumentMoniker": "Shop.Infrastructure\\SignalR\\WorkerHub.cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Infrastructure\\SignalR\\WorkerHub.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Infrastructure\\SignalR\\WorkerHub.cs",
               "RelativeToolTip": "Shop.Infrastructure\\SignalR\\WorkerHub.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -1007,11 +1053,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 58,
+              "DocumentIndex": 61,
               "Title": "CreateOrderCommand.cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Application\\UseCases\\CreateOrder\\CreateOrderCommand.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Application\\UseCases\\CreateOrder\\CreateOrderCommand.cs",
               "RelativeDocumentMoniker": "Shop.Application\\UseCases\\CreateOrder\\CreateOrderCommand.cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Application\\UseCases\\CreateOrder\\CreateOrderCommand.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Application\\UseCases\\CreateOrder\\CreateOrderCommand.cs",
               "RelativeToolTip": "Shop.Application\\UseCases\\CreateOrder\\CreateOrderCommand.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAuwAQAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -1019,11 +1065,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 60,
+              "DocumentIndex": 63,
               "Title": "InfrastructureLayerDependencies.cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Infrastructure\\DependencyInjection\\InfrastructureLayerDependencies.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Infrastructure\\DependencyInjection\\InfrastructureLayerDependencies.cs",
               "RelativeDocumentMoniker": "Shop.Infrastructure\\DependencyInjection\\InfrastructureLayerDependencies.cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Infrastructure\\DependencyInjection\\InfrastructureLayerDependencies.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Infrastructure\\DependencyInjection\\InfrastructureLayerDependencies.cs",
               "RelativeToolTip": "Shop.Infrastructure\\DependencyInjection\\InfrastructureLayerDependencies.cs",
               "ViewState": "AgIAABAAAAAAAAAAAAAAwBwAAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -1031,11 +1077,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 59,
+              "DocumentIndex": 62,
               "Title": "launchSettings.json",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.API\\Properties\\launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.API\\Properties\\launchSettings.json",
               "RelativeDocumentMoniker": "Shop.API\\Properties\\launchSettings.json",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.API\\Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.API\\Properties\\launchSettings.json",
               "RelativeToolTip": "Shop.API\\Properties\\launchSettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
@@ -1043,11 +1089,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 61,
+              "DocumentIndex": 64,
               "Title": "Shop.API.http",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.API\\Shop.API.http",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.API\\Shop.API.http",
               "RelativeDocumentMoniker": "Shop.API\\Shop.API.http",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.API\\Shop.API.http",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.API\\Shop.API.http",
               "RelativeToolTip": "Shop.API\\Shop.API.http",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
@@ -1055,11 +1101,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 62,
+              "DocumentIndex": 65,
               "Title": "ClearCartCommandHandler.cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Application\\UseCases\\ClearCart\\ClearCartCommandHandler.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Application\\UseCases\\ClearCart\\ClearCartCommandHandler.cs",
               "RelativeDocumentMoniker": "Shop.Application\\UseCases\\ClearCart\\ClearCartCommandHandler.cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Application\\UseCases\\ClearCart\\ClearCartCommandHandler.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Application\\UseCases\\ClearCart\\ClearCartCommandHandler.cs",
               "RelativeToolTip": "Shop.Application\\UseCases\\ClearCart\\ClearCartCommandHandler.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -1067,11 +1113,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 63,
+              "DocumentIndex": 66,
               "Title": "ClearCartCommand.cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Application\\UseCases\\ClearCart\\ClearCartCommand.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Application\\UseCases\\ClearCart\\ClearCartCommand.cs",
               "RelativeDocumentMoniker": "Shop.Application\\UseCases\\ClearCart\\ClearCartCommand.cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Application\\UseCases\\ClearCart\\ClearCartCommand.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Application\\UseCases\\ClearCart\\ClearCartCommand.cs",
               "RelativeToolTip": "Shop.Application\\UseCases\\ClearCart\\ClearCartCommand.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -1079,11 +1125,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 64,
+              "DocumentIndex": 67,
               "Title": "GetCartQueryHandler.cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Application\\UseCases\\GetCart\\GetCartQueryHandler.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Application\\UseCases\\GetCart\\GetCartQueryHandler.cs",
               "RelativeDocumentMoniker": "Shop.Application\\UseCases\\GetCart\\GetCartQueryHandler.cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Application\\UseCases\\GetCart\\GetCartQueryHandler.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Application\\UseCases\\GetCart\\GetCartQueryHandler.cs",
               "RelativeToolTip": "Shop.Application\\UseCases\\GetCart\\GetCartQueryHandler.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAABiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -1091,11 +1137,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 65,
+              "DocumentIndex": 68,
               "Title": "DomainException .cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Domain\\Exceptions\\DomainException .cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Domain\\Exceptions\\DomainException .cs",
               "RelativeDocumentMoniker": "Shop.Domain\\Exceptions\\DomainException .cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Domain\\Exceptions\\DomainException .cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Domain\\Exceptions\\DomainException .cs",
               "RelativeToolTip": "Shop.Domain\\Exceptions\\DomainException .cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -1103,11 +1149,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 66,
+              "DocumentIndex": 69,
               "Title": "GetCartQuery.cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Application\\UseCases\\GetCart\\GetCartQuery.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Application\\UseCases\\GetCart\\GetCartQuery.cs",
               "RelativeDocumentMoniker": "Shop.Application\\UseCases\\GetCart\\GetCartQuery.cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Application\\UseCases\\GetCart\\GetCartQuery.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Application\\UseCases\\GetCart\\GetCartQuery.cs",
               "RelativeToolTip": "Shop.Application\\UseCases\\GetCart\\GetCartQuery.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAuwAUAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -1115,11 +1161,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 68,
+              "DocumentIndex": 71,
               "Title": "ICommand.cs",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Application\\Common\\Interfaces\\Mediator\\ICommand.cs",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Application\\Common\\Interfaces\\Mediator\\ICommand.cs",
               "RelativeDocumentMoniker": "Shop.Application\\Common\\Interfaces\\Mediator\\ICommand.cs",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Application\\Common\\Interfaces\\Mediator\\ICommand.cs",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Application\\Common\\Interfaces\\Mediator\\ICommand.cs",
               "RelativeToolTip": "Shop.Application\\Common\\Interfaces\\Mediator\\ICommand.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -1127,11 +1173,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 67,
+              "DocumentIndex": 70,
               "Title": "Shop.Application.csproj",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Application\\Shop.Application.csproj",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Application\\Shop.Application.csproj",
               "RelativeDocumentMoniker": "Shop.Application\\Shop.Application.csproj",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Application\\Shop.Application.csproj",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Application\\Shop.Application.csproj",
               "RelativeToolTip": "Shop.Application\\Shop.Application.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
@@ -1139,11 +1185,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 69,
+              "DocumentIndex": 72,
               "Title": "Shop.API.csproj",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.API\\Shop.API.csproj",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.API\\Shop.API.csproj",
               "RelativeDocumentMoniker": "Shop.API\\Shop.API.csproj",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.API\\Shop.API.csproj",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.API\\Shop.API.csproj",
               "RelativeToolTip": "Shop.API\\Shop.API.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
@@ -1151,11 +1197,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 70,
+              "DocumentIndex": 73,
               "Title": "Shop.Domain.csproj",
-              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Domain\\Shop.Domain.csproj",
+              "DocumentMoniker": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Domain\\Shop.Domain.csproj",
               "RelativeDocumentMoniker": "Shop.Domain\\Shop.Domain.csproj",
-              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\Shop\\Shop\\Shop.Domain\\Shop.Domain.csproj",
+              "ToolTip": "C:\\Users\\\u0420\u043E\u0434\u0438\u043E\u043D\\Desktop\\My-KFC\\KFC\\Shop\\Shop.Domain\\Shop.Domain.csproj",
               "RelativeToolTip": "Shop.Domain\\Shop.Domain.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
