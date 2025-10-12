@@ -8,6 +8,7 @@ namespace OrderService.API.Controllers;
 [Route("api/orders")]
 public class OrderController(IDispatcher dispatcher) : ControllerBase
 {
+    [HttpPost]
     public async Task<IActionResult> CreateOrder(
         [FromBody] OrderCreateCommand command, 
         CancellationToken cancellationToken)
