@@ -14,10 +14,6 @@ namespace Catalog.Infrastructure.Persistence.Configurations
             builder
                 .Property(i => i.Price)
                 .HasPrecision(18, 5);
-
-            builder
-                .Property(i => i.AvailableForTypes)
-                .HasColumnType("text[]");
         }
     }
 }

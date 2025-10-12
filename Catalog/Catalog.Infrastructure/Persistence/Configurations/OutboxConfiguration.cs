@@ -1,12 +1,11 @@
-﻿using Catalog.Infrastructure.Persistence.Outbox;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Shop.Infrastructure.Persistence.Configurations
+namespace Catalog.Infrastructure.Persistence.Configurations
 {
-    public sealed class OutboxConfiguration : IEntityTypeConfiguration<Outbox>
+    public sealed class OutboxConfiguration : IEntityTypeConfiguration<Outbox.Outbox>
     {
-        public void Configure(EntityTypeBuilder<Outbox> builder)
+        public void Configure(EntityTypeBuilder<Outbox.Outbox> builder)
         {
             builder
                 .HasKey(x => x.Id);

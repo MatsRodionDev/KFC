@@ -2,6 +2,7 @@
 using Catalog.Domain.Interfaces.Repositories;
 using Catalog.Domain.Repositories;
 using System.Text.Json;
+using Catalog.Application.Common.Interfaces;
 
 namespace Catalog.Infrastructure.Persistence.UoW
 {

@@ -14,14 +14,18 @@ namespace Catalog.Domain.ProductAggregate
             Quantity quantity,
             Quantity minQuantity,
             Quantity maxQuantity,
-            Nutrition totalNutrition)
+            Nutrition totalNutrition,
+            bool isBase)
         {
             ProductId = productId;
             IngredientId = ingredientId;
             IngredientName = ingredientName;
             Price = price;
             Quantity = quantity;
+            MinQuantity = minQuantity;
+            MaxQuantity = maxQuantity;
             TotalNutrition = totalNutrition;
+            IsBase = isBase;
         }
 
         private ProductIngredient() { }
@@ -34,7 +38,7 @@ namespace Catalog.Domain.ProductAggregate
         public Quantity Quantity { get; private set; }
         public Quantity MaxQuantity { get; private set; }
         public Quantity MinQuantity { get; private set; }
-        public bool IsBase { get; set; }
+        public bool IsBase { get; private set; }
 
         public static ProductIngredient Create(Ingredient ingredient, Guid productId, int quantity, int minQuantity, int maxQuantity)
         {
@@ -48,7 +52,8 @@ namespace Catalog.Domain.ProductAggregate
                 Quantity.Create(quantity),
                 Quantity.Create(minQuantity),
                 Quantity.Create(maxQuantity),
-                totalNutrition);
+                totalNutrition,
+                ingredient.IsBase);
         }
     }
 }

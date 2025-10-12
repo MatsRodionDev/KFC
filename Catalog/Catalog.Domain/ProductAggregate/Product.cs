@@ -9,11 +9,10 @@ namespace Catalog.Domain.ProductAggregate
     public class Product : Aggregate
     {
         private readonly HashSet<ProductIngredient> _productIngredients = new();
-
         private Product(
             string name,
             string description,
-            decimal price,
+            decimal? price,
             ProductCategory productCategory,
             Guid? userId)
         {
@@ -28,23 +27,24 @@ namespace Catalog.Domain.ProductAggregate
 
         public string Name { get; private set; } = string.Empty;
         public string Description { get; private set; } = string.Empty;
-        public decimal Price { get; private set; }
+        public decimal? Price { get; private set; } 
+        public decimal IngredientsPrice => _productIngredients.Select(i => i.Price).Sum();
         public ProductCategory ProductCategory { get; private set; }
-        public IReadOnlyList<ProductIngredient> ProductIngredients => [.. _productIngredients];
+        public IReadOnlyCollection<ProductIngredient> ProductIngredients => _productIngredients;
         public Nutrition ProductNutrition => ProductIngredients.Select(i => i.TotalNutrition).Aggregate((acc, nutrition) => acc + nutrition);
         public Guid? UserId { get; set; }
 
         public static Product Create(
             string name,
             string description,
-            decimal price,
+            decimal? price,
             ProductCategory productCategory,
             (Ingredient baseIngredient, int baseIngredientQuantity)? ingredient,
             Guid? userId)
         {
             var product = new Product(name, description, price, productCategory, userId);
 
-            if(ingredient is not null)
+            if (ingredient is not null)
             {
                 var (baseIngredient, baseIngredientQuantity) = ingredient.Value;
 

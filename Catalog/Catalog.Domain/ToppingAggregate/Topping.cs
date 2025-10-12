@@ -1,4 +1,5 @@
 ﻿using Catalog.Domain.Abstractions;
+using Shop.Domain.Enums;
 
 namespace Catalog.Domain.ToppingAggregate
 {
@@ -7,7 +8,7 @@ namespace Catalog.Domain.ToppingAggregate
         private Topping(
             string name,
             decimal price,
-            HashSet<Topping> availableForTypes)
+            List<DrinkType> availableForTypes)
         {
             Name = name;
             Price = price;
@@ -18,12 +19,12 @@ namespace Catalog.Domain.ToppingAggregate
 
         public string Name { get; private set; } = string.Empty;
         public decimal Price { get; private set; }
-        public HashSet<Topping> AvailableForTypes { get; private set; } = [];
+        public List<DrinkType> AvailableForTypes { get; private set; } = [];
 
         public static Topping Create(
             string name,
             decimal price,
-            HashSet<Topping> availableForTypes)
+            List<DrinkType> availableForTypes)
         {
             var topping = new Topping(name, price, availableForTypes);
 

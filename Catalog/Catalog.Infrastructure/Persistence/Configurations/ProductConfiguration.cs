@@ -23,6 +23,9 @@ namespace Catalog.Infrastructure.Persistence.Configurations
                 .HasMany(p => p.ProductIngredients)
                 .WithOne()
                 .HasForeignKey(p => p.ProductId);
+            
+            builder.Ignore(p => p.ProductNutrition);
+            builder.Ignore(p => p.IngredientsPrice);
         }
     }
 }

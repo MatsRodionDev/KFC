@@ -1,4 +1,5 @@
 ﻿using Catalog.Domain.Exceptions;
+using Catalog.Domain.ProductAggregate;
 
 namespace Catalog.Domain.ValueObjects
 {
@@ -15,6 +16,8 @@ namespace Catalog.Domain.ValueObjects
             Calories = calories;
             Weight = weight;
         }
+        
+        private Nutrition() {}
 
         public static Nutrition Of(int calories, int weight) => new Nutrition(calories, weight);
 

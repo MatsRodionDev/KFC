@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="AsyncKeyedLock" Version="7.1.6" />
+      <PackageReference Include="DistributedLock.Redis" Version="1.1.0" />
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.9" />
+      <PackageReference Include="Refit" Version="8.0.0" />
+      <PackageReference Include="Refit.HttpClientFactory" Version="8.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Contracts\Contracts.csproj" />
+      <ProjectReference Include="..\OrderService.Domain\OrderService.Domain.csproj" />
+    </ItemGroup>
+
+</Project>

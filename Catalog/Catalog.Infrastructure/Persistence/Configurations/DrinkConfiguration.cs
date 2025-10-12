@@ -18,6 +18,11 @@ namespace Catalog.Infrastructure.Persistence.Configurations
             builder
                 .Property(i => i.Type)
                 .HasConversion<string>();
+            
+            builder
+                .HasMany(d => d.DrinkToppings)
+                .WithOne()
+                .HasForeignKey(d => d.DrinkId);
         }
     }
 }

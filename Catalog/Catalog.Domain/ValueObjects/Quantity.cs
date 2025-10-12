@@ -10,6 +10,8 @@ namespace Catalog.Domain.ValueObjects
         {
             Value = value;
         }
+        
+        private Quantity() {}
 
         public static Quantity Create(int value)
         {
