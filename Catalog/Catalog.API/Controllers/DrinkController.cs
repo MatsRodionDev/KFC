@@ -6,7 +6,7 @@ namespace Catalog.API.Controllers;
 
 [Controller]
 [Route("api/drinks")]
-public class DrinkRepository(IDispatcher dispatcher) : ControllerBase
+public class DrinkController(IDispatcher dispatcher) : ControllerBase
 {
     [HttpPost]
     public async Task<IActionResult> AddDrink([FromBody] AddDrinkCommand command, CancellationToken cancellationToken)
