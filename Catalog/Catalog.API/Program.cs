@@ -1,3 +1,4 @@
+using Catalog.API.Middlewares;
 using Catalog.Application.Common;
 using Catalog.Infrastructure;
 using Catalog.Infrastructure.Persistence;
@@ -5,11 +6,8 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+builder.Services.AddSwaggerGen();
 
 builder.Services
     .AddApplicationLayer()
@@ -17,10 +15,15 @@ builder.Services
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+app.UseMiddleware<ExceptionHandlingMiddleware>();
+
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+    app.UseSwagger();
+    app.UseSwaggerUI(options =>
+    {
+        options.SwaggerEndpoint("/swagger/v1.json", "Catalog Service API V1");
+    });
     
     await using var scope = app.Services.CreateAsyncScope();
     var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
@@ -33,4 +36,4 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.Run();
+await app.RunAsync();
