@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using VenueService.BLL.Mapper;
+using VenueService.BLL.Services;
 using VenueService.DAL.DI;
 
 namespace VenueService.BLL.DI;
@@ -9,7 +11,24 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddBusinessLayerDependencies(this IServiceCollection services, IConfiguration configuration)
     {
         services
-            .AddDataLayerDependencies(configuration);
+            .AddDataLayerDependencies(configuration)
+            .AddMapping()
+            .AddServices();
+
+        return services;
+    }
+    
+    private static IServiceCollection AddMapping(this IServiceCollection services)
+    {
+        return services.AddAutoMapper(cfg => cfg.AddProfile<MappingProfile>());
+    }
+    
+    private static IServiceCollection AddServices(this IServiceCollection services)
+    {
+        services
+            .AddScoped<IManagerService, ManagerService>()
+            .AddScoped<IRestaurantService, RestaurantService>()
+            .AddScoped<IRestaurantOrderService, RestaurantOrderService>();
 
         return services;
     }
