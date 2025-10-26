@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VenueService.BLL", "VenueSe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VenueService.DAL", "VenueService.DAL\VenueService.DAL.csproj", "{4880B95B-2DAF-4DDB-9222-2CB5240CB922}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contracts", "..\Contracts\Contracts.csproj", "{66D709D2-AB5D-4881-B1E4-5BE61D98015A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{4880B95B-2DAF-4DDB-9222-2CB5240CB922}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4880B95B-2DAF-4DDB-9222-2CB5240CB922}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4880B95B-2DAF-4DDB-9222-2CB5240CB922}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66D709D2-AB5D-4881-B1E4-5BE61D98015A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66D709D2-AB5D-4881-B1E4-5BE61D98015A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66D709D2-AB5D-4881-B1E4-5BE61D98015A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66D709D2-AB5D-4881-B1E4-5BE61D98015A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

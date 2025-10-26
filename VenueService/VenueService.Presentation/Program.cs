@@ -1,6 +1,9 @@
+using VenueService.BLL.DI;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOpenApi();
+builder.Services.AddBusinessLayerDependencies(builder.Configuration);
 
 var app = builder.Build();
 
