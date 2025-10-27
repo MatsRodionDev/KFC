@@ -5,7 +5,6 @@ using Contracts.Events;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using OrderService.Application.Common.Interfaces;
 using OrderService.Infrastructure.Persistence;
 
 namespace OrderService.Infrastructure.OutboxPattern
