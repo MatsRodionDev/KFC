@@ -1,7 +1,9 @@
 using System.Text.Json;
-using OrderService.API.Constants;
+using Contracts.Shared.Constants;
+using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Http;
 
-namespace OrderService.API.Middlewares;
+namespace Contracts.Middlewares;
 
 public class ErrorViewModel
 {

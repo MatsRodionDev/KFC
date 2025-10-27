@@ -1,7 +1,7 @@
-using Catalog.API.Middlewares;
 using Catalog.Application.Common;
 using Catalog.Infrastructure;
 using Catalog.Infrastructure.Persistence;
+using Contracts.Middlewares.Extensions;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,7 +15,7 @@ builder.Services
 
 var app = builder.Build();
 
-app.UseMiddleware<ExceptionHandlingMiddleware>();
+app.UseCustomExceptionHandler();
 
 if (app.Environment.IsDevelopment())
 {
@@ -30,7 +30,7 @@ if (app.Environment.IsDevelopment())
     await context.Database.MigrateAsync();
 }
 
-//app.UseHttpsRedirection();
+app.UseHttpsRedirection();
 
 app.UseAuthorization();
 

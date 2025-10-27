@@ -1,4 +1,4 @@
-﻿namespace OrderService.API.Constants;
+﻿namespace Contracts.Shared.Constants;
 
 public abstract class ApiConstants
 {
