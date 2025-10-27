@@ -1,8 +1,9 @@
+using Contracts.Mediator;
+using Contracts.Mediator.Extensions;
 using Medallion.Threading;
 using Medallion.Threading.Redis;
 using Microsoft.Extensions.DependencyInjection;
 using OrderService.Application.Common.Clients;
-using OrderService.Application.Common.Mediator;
 using OrderService.Application.UseCases;
 using OrderService.Domain.Models;
 using Refit;
@@ -37,6 +38,6 @@ public static class ApplicationServiceCollection
             .AddScoped<ICommandHandler<CartAddProductItemCommand, Guid>, CartAddProductItemCommandHandler>()
             .AddScoped<ICommandHandler<OrderCreateCommand, Order>, OrderCreateCommandHandler>()
             .AddScoped<IQueryHandler<GetCartQuery, Cart>, GetCartQueryHandler>()
-            .AddScoped<IDispatcher, Dispatcher>();
+            .AddMediatorDispatcher();
     }
 }

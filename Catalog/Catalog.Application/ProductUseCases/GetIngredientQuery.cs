@@ -1,7 +1,7 @@
 using Catalog.Application.Common.Interfaces;
-using Catalog.Application.Common.Mediator;
 using Catalog.Domain.Exceptions;
 using Catalog.Domain.IngredientAggregate;
+using Contracts.Mediator;
 
 namespace Catalog.Application.ProductUseCases;
 

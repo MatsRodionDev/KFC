@@ -1,8 +1,8 @@
 using Contracts.Events;
+using Contracts.Mediator;
 using Medallion.Threading;
 using OrderService.Application.Common;
 using OrderService.Application.Common.Interfaces;
-using OrderService.Application.Common.Mediator;
 using OrderService.Domain.Models;
 
 namespace OrderService.Application.UseCases;

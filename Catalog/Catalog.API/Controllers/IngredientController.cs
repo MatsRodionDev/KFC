@@ -1,6 +1,5 @@
-using Catalog.Application.Common.Mediator;
 using Catalog.Application.ProductUseCases;
-using Catalog.Domain.ProductAggregate;
+using Contracts.Mediator;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Catalog.API.Controllers;

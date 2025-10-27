@@ -1,10 +1,10 @@
 using Contracts.Cache;
+using Contracts.Mediator;
 using Medallion.Threading;
 using OrderService.Application.Common;
 using OrderService.Application.Common.Clients;
 using OrderService.Application.Common.Interfaces;
 using OrderService.Application.Common.Mappers;
-using OrderService.Application.Common.Mediator;
 using OrderService.Domain.Models;
 
 namespace OrderService.Application.UseCases;

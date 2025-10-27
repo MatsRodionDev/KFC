@@ -1,7 +1,7 @@
 ﻿using System.Collections.Concurrent;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Catalog.Application.Common.Mediator
+namespace Contracts.Mediator
 {
     public interface IDispatcher
     {

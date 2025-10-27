@@ -1,8 +1,7 @@
 using Catalog.Application.Common.Interfaces;
-using Catalog.Application.Common.Mediator;
 using Catalog.Domain.Enums;
-using Catalog.Domain.Interfaces.Repositories;
 using Catalog.Domain.Services;
+using Contracts.Mediator;
 
 namespace Catalog.Application.ProductUseCases;
 

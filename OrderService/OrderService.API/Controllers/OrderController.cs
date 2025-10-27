@@ -1,5 +1,5 @@
+using Contracts.Mediator;
 using Microsoft.AspNetCore.Mvc;
-using OrderService.Application.Common.Mediator;
 using OrderService.Application.UseCases;
 
 namespace OrderService.API.Controllers;

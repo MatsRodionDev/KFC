@@ -1,6 +1,6 @@
 using Catalog.Application.Common.Interfaces;
-using Catalog.Application.Common.Mediator;
 using Catalog.Domain.ToppingAggregate;
+using Contracts.Mediator;
 using Shop.Domain.Enums;
 
 namespace Catalog.Application.ProductUseCases;

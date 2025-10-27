@@ -1,9 +1,9 @@
-using Catalog.Application.Common.Interfaces;
-using Catalog.Application.Common.Mediator;
 using Catalog.Application.ProductUseCases;
 using Catalog.Domain.IngredientAggregate;
 using Catalog.Domain.ProductAggregate;
 using Catalog.Domain.Services;
+using Contracts.Mediator;
+using Contracts.Mediator.Extensions;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Catalog.Application.Common;
@@ -22,6 +22,6 @@ public static class ApplicationServiceCollection
             .AddScoped<IQueryHandler<GetIngredientQuery, Ingredient>, GetIngredientQueryHandler>()
             .AddScoped<ProductAdditionService>()
             .AddScoped<ToppingToDrinkAdditionService>()
-            .AddScoped<IDispatcher, Dispatcher>();
+            .AddMediatorDispatcher();
     }
 }

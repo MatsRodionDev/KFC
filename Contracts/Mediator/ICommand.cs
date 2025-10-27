@@ -1,4 +1,4 @@
-﻿namespace Catalog.Application.Common.Mediator
+﻿namespace Contracts.Mediator
 {
     public interface ICommand<TResponse>
     {
