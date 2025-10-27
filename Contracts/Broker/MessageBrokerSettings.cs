@@ -1,4 +1,4 @@
-namespace OrderService.Infrastructure.Broker;
+﻿namespace Contracts.Broker;
 
 public class MessageBrokerSettings
 {

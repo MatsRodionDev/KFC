@@ -1,5 +1,7 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Contracts.Broker.Extensions;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using VenueService.BLL.Consumers;
 using VenueService.BLL.Mapper;
 using VenueService.BLL.Services;
 using VenueService.DAL.DI;
@@ -13,7 +15,8 @@ public static class ServiceCollectionExtensions
         services
             .AddDataLayerDependencies(configuration)
             .AddMapping()
-            .AddServices();
+            .AddServices()
+            .AddMassTransit(configuration);
 
         return services;
     }
@@ -29,6 +32,16 @@ public static class ServiceCollectionExtensions
             .AddScoped<IManagerService, ManagerService>()
             .AddScoped<IRestaurantService, RestaurantService>()
             .AddScoped<IRestaurantOrderService, RestaurantOrderService>();
+
+        return services;
+    }
+
+    private static IServiceCollection AddMassTransit(this IServiceCollection services, IConfiguration configuration)
+    {
+        services.AddCommonMassTransit(configuration, "venue-service", cfg =>
+        {
+            cfg.AddConsumer<OrderCreatedConsumer>();
+        });
 
         return services;
     }
