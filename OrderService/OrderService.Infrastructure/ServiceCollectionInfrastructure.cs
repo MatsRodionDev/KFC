@@ -1,3 +1,4 @@
+using Contracts.Broker.EventBus;
 using Contracts.Broker.Extensions;
 using Contracts.Cache.Extensions;
 using Microsoft.EntityFrameworkCore;
@@ -5,7 +6,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using OrderService.Application.Common.Interfaces;
 using OrderService.Domain.Repositories;
-using OrderService.Infrastructure.Broker;
 using OrderService.Infrastructure.OutboxPattern;
 using OrderService.Infrastructure.Persistence;
 using OrderService.Infrastructure.Persistence.Repositories;
@@ -23,7 +23,7 @@ public static class ServiceCollectionInfrastructure
                 => options.UseNpgsql(configuration.GetConnectionString(nameof(ApplicationDbContext))))
             .AddCacheServices(configuration)
             .AddHostedService<OutboxProcessingBackgroundService>()
-            .AddSingleton<IEventBus, EventBus>()
+            .AddCommonEventBus()
             .AddScoped<ICartRepository, CartRepository>()
             .AddScoped<ICartItemRepository, CartItemRepository>()
             .AddScoped<IOrderRepository, OrderRepository>()

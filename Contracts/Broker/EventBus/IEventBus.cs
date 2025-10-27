@@ -1,4 +1,4 @@
-namespace OrderService.Application.Common.Interfaces;
+namespace Contracts.Broker.EventBus;
 
 public interface IEventBus
 {

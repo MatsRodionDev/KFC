@@ -1,7 +1,6 @@
 using MassTransit;
-using OrderService.Application.Common.Interfaces;
 
-namespace OrderService.Infrastructure.Broker;
+namespace Contracts.Broker.EventBus;
 
 public class EventBus(IBus bus) : IEventBus
 {

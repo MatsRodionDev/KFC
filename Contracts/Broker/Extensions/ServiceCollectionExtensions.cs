@@ -1,4 +1,5 @@
-﻿using MassTransit;
+﻿using Contracts.Broker.EventBus;
+using MassTransit;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
@@ -39,6 +40,13 @@ public static class ServiceCollectionExtensions
                 configurator.ConfigureEndpoints(context);
             });
         });
+
+        return services;
+    }
+
+    public static IServiceCollection AddCommonEventBus(this IServiceCollection services)
+    {
+        services.AddSingleton<IEventBus, EventBus.EventBus>();
 
         return services;
     }
