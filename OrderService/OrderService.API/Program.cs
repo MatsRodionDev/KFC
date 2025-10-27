@@ -21,7 +21,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI(options =>
     {
-        options.SwaggerEndpoint("/swagger/v1.json", "Order Service API V1");
+        options.SwaggerEndpoint("/swagger/v1/swagger.json", "Order Service API V1");
     });
     
     using var scope = app.Services.CreateScope();
