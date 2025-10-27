@@ -1,4 +1,4 @@
-namespace OrderService.Application.Common.Interfaces;
+namespace Contracts.Cache;
 
 public interface ICacheService
 {

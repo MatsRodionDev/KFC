@@ -1,3 +1,4 @@
+using Contracts.Cache;
 using Medallion.Threading;
 using OrderService.Application.Common;
 using OrderService.Application.Common.Clients;

@@ -5,7 +5,6 @@ using OrderService.Application.Common.Clients;
 using OrderService.Application.Common.Mediator;
 using OrderService.Application.UseCases;
 using OrderService.Domain.Models;
-using OrderService.Domain.Repositories;
 using Refit;
 using StackExchange.Redis;
 using Order = OrderService.Domain.Models.Order;

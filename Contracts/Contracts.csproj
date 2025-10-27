@@ -7,8 +7,10 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="AsyncKeyedLock" Version="7.1.7" />
       <PackageReference Include="MassTransit" Version="8.5.5" />
       <PackageReference Include="MassTransit.RabbitMQ" Version="8.5.5" />
+      <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="9.0.10" />
       <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="9.0.10" />
     </ItemGroup>
 

@@ -1,8 +1,7 @@
 using AsyncKeyedLock;
 using Microsoft.Extensions.Caching.Memory;
-using OrderService.Application.Common.Interfaces;
 
-namespace OrderService.Infrastructure.Cache;
+namespace Contracts.Cache;
 
 public class CacheService(IMemoryCache cache) : ICacheService
 {
