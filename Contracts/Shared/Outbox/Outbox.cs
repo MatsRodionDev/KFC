@@ -1,4 +1,4 @@
-namespace OrderService.Infrastructure.OutboxPattern;
+namespace Contracts.Shared.Outbox;
 
 public sealed class Outbox
 {
