@@ -22,7 +22,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI(options =>
     {
-        options.SwaggerEndpoint("/swagger/v1.json", "Catalog Service API V1");
+        options.SwaggerEndpoint("/swagger/v1/swagger.json", "Catalog Service API V1");
     });
     
     await using var scope = app.Services.CreateAsyncScope();
@@ -30,7 +30,7 @@ if (app.Environment.IsDevelopment())
     await context.Database.MigrateAsync();
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
