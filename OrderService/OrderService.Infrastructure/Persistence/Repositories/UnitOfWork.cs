@@ -1,4 +1,5 @@
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using Contracts.Events;
 using OrderService.Application.Common.Interfaces;
 using OrderService.Domain.Repositories;
@@ -23,7 +24,7 @@ public class UnitOfWork(ICartRepository cartRepository,
                 .Select(e => new Outbox
                 {
                     Type = e.GetType().FullName!,
-                    Content = JsonSerializer.Serialize(e),
+                    Content = JsonSerializer.Serialize(e, e.GetType()),
                     CreatedAt = DateTime.UtcNow
                 }).ToList();
             
