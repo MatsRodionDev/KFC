@@ -19,7 +19,7 @@ public interface IGenericService<TModel, TEntity>
 
     Task<TModel> UpdateAsync(Guid id, TModel model, CancellationToken cancellationToken = default);
 
-    Task DeleteAsync(TModel model, CancellationToken cancellationToken = default);
+    Task DeleteAsync(Guid id, CancellationToken cancellationToken = default);
 }
 
 public class GenericService<TModel, TEntity>(IGenericRepository<TEntity> repository, IMapper mapper) 
@@ -36,10 +36,11 @@ public class GenericService<TModel, TEntity>(IGenericRepository<TEntity> reposit
         return createdModel;
     }
 
-    public virtual async Task DeleteAsync(TModel model, CancellationToken cancellationToken = default)
+    public virtual async Task DeleteAsync(Guid id, CancellationToken cancellationToken = default)
     {
-        var entity = mapper.Map<TEntity>(model);
-        await repository.DeleteAsync(entity, cancellationToken); 
+        var entity = await repository.GetByIdAsync(id, cancellationToken: cancellationToken);
+        if (entity != null)
+            await repository.DeleteAsync(entity, cancellationToken); 
     }
 
     public virtual async Task<List<TModel>> GetAllAsync(Expression<Func<TEntity, bool>>? predicate, 
