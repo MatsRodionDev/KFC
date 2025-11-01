@@ -14,6 +14,7 @@ namespace VenueService.BLL.Consumers;
 
 // Надо отрефакторить и желательно свичнуться с мемори на редис
 // Вынести логику баффера и хранения заказов наружу
+// Зарегестрировать SignalR
 
 public class OrderCreatedConsumer(
     VenueDbContext  dbContext,
