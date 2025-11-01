@@ -1,4 +1,6 @@
 using Contracts.Middlewares.Extensions;
+using Microsoft.EntityFrameworkCore;
+using VenueService.DAL;
 using VenueService.DI;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,6 +21,10 @@ if (app.Environment.IsDevelopment())
     {
         options.SwaggerEndpoint("/swagger/v1/swagger.json", "Catalog Service API V1");
     });
+    
+    await using var scope = app.Services.CreateAsyncScope();
+    var context = scope.ServiceProvider.GetRequiredService<VenueDbContext>();
+    await context.Database.MigrateAsync();
 }
 
 app.MapControllers();

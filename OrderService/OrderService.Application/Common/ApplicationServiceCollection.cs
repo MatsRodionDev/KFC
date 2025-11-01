@@ -22,6 +22,15 @@ public static class ApplicationServiceCollection
                 c.BaseAddress = new Uri("http://localhost:5079");
             });
         
+        services
+            .AddRefitClient<ICoordinatesApi>()
+            .ConfigureHttpClient(c =>
+            {
+                c.BaseAddress = new Uri("https://nominatim.openstreetmap.org");
+                
+                c.DefaultRequestHeaders.UserAgent.ParseAdd("MyApp/1.0 (rodion.mats11@gmail.com)");
+            });
+        
         services.AddSingleton<IConnectionMultiplexer>(sp =>
         {
             var configuration = "localhost:6380";
@@ -38,6 +47,7 @@ public static class ApplicationServiceCollection
             .AddScoped<ICommandHandler<CartAddProductItemCommand, Guid>, CartAddProductItemCommandHandler>()
             .AddScoped<ICommandHandler<OrderCreateCommand, Order>, OrderCreateCommandHandler>()
             .AddScoped<IQueryHandler<GetCartQuery, Cart>, GetCartQueryHandler>()
+            .AddScoped<ICommandHandler<SetDeliveryCommand, Guid>, SetDeliveryCommandHandler>()
             .AddMediatorDispatcher();
     }
 }

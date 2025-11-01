@@ -10,14 +10,25 @@ public static class CartExtensions
                || cart.Items.Count == 0;
     }
     
-    public static Order ToOrder(this Cart cart, ServiceType serviceType)
+    public static Order ToOrder(this Cart cart)
     {
         return new Order
         {
             UserId = cart.UserId,
             TotalPrice = cart.TotalPrice,
             Status = OrderStatus.Created,
-            ServiceType = serviceType,
+            Delivery = new Delivery
+            {
+                ServiceType = cart.Delivery.ServiceType,
+                Address = cart.Delivery.Address,
+                Coordinates = cart.Delivery.Coordinates is null 
+                    ? null 
+                    : new Coordinates
+                    {
+                        Latitude = cart.Delivery.Coordinates.Latitude,
+                        Longitude = cart.Delivery.Coordinates.Longitude
+                    }
+            },
             Items = cart.Items
                 .Select(i => new OrderItem
                 {

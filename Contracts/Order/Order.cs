@@ -6,6 +6,6 @@ public class Order
     public Guid UserId { get; set; }
     public decimal TotalPrice { get; set; }
     public OrderStatus Status { get; set; }
-    public ServiceType ServiceType { get; set; }
+    public Delivery Delivery { get; set; }
     public List<OrderItem> Items { get; set; } = [];
 }

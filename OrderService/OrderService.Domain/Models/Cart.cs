@@ -9,6 +9,7 @@ public class Cart
     public Guid UserId { get; set; }
     [JsonIgnore]
     public decimal TotalPrice => Items.Sum(item => item.TotalPrice);
+    public Delivery Delivery { get; set; } = new();
 
     public List<CartItem> Items { get; set; } = [];
 }

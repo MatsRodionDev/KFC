@@ -8,8 +8,7 @@ using OrderService.Domain.Models;
 namespace OrderService.Application.UseCases;
 
 public record OrderCreateCommand(
-    Guid UserId,
-    ServiceType ServiceType) : ICommand<Order>;
+    Guid UserId) : ICommand<Order>;
 
 internal sealed class OrderCreateCommandHandler(IUnitOfWork unitOfWork,
     IDistributedLockProvider distributedLockProvider) 
@@ -24,7 +23,7 @@ internal sealed class OrderCreateCommandHandler(IUnitOfWork unitOfWork,
             throw new Exception("Cart is empty");
         }
         
-        var order = cart.ToOrder(command.ServiceType);
+        var order = cart.ToOrder();
         
         cart.Items.Clear();
 

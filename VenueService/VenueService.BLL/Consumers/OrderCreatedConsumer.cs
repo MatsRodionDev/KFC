@@ -1,52 +1,110 @@
+using System.Collections.Concurrent;
 using Contracts.Events;
+using Contracts.Order;
 using MassTransit;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
-using VenueService.BLL.Models;
+using NetTopologySuite.Geometries;
 using VenueService.BLL.Services;
+using VenueService.DAL;
+using VenueService.DAL.Entities;
 
 namespace VenueService.BLL.Consumers;
 
 public class OrderCreatedConsumer(
+    VenueDbContext  dbContext,
+    INotifyOrderService notifyOrderService,
+    IMemoryCache memoryCache,
     IRestaurantOrderService restaurantOrderService,
     IRestaurantService restaurantService,
     ILogger<OrderCreatedConsumer> logger) : IConsumer<OrderCreatedEvent>
 {
+    private const int MaxBufferSize = 1000;
+    
     public async Task Consume(ConsumeContext<OrderCreatedEvent> context)
     {
         var order = context.Message.Order;
         
         logger.LogInformation("Received OrderCreatedEvent for OrderId: {OrderId}, UserId: {UserId}", 
             order.Id, order.UserId);
-
-        // Find the nearest restaurant for the order
-        // For now, we'll assign to the first active restaurant
-        // This logic can be enhanced based on location, capacity, etc.
-        var restaurants = await restaurantService.GetAllAsync(r => r.IsActive);
         
-        if (restaurants.Count == 0)
+        var coordinates = order.Delivery.Coordinates;
+
+        RestaurantEntity? restaurant = (coordinates is not null) switch
         {
-            logger.LogWarning("No active restaurants found to assign order {OrderId}", order.Id);
+            true => await dbContext.Restaurants
+                .Where(r => r.IsActive)
+                .OrderBy(r
+                    => r.Location.Distance(new Point(coordinates.Latitude, coordinates.Longitude)))
+                .FirstOrDefaultAsync(),
+
+            false => await dbContext.Restaurants
+                .Where(r => r.IsActive)
+                .OrderBy(r => EF.Functions.Random())
+                .FirstOrDefaultAsync()
+        };
+        
+        if (restaurant is null)
+        {
+            await AddToBufferAsync(order);
             return;
         }
 
-        var selectedRestaurant = restaurants.FirstOrDefault();
+        await AddToRestaurantQueueAsync(order, restaurant.Id);
         
-        var restaurantOrder = new RestaurantOrderModel
-        {
-            OrderId = order.Id,
-            RestaurantId = selectedRestaurant.Id,
-            UserId = order.UserId,
-            Status = order.Status,
-            CreatedAt = DateTime.UtcNow,
-            Restaurant = selectedRestaurant
-        };
+        await notifyOrderService.Notify(order, restaurant.Id);
+    }
+    
+    private async Task AddToBufferAsync(Order order)
+    {
+        const string cacheKey = "orders_buffer";
+        using var locker = await Locks<string>.Wait(cacheKey);
 
-        await restaurantOrderService.CreateAsync(restaurantOrder);
+        var queue = memoryCache.GetOrCreate<ConcurrentQueue<Order>>(cacheKey, _ => new ConcurrentQueue<Order>())!;
+
+        if (queue.Count >= MaxBufferSize)
+        {
+            queue.TryDequeue(out _);
+        }
         
-        logger.LogInformation("Created RestaurantOrder for OrderId: {OrderId}, RestaurantId: {RestaurantId}", 
-            order.Id, selectedRestaurant.Id);
+        queue.Enqueue(order);
+    }
+    
+    private async Task AddToRestaurantQueueAsync(Order order, Guid restaurantId)
+    {
+        var cacheKey = $"restaurant_orders_{restaurantId}";
+        using var locker = await Locks<string>.Wait(cacheKey);
+
+        var queue = memoryCache.GetOrCreate<ConcurrentQueue<Order>>(cacheKey, _ => new ConcurrentQueue<Order>());
+        queue!.Enqueue(order);
     }
 }
 
+public static class Locks<T> 
+    where T : notnull
+{
+    private static readonly ConcurrentDictionary<T, SemaphoreSlim> _locks = new();
 
+    public static async Task<AsyncLock> Wait(T key)
+    {
+        SemaphoreSlim? semaphore = _locks.GetOrAdd(key, _ => new SemaphoreSlim(1, 1));
+        await semaphore.WaitAsync();
+        return new AsyncLock(semaphore);
+    }
 
+    public class AsyncLock : IDisposable
+    {
+        private readonly SemaphoreSlim _semaphoreSlim;
+
+        public AsyncLock(SemaphoreSlim semaphoreSlim)
+        {
+            _semaphoreSlim = semaphoreSlim;
+        }
+
+        public void Dispose()
+        {
+            _semaphoreSlim.Release();
+        }
+    }
+}
