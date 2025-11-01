@@ -12,6 +12,9 @@ using VenueService.DAL.Entities;
 
 namespace VenueService.BLL.Consumers;
 
+// Надо отрефакторить и желательно свичнуться с мемори на редис
+// Вынести логику баффера и хранения заказов наружу
+
 public class OrderCreatedConsumer(
     VenueDbContext  dbContext,
     INotifyOrderService notifyOrderService,
@@ -61,14 +64,18 @@ public class OrderCreatedConsumer(
         const string cacheKey = "orders_buffer";
         using var locker = await Locks<string>.Wait(cacheKey);
 
-        var queue = memoryCache.GetOrCreate<ConcurrentQueue<Order>>(cacheKey, _ => new ConcurrentQueue<Order>())!;
+        var queue = memoryCache.GetOrCreate<ConcurrentQueue<CacheItem<Order>>>(cacheKey, 
+            _ => new ConcurrentQueue<CacheItem<Order>>())!;
 
-        if (queue.Count >= MaxBufferSize)
+        if (queue.Count >= MaxBufferSize
+            && queue.Last().AddedAt.AddSeconds(1) < DateTime.Now)
         {
+            // добавить логику отмены заказа
+            
             queue.TryDequeue(out _);
         }
         
-        queue.Enqueue(order);
+        queue.Enqueue(new CacheItem<Order>(order));
     }
     
     private async Task AddToRestaurantQueueAsync(Order order, Guid restaurantId)
@@ -107,4 +114,10 @@ public static class Locks<T>
             _semaphoreSlim.Release();
         }
     }
+}
+
+public class CacheItem<T>(T value)
+{
+    public T Value { get; } = value;
+    public DateTime AddedAt { get; } =  DateTime.UtcNow;
 }
