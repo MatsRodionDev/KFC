@@ -50,8 +50,12 @@ public class OrderCreatedConsumer(
             // надо подумать как обрабатывать
             throw new NullReferenceException("Restaurant is null");
         }
+        
+        var addedOrder = await orderStorge.AddCookingAsync(order, restaurant.Id);
 
-        await orderStorge.AddCookingAsync(order, restaurant.Id);
-        await notifyOrderService.Notify(order, restaurant.Id);
+        if (addedOrder is not null)
+        {
+            await notifyOrderService.Notify(order, restaurant.Id);
+        }
     }
 }

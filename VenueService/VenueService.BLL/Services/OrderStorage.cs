@@ -8,7 +8,7 @@ namespace VenueService.BLL.Services;
 public interface IOrderStorage
 {
     Task<List<Order>> GetCookingAsync(Guid restaurantId);
-    Task AddCookingAsync(Order order, Guid restaurantId);
+    Task<Order?> AddCookingAsync(Order order, Guid restaurantId);
     Task RemoveCookingAsync(Guid orderId, Guid restaurantId);
 }
 
@@ -25,7 +25,7 @@ public class OrderStorage(IDistributedCache cache) : IOrderStorage
         return await GetOrdersInternalAsync(GetCookingCacheKey(restaurantId));
     }
 
-    public async Task AddCookingAsync(Order order, Guid restaurantId)
+    public async Task<Order?> AddCookingAsync(Order order, Guid restaurantId)
     {
         var cacheKey = GetCookingCacheKey(restaurantId);
         using var locker = await Locks<string>.Wait(cacheKey);
@@ -35,9 +35,11 @@ public class OrderStorage(IDistributedCache cache) : IOrderStorage
         if (orders.All(o => o.Id != order.Id))
         {
             orders.Add(order);
+            await cache.SetStringAsync(cacheKey, JsonSerializer.Serialize(orders, JsonOptions));
+            return order;
         }
 
-        await cache.SetStringAsync(cacheKey, JsonSerializer.Serialize(orders, JsonOptions));
+        return null;
     }
 
     public async Task RemoveCookingAsync(Guid orderId, Guid restaurantId)
