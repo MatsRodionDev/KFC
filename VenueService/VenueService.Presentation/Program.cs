@@ -1,5 +1,6 @@
 using Contracts.Middlewares.Extensions;
 using Microsoft.EntityFrameworkCore;
+using VenueService.BLL.Hubs;
 using VenueService.DAL;
 using VenueService.DI;
 
@@ -28,5 +29,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.MapControllers();
+
+app.MapHub<OrderNotificationHub>("order-hub");
 
 await app.RunAsync();

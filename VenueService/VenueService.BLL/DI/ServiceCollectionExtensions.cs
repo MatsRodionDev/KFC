@@ -13,10 +13,18 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddBusinessLayerDependencies(this IServiceCollection services, IConfiguration configuration)
     {
         services
+            .AddStackExchangeRedisCache(options =>
+            {
+                options.Configuration = configuration.GetConnectionString("Redis");
+            })
+            .AddScoped<IOrderStorage, OrderStorage>()
+            .AddScoped<INotifyOrderService, NotifyOrderService>()
             .AddDataLayerDependencies(configuration)
             .AddMapping()
             .AddServices()
             .AddMassTransit(configuration);
+        
+        services.AddSignalR();
 
         return services;
     }
