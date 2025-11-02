@@ -50,14 +50,8 @@ public class OrderStorage(IDistributedCache cache) : IOrderStorage
         if (order is not null)
         {
             orders.Remove(order);
+            await cache.SetStringAsync(cacheKey, JsonSerializer.Serialize(orders, JsonOptions));
         }
-
-        await cache.SetStringAsync(cacheKey, JsonSerializer.Serialize(orders, JsonOptions));
-    }
-
-    private string GetCookingCacheKey(Guid restaurantId)
-    {
-        return $"restaurant_orders_{restaurantId}";
     }
 
     private async Task<List<Order>> GetOrdersInternalAsync(string cacheKey)
@@ -77,5 +71,10 @@ public class OrderStorage(IDistributedCache cache) : IOrderStorage
         {
             return [];
         }
+    }
+    
+    private static string GetCookingCacheKey(Guid restaurantId)
+    {
+        return $"restaurant_orders_{restaurantId}";
     }
 }
