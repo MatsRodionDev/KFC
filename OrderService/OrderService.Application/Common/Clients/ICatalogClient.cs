@@ -10,6 +10,9 @@ public interface ICatalogClient
     
     [Get("/api/menus/{userId}")]
     Task<MenuResponse> GetMenu(CancellationToken cancellationToken);
+    
+    [Get("/api/menus/{productIds}")]
+    Task<List<ProductResponse>> GetCustomProducts(Guid userId, CancellationToken cancellationToken);
 }
 
 public record MenuResponse(

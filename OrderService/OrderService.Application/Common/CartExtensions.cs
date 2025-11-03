@@ -20,45 +20,68 @@ public static class CartExtensions
         cart.Delivery = new Delivery();
     }
 
-    public static List<ErrorViewModel> Validate(this Cart cart, MenuResponse menuResponse)
+    public static (List<ErrorViewModel>, List<CartItem>) Validate(
+    this Cart cart,
+    MenuResponse menuResponse,
+    List<ProductResponse> customProducts)
     {
-        var products = menuResponse.Products;
-        List<ErrorViewModel> errors = [];
-        
+        var errors = new List<ErrorViewModel>();
+        var toRemove = new List<CartItem>();
+
         if (cart.IsEmpty())
         {
-            var error = new ErrorViewModel { Message = "Cart is empty" };
-            errors.Add(error);
-            return errors;
+            errors.Add(new ErrorViewModel { Message = "Cart is empty" });
+            return (errors, toRemove);
         }
 
-        var productsDictionary = products.ToDictionary(p => p.Id);
-        
-        foreach (var item in cart.Items.ToList())
+        var productsDict = menuResponse.Products.ToDictionary(p => p.Id);
+        var customDict = customProducts.ToDictionary(p => p.Id);
+
+        foreach (var item in cart.Items)
         {
-            if (item.UserId is not null)
+            bool isCustom = item.UserId is not null;
+
+            if (isCustom)
             {
-                continue;
+                if (!customDict.TryGetValue(item.ProductId, out var customProd))
+                {
+                    errors.Add(new ErrorViewModel { Message = $"Product with id {item.ProductId} is not available" });
+                    toRemove.Add(item);
+                    continue;
+                }
+
+                if (HasDifferentPrice(
+                        item.ItemIngredients.Sum(ii => ii.Price),
+                        customProd.ProductIngredients.Sum(ii => ii.Price)))
+                {
+                    errors.Add(new ErrorViewModel { Message = $"Price for product with id {item.ProductId} has changed" });
+                    toRemove.Add(item);
+                }
             }
-            
-            if (!productsDictionary.TryGetValue(item.ProductId, out var product))
+            else
             {
-                cart.Items.Remove(item);
-                var error = new ErrorViewModel { Message = $"Product with id {item.ProductId} doesnt available" };
-                errors.Add(error);
-            }
-            
-            if (product?.Price != item.Price
-                || item.ItemIngredients.Sum(ii => ii.Price) != item.ItemIngredients.Sum(ii => ii.Price))
-            {
-                cart.Items.Remove(item);
-                var error = new ErrorViewModel { Message = $"Product's with id {item.ProductId} price was changed" };
-                errors.Add(error);
+                if (!productsDict.TryGetValue(item.ProductId, out var product))
+                {
+                    errors.Add(new ErrorViewModel { Message = $"Product with id {item.ProductId} is not available" });
+                    toRemove.Add(item);
+                    continue;
+                }
+
+                if (product.Price != item.Price 
+                    || HasDifferentPrice(
+                            item.ItemIngredients.Sum(ii => ii.Price),
+                            product.ProductIngredients.Sum(ii => ii.Price)))
+                {
+                    errors.Add(new ErrorViewModel { Message = $"Price for product with id {item.ProductId} has changed" });
+                    toRemove.Add(item);
+                }
             }
         }
-        
-        return errors;
+
+        return (errors, toRemove);
     }
+    
+    private static bool HasDifferentPrice(decimal a, decimal b) => Math.Abs(a - b) > 0.01m;
     
     public static Order ToOrder(this Cart cart)
     {

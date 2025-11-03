@@ -2,6 +2,7 @@ using Contracts.Cache;
 using Contracts.Events;
 using Contracts.Mediator;
 using Contracts.Middlewares;
+using Contracts.Product;
 using Medallion.Threading;
 using OrderService.Application.Common;
 using OrderService.Application.Common.Clients;
@@ -27,22 +28,9 @@ internal sealed class OrderCreateCommandHandler(IUnitOfWork unitOfWork,
         {
             throw new Exception("Cart is empty");
         }
-        
-        var menu = await cacheService.GetOrAddAsync("menu", 
-            async () => await catalogClient.GetMenu(cancellationToken), cancellationToken);
 
-        if (menu is null)
-        {
-            throw new Exception("Menu not found");
-        }
-        
-        var errors = cart.Validate(menu);
-
-        if (errors.Any())
-        {
-            await unitOfWork.SaveChangesAsync(cancellationToken: cancellationToken);
-            throw new ValidationException { Errors = errors };
-        }
+        var (commonMenu, customProducts) = await GetMenuAsync(cart, cancellationToken);
+        await ValidateAsync(cart, commonMenu, customProducts, cancellationToken);
         
         var order = cart.ToOrder();
         cart.Clear();
@@ -57,5 +45,52 @@ internal sealed class OrderCreateCommandHandler(IUnitOfWork unitOfWork,
     protected override Guid? GetUserId(OrderCreateCommand command)
     {
         return command.UserId;
+    }
+
+    private async Task<(MenuResponse?, List<ProductResponse>)> GetMenuAsync(Cart cart, CancellationToken cancellationToken)
+    {
+        var getMenuTask = cacheService.GetOrAddAsync("menu", 
+            async () => await catalogClient.GetMenu(cancellationToken), cancellationToken);
+
+        if (!HasCustomProducts(cart))
+        {
+            var menu = await getMenuTask;
+            return (menu, new List<ProductResponse>());
+        }
+
+        var getCustomProductsTask = catalogClient.GetCustomProducts(cart.UserId, cancellationToken);
+        await Task.WhenAll(getMenuTask, getCustomProductsTask);
+    
+        var menuResult = await getMenuTask;
+        var customProducts = await getCustomProductsTask;
+    
+        return (menuResult, customProducts);
+    }
+    
+    private static bool HasCustomProducts(Cart cart)
+    {
+        return cart.Items.Any(i => i.UserId is not null);
+    }
+
+    private async Task ValidateAsync(Cart cart, 
+        MenuResponse? menu, 
+        List<ProductResponse> customProducts,
+        CancellationToken cancellationToken)
+    {
+        if (menu is null)
+        {
+            throw new Exception("Menu not found");
+        }
+        
+        var (errors, itemsToRemove) = cart.Validate(menu, customProducts);
+
+        if (errors.Any() || itemsToRemove.Any())
+        {
+            foreach (var item in itemsToRemove)
+                cart.Items.Remove(item);
+            
+            await unitOfWork.SaveChangesAsync(cancellationToken: cancellationToken);
+            throw new ValidationException { Errors = errors };
+        }
     }
 }
