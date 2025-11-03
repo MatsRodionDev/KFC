@@ -23,6 +23,15 @@ namespace Catalog.Infrastructure.Persistence.Repositories
                 .Where(p => ids.Contains(p.Id))
                 .ToListAsync(cancellationToken);
         }
+        
+        public async Task<List<Product>> GetAllAsync(CancellationToken cancellationToken = default)
+        {
+            return await context
+                .Products
+                .Include(p => p.ProductIngredients)
+                .Where(p => p.UserId == null)
+                .ToListAsync(cancellationToken);
+        }
 
         public async Task AddAsync(Product product, CancellationToken cancellationToken = default)
         {

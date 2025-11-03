@@ -18,6 +18,7 @@ public static class ApplicationServiceCollection
             .AddScoped<ICommandHandler<CreateIngredientCommand, Guid>, CreateIngredientCommandHandler>()
             .AddScoped<ICommandHandler<AddDrinkCommand, Guid>, AddDrinkCommandHandler>()
             .AddScoped<ICommandHandler<AddToppingCommand, Guid>, AddToppingCommandHandler>()
+            .AddScoped<IQueryHandler<GetMenuQuery, MenuResponse>, GetMenuQueryHandler>()
             .AddScoped<IQueryHandler<GetProductQuery, Product>, GetProductQueryHandler>()
             .AddScoped<IQueryHandler<GetIngredientQuery, Ingredient>, GetIngredientQueryHandler>()
             .AddScoped<ProductAdditionService>()

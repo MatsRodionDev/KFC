@@ -21,4 +21,12 @@ public class CartController(IDispatcher dispatcher) : ControllerBase
     {
         return Ok(await dispatcher.Dispatch(cartAddProductCommand, cancellationToken));
     }
+    
+    [HttpPost("address")]
+    public async Task<IActionResult> SetAddress(
+        [FromBody] SetDeliveryCommand command, 
+        CancellationToken cancellationToken)
+    {
+        return Ok(await dispatcher.Dispatch(command, cancellationToken));
+    }
 }

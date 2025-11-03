@@ -1,19 +1,24 @@
 using Contracts.Mediator;
+using Medallion.Threading;
 using OrderService.Application.Common.Clients;
 using OrderService.Application.Common.Interfaces;
 using OrderService.Domain.Models;
 
 namespace OrderService.Application.UseCases;
 
-public sealed record SetDeliveryCommand(Guid UserId) : Delivery, ICommand<Guid>;
+public sealed record SetDeliveryCommand(Guid UserId, string Address) : ICommand<Guid>;
 
-public sealed class SetDeliveryCommandHandler(IUnitOfWork unitOfWork, ICoordinatesApi coordinatesApi) : ICommandHandler<SetDeliveryCommand, Guid>
+public sealed class SetDeliveryCommandHandler(
+    IUnitOfWork unitOfWork, 
+    ICoordinatesApi coordinatesApi,
+    IDistributedLockProvider distributedLockProvider) 
+    : BaseCommandHandler<SetDeliveryCommand, Guid>(distributedLockProvider)
 {
-    public async Task<Guid> Handle(SetDeliveryCommand command, CancellationToken cancellationToken)
+    protected override async Task<Guid> InternalHandle(SetDeliveryCommand command, CancellationToken cancellationToken)
     {
         if (string.IsNullOrEmpty(command.Address))
         {
-            throw new Exception("Пустой адресс");
+            throw new Exception("Address cannot be null or empty");
         }
 
         var cart = await unitOfWork.CartRepository.GetByUserIdAsync(command.UserId, cancellationToken);
@@ -39,11 +44,16 @@ public sealed class SetDeliveryCommandHandler(IUnitOfWork unitOfWork, ICoordinat
 
         if (currentDelivery.Coordinates is null)
         {
-            throw new Exception("Неправильно указанныей адрес");
+            throw new Exception("The delivery coordinate is incorrect");
         }
         
         await unitOfWork.SaveChangesAsync(cancellationToken: cancellationToken);
         
         return cart.Id;
+    }
+    
+    protected override Guid? GetUserId(SetDeliveryCommand command)
+    {
+        return command.UserId;
     }
 }

@@ -1,3 +1,7 @@
+using System.Runtime.InteropServices.JavaScript;
+using Contracts.Middlewares;
+using Contracts.Product;
+using OrderService.Application.Common.Clients;
 using OrderService.Domain.Models;
 
 namespace OrderService.Application.Common;
@@ -8,6 +12,52 @@ public static class CartExtensions
     {
         return cart == null 
                || cart.Items.Count == 0;
+    }
+
+    public static void Clear(this Cart cart)
+    {
+        cart.Items.Clear();
+        cart.Delivery = new Delivery();
+    }
+
+    public static List<ErrorViewModel> Validate(this Cart cart, MenuResponse menuResponse)
+    {
+        var products = menuResponse.Products;
+        List<ErrorViewModel> errors = [];
+        
+        if (cart.IsEmpty())
+        {
+            var error = new ErrorViewModel { Message = "Cart is empty" };
+            errors.Add(error);
+            return errors;
+        }
+
+        var productsDictionary = products.ToDictionary(p => p.Id);
+        
+        foreach (var item in cart.Items.ToList())
+        {
+            if (item.UserId is not null)
+            {
+                continue;
+            }
+            
+            if (!productsDictionary.TryGetValue(item.ProductId, out var product))
+            {
+                cart.Items.Remove(item);
+                var error = new ErrorViewModel { Message = $"Product with id {item.ProductId} doesnt available" };
+                errors.Add(error);
+            }
+            
+            if (product?.Price != item.Price
+                || item.ItemIngredients.Sum(ii => ii.Price) != item.ItemIngredients.Sum(ii => ii.Price))
+            {
+                cart.Items.Remove(item);
+                var error = new ErrorViewModel { Message = $"Product's with id {item.ProductId} price was changed" };
+                errors.Add(error);
+            }
+        }
+        
+        return errors;
     }
     
     public static Order ToOrder(this Cart cart)
