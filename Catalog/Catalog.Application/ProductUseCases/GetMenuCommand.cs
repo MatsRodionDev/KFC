@@ -6,7 +6,7 @@ namespace Catalog.Application.ProductUseCases;
 
 public record MenuResponse(List<Product> Products);
 
-public sealed record GetMenuQuery() : IQuery<MenuResponse>;
+public sealed record GetMenuQuery : IQuery<MenuResponse>;
 
 internal sealed class GetMenuQueryHandler(IUnitOfWork unitOfWork) : IQueryHandler<GetMenuQuery, MenuResponse>
 {

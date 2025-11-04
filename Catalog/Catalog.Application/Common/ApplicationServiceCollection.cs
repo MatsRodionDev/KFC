@@ -21,6 +21,7 @@ public static class ApplicationServiceCollection
             .AddScoped<IQueryHandler<GetMenuQuery, MenuResponse>, GetMenuQueryHandler>()
             .AddScoped<IQueryHandler<GetProductQuery, Product>, GetProductQueryHandler>()
             .AddScoped<IQueryHandler<GetIngredientQuery, Ingredient>, GetIngredientQueryHandler>()
+            .AddScoped<IQueryHandler<GetCustomProductsQuery, List<Product>>, GetCustomProductsQueryHandler>()
             .AddScoped<ProductAdditionService>()
             .AddScoped<ToppingToDrinkAdditionService>()
             .AddMediatorDispatcher();

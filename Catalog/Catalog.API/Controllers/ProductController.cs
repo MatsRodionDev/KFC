@@ -14,6 +14,12 @@ public class ProductController(IDispatcher dispatcher) : ControllerBase
         return Ok(await dispatcher.Dispatch(new GetProductQuery(productId), cancellationToken));
     }
     
+    [HttpGet("custom/{userId}")]
+    public async Task<IActionResult> GetCustomProducts(Guid userId, CancellationToken cancellationToken)
+    {
+        return Ok(await dispatcher.Dispatch(new GetCustomProductsQuery(userId), cancellationToken));
+    }
+    
     [HttpPost]
     public async Task<IActionResult> AddProduct([FromBody] AddProductCommand command,
         CancellationToken cancellationToken)
