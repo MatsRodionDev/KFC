@@ -1,11 +1,12 @@
+using Contracts.Geo;
+using Contracts.Mediator;
+using Contracts.Mediator.Extensions;
 using Medallion.Threading;
 using Medallion.Threading.Redis;
 using Microsoft.Extensions.DependencyInjection;
 using OrderService.Application.Common.Clients;
-using OrderService.Application.Common.Mediator;
 using OrderService.Application.UseCases;
 using OrderService.Domain.Models;
-using OrderService.Domain.Repositories;
 using Refit;
 using StackExchange.Redis;
 using Order = OrderService.Domain.Models.Order;
@@ -22,6 +23,29 @@ public static class ApplicationServiceCollection
                 c.BaseAddress = new Uri("http://localhost:5079");
             });
         
+        services
+            .AddRefitClient<ICoordinatesApi>()
+            .ConfigureHttpClient(c =>
+            {
+                c.BaseAddress = new Uri("https://nominatim.openstreetmap.org");
+                
+                c.DefaultRequestHeaders.UserAgent.ParseAdd("MyApp/1.0 (rodion.mats11@gmail.com)");
+            });
+        
+        services
+            .AddRefitClient<IGeoApiClient>()
+            .ConfigureHttpClient(c =>
+            {
+                c.BaseAddress = new Uri("http://localhost:5172");
+            });
+        
+        services
+            .AddRefitClient<IRestaurantClient>()
+            .ConfigureHttpClient(c =>
+            {
+                c.BaseAddress = new Uri("http://localhost:5113");
+            });
+        
         services.AddSingleton<IConnectionMultiplexer>(sp =>
         {
             var configuration = "localhost:6380";
@@ -35,9 +59,15 @@ public static class ApplicationServiceCollection
         });
         
         return services
+            .AddScoped<IQueryHandler<GetCurrentOrdersQuery, List<Order>>, GetCurrentOrdersQueryHandler>()
             .AddScoped<ICommandHandler<CartAddProductItemCommand, Guid>, CartAddProductItemCommandHandler>()
             .AddScoped<ICommandHandler<OrderCreateCommand, Order>, OrderCreateCommandHandler>()
             .AddScoped<IQueryHandler<GetCartQuery, Cart>, GetCartQueryHandler>()
-            .AddScoped<IDispatcher, Dispatcher>();
+            .AddScoped<ICommandHandler<SetDeliveryCommand, Guid>, SetDeliveryCommandHandler>()
+            .AddScoped<IQueryHandler<GetOrdersQuery, List<Order>>, GetOrdersQueryHandler>()
+            .AddScoped<IQueryHandler<GetOrderByIdQuery, Order>, GetOrderByIdQueryHandler>()
+            .AddScoped<ICommandHandler<UpdateCardPaymentStatusCommand, Order>, UpdateCardPaymentStatusCommandHandler>()
+            .AddScoped< ICommandHandler<OrderEventCommand, bool>,ProcessOrderEventHandler>()
+            .AddMediatorDispatcher();
     }
 }

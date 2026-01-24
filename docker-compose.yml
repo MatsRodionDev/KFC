@@ -1,7 +1,43 @@
 services:
+  Postgres-vector:
+    image: ankane/pgvector:latest
+    container_name: kafe-postgres-vector
+    hostname: postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - ALLOW_IP_RANGE=0.0.0.0/0
+    ports:
+      - "5434:5432"
+    volumes:
+      - /var/lib/postgresql/data
+    networks:
+      - kfc-vector
+
+  minio:
+    container_name: minio
+    image: minio/minio
+    environment:
+      - MINIO_ROOT_USER=MINIO_ROOT_USER
+      - MINIO_ROOT_PASSWORD=MINIO_ROOT_PASSWORD
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    command: server /data
+    restart: unless-stopped
+    volumes:
+      - minio_data:/data
+    healthcheck:
+      test: ["CMD", "curl", "--silent", "--fail", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 40s
 
   postgresql:
-    image: postgres:16
+    # image: postgres:16
+    image: postgis/postgis:15-3.3
     container_name: kafe-postgres
     hostname: postgres
     restart: always
@@ -13,6 +49,29 @@ services:
       - "5433:5432"
     volumes:
       - /var/lib/postgresql/data
+
+  temporal:
+    image: temporalio/auto-setup:1.20.0
+    depends_on:
+      - postgresql
+    ports:
+      - "7233:7233"
+    environment:
+      - DB=postgres12
+      - DB_PORT=5432
+      - POSTGRES_USER=postgres
+      - POSTGRES_PWD=postgres
+      - POSTGRES_SEEDS=postgres
+      - ENABLE_ES=false
+  
+  temporal-ui:
+    image: temporalio/ui:2.26.2
+    ports:
+      - "8088:8080"
+    environment:
+      - TEMPORAL_ADDRESS=temporal:7233
+    depends_on:
+      - temporal
 
   pgadmin:
     image: dpage/pgadmin4:8
@@ -51,3 +110,11 @@ services:
       - "15673:15672"
     volumes:
       - /var/lib/rabbitmq
+
+networks:
+  kfc-vector:
+    driver: bridge
+
+volumes:
+  photon_data:
+  minio_data:

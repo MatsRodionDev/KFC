@@ -1,12 +1,14 @@
-﻿namespace Catalog.Domain.Abstractions
+﻿using Contracts.Events;
+
+namespace Catalog.Domain.Abstractions
 {
     public abstract class Aggregate : Entity
     {
-        private readonly List<IDomainEvent> _domainEvents = [];
+        private readonly List<IEvent> _domainEvents = [];
 
-        public IReadOnlyCollection<IDomainEvent> DomainEvents => _domainEvents;
+        public IReadOnlyCollection<IEvent> DomainEvents => _domainEvents;
 
-        protected void Raise(DomainEvent domainEvent)
+        protected void Raise(IEvent domainEvent)
         {
             _domainEvents.Add(domainEvent);
         }

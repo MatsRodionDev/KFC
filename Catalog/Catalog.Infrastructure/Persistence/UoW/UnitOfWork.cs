@@ -3,6 +3,7 @@ using Catalog.Domain.Interfaces.Repositories;
 using Catalog.Domain.Repositories;
 using System.Text.Json;
 using Catalog.Application.Common.Interfaces;
+using Contracts.Shared.Outbox;
 
 namespace Catalog.Infrastructure.Persistence.UoW
 {
@@ -29,10 +30,10 @@ namespace Catalog.Infrastructure.Persistence.UoW
                 .ToList();
 
             var outboxes = domainEvents
-                .Select(e => new Outbox.Outbox
+                .Select(e => new Outbox
                 {
                     Type = e.GetType().FullName!,
-                    Content = JsonSerializer.Serialize(e),
+                    Content = JsonSerializer.Serialize(e, e.GetType()),
                     CreatedAt = DateTime.UtcNow
                 }).ToList();
 

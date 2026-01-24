@@ -1,8 +1,8 @@
 using Catalog.Application.Common.Interfaces;
-using Catalog.Application.Common.Mediator;
 using Catalog.Domain.DrinkAggregate;
-using Catalog.Domain.Exceptions;
 using Catalog.Domain.Services;
+using Contracts.Mediator;
+using Microsoft.AspNetCore.Http;
 using Shop.Domain.Enums;
 
 namespace Catalog.Application.ProductUseCases;
@@ -12,9 +12,12 @@ public sealed record AddDrinkCommand(
     string Description,
     decimal Price,
     DrinkType DrinkType,
-    List<Guid> ToppingsIds) : ICommand<Guid>;
+    List<Guid> ToppingsIds,
+    IFormFile? Image) : ICommand<Guid>;
 
-internal sealed class AddDrinkCommandHandler(IUnitOfWork unitOfWork, 
+internal sealed class AddDrinkCommandHandler(
+    IUnitOfWork unitOfWork, 
+    IS3Storage s3Storage,
     ToppingToDrinkAdditionService toppingToDrinkAdditionService) : ICommandHandler<AddDrinkCommand, Guid>
 {
     public async Task<Guid> Handle(AddDrinkCommand command, CancellationToken cancellationToken)
@@ -26,6 +29,12 @@ internal sealed class AddDrinkCommandHandler(IUnitOfWork unitOfWork,
             command.DrinkType);
 
         await toppingToDrinkAdditionService.AddToppings(drink, command.ToppingsIds, cancellationToken);
+        
+        if (command.Image is not null)
+        {
+            var fileName = await s3Storage.UploadFileAsync(command.Image, cancellationToken);
+            drink.AddImage(fileName);
+        }
         
         await unitOfWork.DrinkRepository.AddAsync(drink, cancellationToken);
         await unitOfWork.SaveChangesAsync(cancellationToken);

@@ -1,3 +1,7 @@
+using System.Runtime.InteropServices.JavaScript;
+using Contracts.Middlewares;
+using Contracts.Product;
+using OrderService.Application.Common.Clients;
 using OrderService.Domain.Models;
 
 namespace OrderService.Application.Common;
@@ -9,26 +13,102 @@ public static class CartExtensions
         return cart == null 
                || cart.Items.Count == 0;
     }
+
+    public static void Clear(this Cart cart)
+    {
+        cart.Items.Clear();
+        cart.Delivery = new Delivery();
+    }
+
+    public static (List<ErrorViewModel>, List<CartItem>) Validate(
+    this Cart cart,
+    MenuResponse menuResponse,
+    List<ProductResponse> customProducts)
+    {
+        var errors = new List<ErrorViewModel>();
+        var toRemove = new List<CartItem>();
+
+        if (cart.IsEmpty())
+        {
+            errors.Add(new ErrorViewModel { Message = "Cart is empty" });
+            return (errors, toRemove);
+        }
+
+        var productsDict = menuResponse.Products.ToDictionary(p => p.Id);
+        var customDict = customProducts.ToDictionary(p => p.Id);
+
+        foreach (var item in cart.Items)
+        {
+            bool isCustom = item.UserId is not null;
+
+            if (isCustom)
+            {
+                if (!customDict.TryGetValue(item.ProductId, out var customProd))
+                {
+                    errors.Add(new ErrorViewModel { Message = $"Product with id {item.ProductId} is not available" });
+                    toRemove.Add(item);
+                    continue;
+                }
+
+                if (HasDifferentPrice(
+                        item.ItemIngredients.Sum(ii => ii.Price),
+                        customProd.ProductIngredients.Sum(ii => ii.Price)))
+                {
+                    errors.Add(new ErrorViewModel { Message = $"Price for product with id {item.ProductId} has changed" });
+                    toRemove.Add(item);
+                }
+            }
+            else
+            {
+                if (!productsDict.TryGetValue(item.ProductId, out var product))
+                {
+                    errors.Add(new ErrorViewModel { Message = $"Product with id {item.ProductId} is not available" });
+                    toRemove.Add(item);
+                    continue;
+                }
+
+                if (product.Price != item.Price 
+                    || HasDifferentPrice(
+                            item.ItemIngredients.Sum(ii => ii.Price),
+                            product.ProductIngredients.Sum(ii => ii.Price)))
+                {
+                    errors.Add(new ErrorViewModel { Message = $"Price for product with id {item.ProductId} has changed" });
+                    toRemove.Add(item);
+                }
+            }
+        }
+
+        return (errors, toRemove);
+    }
     
-    public static Order ToOrder(this Cart cart, ServiceType serviceType)
+    private static bool HasDifferentPrice(decimal a, decimal b) => Math.Abs(a - b) > 0.01m;
+    
+    public static Order ToOrder(this Cart cart)
     {
         return new Order
         {
             UserId = cart.UserId,
             TotalPrice = cart.TotalPrice,
             Status = OrderStatus.Created,
-            ServiceType = serviceType,
+            Delivery = new Delivery
+            {
+                ServiceType = cart.Delivery.ServiceType,
+                Address = cart.Delivery.Address,
+                StoreAddressInfo = cart.Delivery.StoreAddressInfo,
+            },
             Items = cart.Items
                 .Select(i => new OrderItem
                 {
                     ProductId = i.ProductId,
                     Name = i.Name,
                     Price = i.TotalPrice,
+                    ImageName = i.ImageName,
                     Quantity = i.Quantity,
                     ItemIngredients = i.ItemIngredients
                         .Select(ii => new OrderItemIngredient
                         {
                             Name = ii.IngredientName,
+                            ImageName = ii.ImageName,
                             Quantity = ii.TotalQuantity
                         })
                         .ToList()

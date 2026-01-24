@@ -1,7 +1,8 @@
 using Catalog.Application.Common.Interfaces;
-using Catalog.Application.Common.Mediator;
 using Catalog.Domain.Enums;
 using Catalog.Domain.IngredientAggregate;
+using Contracts.Mediator;
+using Microsoft.AspNetCore.Http;
 
 namespace Catalog.Application.ProductUseCases;
 
@@ -10,9 +11,12 @@ public record CreateIngredientCommand(
     decimal Price,
     int Weight,
     int Calories,
-    List<ProductCategory> AvailableForProductCategories) : ICommand<Guid>;
+    List<ProductCategory> AvailableForProductCategories,
+    IFormFile? Image) : ICommand<Guid>;
 
-public sealed class CreateIngredientCommandHandler(IUnitOfWork unitOfWork) : ICommandHandler<CreateIngredientCommand, Guid>
+public sealed class CreateIngredientCommandHandler(
+    IUnitOfWork unitOfWork,
+    IS3Storage s3Storage) : ICommandHandler<CreateIngredientCommand, Guid>
 {
     public async Task<Guid> Handle(CreateIngredientCommand command, CancellationToken cancellationToken)
     {
@@ -22,10 +26,17 @@ public sealed class CreateIngredientCommandHandler(IUnitOfWork unitOfWork) : ICo
         {
             ingredient.AddAvailableForProductCategory(category);
         }
+
+        if (command.Image is not null)
+        {
+            var imageName = await s3Storage.UploadFileAsync(command.Image, cancellationToken);
+            ingredient.AddImage(imageName);
+        }
         
         await unitOfWork.IngredientRepository.AddAsync(ingredient, cancellationToken);
         await unitOfWork.SaveChangesAsync(cancellationToken);
         
         return ingredient.Id;
     }
-} 
+}
+

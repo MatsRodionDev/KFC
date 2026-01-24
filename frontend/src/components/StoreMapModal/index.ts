@@ -1,0 +1,2 @@
+export { StoreMapModal } from './StoreMapModal';
+

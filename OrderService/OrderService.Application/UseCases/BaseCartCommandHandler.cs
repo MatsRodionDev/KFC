@@ -1,5 +1,5 @@
+using Contracts.Mediator;
 using Medallion.Threading;
-using OrderService.Application.Common.Mediator;
 
 namespace OrderService.Application.UseCases;
 

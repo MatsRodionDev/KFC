@@ -1,10 +1,10 @@
 ﻿using System.Collections.Concurrent;
 using System.Text.Json;
+using Contracts.Broker.EventBus;
 using Contracts.Events;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using OrderService.Application.Common.Interfaces;
 using OrderService.Infrastructure.Persistence;
 
 namespace OrderService.Infrastructure.OutboxPattern
@@ -23,7 +23,7 @@ namespace OrderService.Infrastructure.OutboxPattern
                 using var scope = serviceProvider.CreateScope();
                 var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
 
-                using var transaction = await context.Database.BeginTransactionAsync(System.Data.IsolationLevel.ReadCommitted, stoppingToken);
+                await using var transaction = await context.Database.BeginTransactionAsync(System.Data.IsolationLevel.ReadCommitted, stoppingToken);
 
                 try
                 {

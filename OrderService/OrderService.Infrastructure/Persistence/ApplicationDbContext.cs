@@ -1,3 +1,4 @@
+using Contracts.Shared.Outbox;
 using Microsoft.EntityFrameworkCore;
 using OrderService.Domain.Models;
 using OrderService.Infrastructure.OutboxPattern;

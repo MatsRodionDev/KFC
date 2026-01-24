@@ -22,11 +22,44 @@ namespace OrderService.Infrastructure.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("Contracts.Shared.Outbox.Outbox", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("jsonb");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Error")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("ProcessedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Outboxes");
+                });
+
             modelBuilder.Entity("OrderService.Domain.Models.Cart", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
+
+                    b.Property<string>("Delivery")
+                        .IsRequired()
+                        .HasColumnType("jsonb");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uuid");
@@ -44,6 +77,9 @@ namespace OrderService.Infrastructure.Migrations
 
                     b.Property<Guid>("CartId")
                         .HasColumnType("uuid");
+
+                    b.Property<string>("ImageName")
+                        .HasColumnType("text");
 
                     b.Property<string>("ItemIngredients")
                         .IsRequired()
@@ -78,8 +114,9 @@ namespace OrderService.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<int>("ServiceType")
-                        .HasColumnType("integer");
+                    b.Property<string>("Delivery")
+                        .IsRequired()
+                        .HasColumnType("jsonb");
 
                     b.Property<int>("Status")
                         .HasColumnType("integer");
@@ -100,6 +137,9 @@ namespace OrderService.Infrastructure.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
+
+                    b.Property<string>("ImageName")
+                        .HasColumnType("text");
 
                     b.Property<string>("ItemIngredients")
                         .IsRequired()
@@ -128,33 +168,66 @@ namespace OrderService.Infrastructure.Migrations
                     b.ToTable("OrderItem");
                 });
 
-            modelBuilder.Entity("OrderService.Infrastructure.OutboxPattern.Outbox", b =>
+            modelBuilder.Entity("OrderService.Domain.Models.Payment", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasColumnType("jsonb");
+                    b.Property<decimal>("AmountTotal")
+                        .HasColumnType("numeric");
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Error")
-                        .IsRequired()
+                    b.Property<string>("CheckoutId")
                         .HasColumnType("text");
 
-                    b.Property<DateTime?>("ProcessedAt")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<Guid>("OrderId")
+                        .HasColumnType("uuid");
 
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<bool>("Paid")
+                        .HasColumnType("boolean");
+
+                    b.Property<int?>("Status")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Outboxes");
+                    b.HasIndex("OrderId")
+                        .IsUnique();
+
+                    b.ToTable("Payment");
+                });
+
+            modelBuilder.Entity("OrderService.Domain.Models.PaymentEvent", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("CheckoutId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("CustomerId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("OccuredAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid>("OrderId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("PaymentId")
+                        .HasColumnType("uuid");
+
+                    b.Property<int?>("Status")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PaymentId");
+
+                    b.ToTable("PaymentEvent");
                 });
 
             modelBuilder.Entity("OrderService.Domain.Models.CartItem", b =>
@@ -175,6 +248,24 @@ namespace OrderService.Infrastructure.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("OrderService.Domain.Models.Payment", b =>
+                {
+                    b.HasOne("OrderService.Domain.Models.Order", null)
+                        .WithOne("Payment")
+                        .HasForeignKey("OrderService.Domain.Models.Payment", "OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("OrderService.Domain.Models.PaymentEvent", b =>
+                {
+                    b.HasOne("OrderService.Domain.Models.Payment", null)
+                        .WithMany("PaymentEvents")
+                        .HasForeignKey("PaymentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("OrderService.Domain.Models.Cart", b =>
                 {
                     b.Navigation("Items");
@@ -183,6 +274,14 @@ namespace OrderService.Infrastructure.Migrations
             modelBuilder.Entity("OrderService.Domain.Models.Order", b =>
                 {
                     b.Navigation("Items");
+
+                    b.Navigation("Payment")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("OrderService.Domain.Models.Payment", b =>
+                {
+                    b.Navigation("PaymentEvents");
                 });
 #pragma warning restore 612, 618
         }

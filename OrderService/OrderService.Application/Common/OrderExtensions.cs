@@ -1,10 +1,10 @@
-using OrderService.Domain.Models;
 using OrderContract = Contracts.Order.Order;
 using Order = OrderService.Domain.Models.Order;
 using OrderStatusContract = Contracts.Order.OrderStatus;
 using ServiceTypeContract = Contracts.Order.ServiceType;
 using OrderItemContract = Contracts.Order.OrderItem;
 using OrderItemIngredientContract = Contracts.Order.OrderItemIngredient;
+using DeliveryContract = Contracts.Order.Delivery;
 
 namespace OrderService.Application.Common;
 
@@ -18,7 +18,12 @@ public static class OrderExtensions
             UserId = order.UserId,
             TotalPrice = order.TotalPrice,
             Status = Enum.Parse<OrderStatusContract>(order.Status.ToString()),
-            ServiceType = Enum.Parse<ServiceTypeContract>(order.ServiceType.ToString()),
+            Delivery = new DeliveryContract
+            {
+                ServiceType = Enum.Parse<ServiceTypeContract>(order.Delivery.ServiceType.ToString()),
+                Address = order.Delivery.Address,
+                StoreAddressInfo = order.Delivery.StoreAddressInfo
+            },
             Items = order.Items.Select(item => new OrderItemContract
             {
                 Id = item.Id,

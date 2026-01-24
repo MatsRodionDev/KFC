@@ -1,5 +1,5 @@
+using Contracts.Middlewares.Extensions;
 using Microsoft.EntityFrameworkCore;
-using OrderService.API.Middlewares;
 using OrderService.Application.Common;
 using OrderService.Infrastructure;
 using OrderService.Infrastructure.Persistence;
@@ -14,7 +14,7 @@ builder.Services
 
 var app = builder.Build();
 
-app.UseMiddleware<ExceptionHandlingMiddleware>();
+app.UseCustomExceptionHandler();
 
 if (app.Environment.IsDevelopment())
 {

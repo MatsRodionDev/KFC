@@ -7,6 +7,7 @@ public class CartItemIngredient
     public Guid IngredientId { get; set; }
     public string IngredientName { get; set; }
     public decimal Price { get; set; }
+    public string? ImageName { get; set; }
     public int CustomQuantityDelta { get; set; } = 0;
     public int Quantity { get; set; }
     public int MaxQuantity { get; set; }

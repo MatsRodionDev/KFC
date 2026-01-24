@@ -1,6 +1,7 @@
 using Catalog.Application.Common.Interfaces;
-using Catalog.Application.Common.Mediator;
 using Catalog.Domain.ToppingAggregate;
+using Contracts.Mediator;
+using Microsoft.AspNetCore.Http;
 using Shop.Domain.Enums;
 
 namespace Catalog.Application.ProductUseCases;
@@ -8,9 +9,12 @@ namespace Catalog.Application.ProductUseCases;
 public sealed record AddToppingCommand(
     string Name,
     decimal Price,
-    List<DrinkType> AvailableForTypes) : ICommand<Guid>;
+    List<DrinkType> AvailableForTypes,
+    IFormFile? Image) : ICommand<Guid>;
 
-internal sealed class AddToppingCommandHandler(IUnitOfWork unitOfWork) : ICommandHandler<AddToppingCommand, Guid>
+internal sealed class AddToppingCommandHandler(
+    IUnitOfWork unitOfWork,
+    IS3Storage s3Storage) : ICommandHandler<AddToppingCommand, Guid>
 {
     public async Task<Guid> Handle(AddToppingCommand command, CancellationToken cancellationToken)
     {
@@ -18,6 +22,12 @@ internal sealed class AddToppingCommandHandler(IUnitOfWork unitOfWork) : IComman
             command.Name, 
             command.Price, 
             command.AvailableForTypes);
+        
+        if (command.Image is not null)
+        {
+            var fileName = await s3Storage.UploadFileAsync(command.Image, cancellationToken);
+            topping.AddImage(fileName);
+        }
         
         await unitOfWork.ToppingRepository.AddAsync(topping, cancellationToken);
         await unitOfWork.SaveChangesAsync(cancellationToken);

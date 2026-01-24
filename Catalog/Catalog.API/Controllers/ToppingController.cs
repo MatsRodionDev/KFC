@@ -1,5 +1,5 @@
-using Catalog.Application.Common.Mediator;
 using Catalog.Application.ProductUseCases;
+using Contracts.Mediator;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Catalog.API.Controllers;
@@ -9,7 +9,7 @@ namespace Catalog.API.Controllers;
 public class ToppingController(IDispatcher dispatcher) : ControllerBase
 {
     [HttpPost]
-    public async Task<IActionResult> AddTopping([FromBody] AddToppingCommand command, CancellationToken cancellationToken)
+    public async Task<IActionResult> AddTopping([FromForm] AddToppingCommand command, CancellationToken cancellationToken)
     {
         return Ok(await dispatcher.Dispatch(command, cancellationToken));
     }

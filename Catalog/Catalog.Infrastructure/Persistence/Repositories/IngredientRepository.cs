@@ -1,4 +1,6 @@
-﻿using Catalog.Domain.IngredientAggregate;
+﻿using Catalog.Application.ProductUseCases;
+using Catalog.Domain.Enums;
+using Catalog.Domain.IngredientAggregate;
 using Catalog.Domain.Interfaces.Repositories;
 using Catalog.Domain.ToppingAggregate;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +21,15 @@ namespace Catalog.Infrastructure.Persistence.Repositories
             return await context
                 .Ingredients
                 .Where(p => ids.Contains(p.Id))
+                .ToListAsync(cancellationToken);
+        }
+
+        public async Task<List<Ingredient>> GetByCategoryAsync(ProductCategory category, CancellationToken cancellationToken)
+        {
+            return await context.Ingredients
+                .AsNoTracking()
+                .Where(i => i.ForProductCategory == category
+                                    || i.AvailableForProductCategory.Contains(category))
                 .ToListAsync(cancellationToken);
         }
 

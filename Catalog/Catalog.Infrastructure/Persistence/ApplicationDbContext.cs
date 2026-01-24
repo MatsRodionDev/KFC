@@ -2,6 +2,7 @@
 using Catalog.Domain.IngredientAggregate;
 using Catalog.Domain.ProductAggregate;
 using Catalog.Domain.ToppingAggregate;
+using Contracts.Shared.Outbox;
 using Microsoft.EntityFrameworkCore;
 
 namespace Catalog.Infrastructure.Persistence
@@ -12,7 +13,7 @@ namespace Catalog.Infrastructure.Persistence
         public DbSet<Ingredient> Ingredients { get; set; }
         public DbSet<Drink> Drinks { get; set; }
         public DbSet<Topping> Toppings { get; set; }
-        public DbSet<Outbox.Outbox> Outboxes { get; set; }
+        public DbSet<Outbox> Outboxes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -17,5 +17,7 @@ public class CartItem
             ? Price.Value + ItemIngredients.Sum(i => i.CustomQuantityDelta * Price).Value
             : ItemIngredients.Sum(i => (i.CustomQuantityDelta + i.Quantity) * i.Price)) * Quantity;
 
+    public string? ImageName { get; set; }
+    
     public List<CartItemIngredient> ItemIngredients { get; set; } = [];
 }

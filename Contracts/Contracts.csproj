@@ -6,4 +6,15 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="AsyncKeyedLock" Version="7.1.7" />
+      <PackageReference Include="MassTransit" Version="8.5.5" />
+      <PackageReference Include="MassTransit.RabbitMQ" Version="8.5.5" />
+      <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.3.0" />
+      <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="9.0.10" />
+      <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="9.0.10" />
+      <PackageReference Include="Refit" Version="9.0.2" />
+      <PackageReference Include="Refit.HttpClientFactory" Version="9.0.2" />
+    </ItemGroup>
+
 </Project>

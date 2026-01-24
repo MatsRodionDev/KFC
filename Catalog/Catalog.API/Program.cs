@@ -1,7 +1,8 @@
-using Catalog.API.Middlewares;
+using Catalog.API.Extensions;
 using Catalog.Application.Common;
 using Catalog.Infrastructure;
 using Catalog.Infrastructure.Persistence;
+using Contracts.Middlewares.Extensions;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,7 +16,7 @@ builder.Services
 
 var app = builder.Build();
 
-app.UseMiddleware<ExceptionHandlingMiddleware>();
+app.UseCustomExceptionHandler();
 
 if (app.Environment.IsDevelopment())
 {
@@ -24,13 +25,12 @@ if (app.Environment.IsDevelopment())
     {
         options.SwaggerEndpoint("/swagger/v1/swagger.json", "Catalog Service API V1");
     });
-    
-    await using var scope = app.Services.CreateAsyncScope();
-    var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-    await context.Database.MigrateAsync();
 }
 
-//app.UseHttpsRedirection();
+await app.MigrateDbAsync();
+await app.AddBucketAsync();
+
+app.UseHttpsRedirection();
 
 app.UseAuthorization();
 

@@ -1,5 +1,5 @@
+using Contracts.Mediator;
 using Microsoft.AspNetCore.Mvc;
-using OrderService.Application.Common.Mediator;
 using OrderService.Application.UseCases;
 
 namespace OrderService.API.Controllers;
@@ -20,5 +20,13 @@ public class CartController(IDispatcher dispatcher) : ControllerBase
         CancellationToken cancellationToken)
     {
         return Ok(await dispatcher.Dispatch(cartAddProductCommand, cancellationToken));
+    }
+    
+    [HttpPost("address")]
+    public async Task<IActionResult> SetAddress(
+        [FromBody] SetDeliveryCommand command, 
+        CancellationToken cancellationToken)
+    {
+        return Ok(await dispatcher.Dispatch(command, cancellationToken));
     }
 }

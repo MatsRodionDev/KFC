@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\VenueService.DAL\VenueService.DAL.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="AutoMapper" Version="15.1.0" />
+      <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.2.0" />
+      <PackageReference Include="Microsoft.AspNetCore.SignalR.Client.Core" Version="9.0.10" />
+      <PackageReference Include="Microsoft.AspNetCore.SignalR.Common" Version="9.0.10" />
+      <PackageReference Include="Microsoft.Extensions.Caching.Redis" Version="2.3.0" />
+      <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="9.0.10" />
+      <PackageReference Include="Refit" Version="9.0.2" />
+    </ItemGroup>
+
+</Project>
