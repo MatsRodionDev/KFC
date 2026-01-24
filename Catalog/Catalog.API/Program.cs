@@ -1,3 +1,4 @@
+using Catalog.API.Extensions;
 using Catalog.Application.Common;
 using Catalog.Infrastructure;
 using Catalog.Infrastructure.Persistence;
@@ -24,11 +25,10 @@ if (app.Environment.IsDevelopment())
     {
         options.SwaggerEndpoint("/swagger/v1/swagger.json", "Catalog Service API V1");
     });
-    
-    await using var scope = app.Services.CreateAsyncScope();
-    var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-    await context.Database.MigrateAsync();
 }
+
+await app.MigrateDbAsync();
+await app.AddBucketAsync();
 
 app.UseHttpsRedirection();
 

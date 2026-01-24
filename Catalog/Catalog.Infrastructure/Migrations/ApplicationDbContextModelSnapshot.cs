@@ -32,6 +32,9 @@ namespace Catalog.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("ImageName")
+                        .HasColumnType("text");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
@@ -57,6 +60,9 @@ namespace Catalog.Infrastructure.Migrations
 
                     b.Property<Guid>("DrinkId")
                         .HasColumnType("uuid");
+
+                    b.Property<string>("ImageName")
+                        .HasColumnType("text");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -88,6 +94,9 @@ namespace Catalog.Infrastructure.Migrations
                     b.Property<string>("ForProductCategory")
                         .HasColumnType("text");
 
+                    b.Property<string>("ImageName")
+                        .HasColumnType("text");
+
                     b.Property<bool>("IsBase")
                         .HasColumnType("boolean");
 
@@ -111,6 +120,10 @@ namespace Catalog.Infrastructure.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("ImageName")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -139,6 +152,9 @@ namespace Catalog.Infrastructure.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
+
+                    b.Property<string>("ImageName")
+                        .HasColumnType("text");
 
                     b.Property<Guid>("IngredientId")
                         .HasColumnType("uuid");
@@ -174,6 +190,9 @@ namespace Catalog.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("integer[]");
 
+                    b.Property<string>("ImageName")
+                        .HasColumnType("text");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
@@ -187,7 +206,7 @@ namespace Catalog.Infrastructure.Migrations
                     b.ToTable("Toppings");
                 });
 
-            modelBuilder.Entity("Catalog.Infrastructure.Persistence.Outbox.Outbox", b =>
+            modelBuilder.Entity("Contracts.Shared.Outbox.Outbox", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()

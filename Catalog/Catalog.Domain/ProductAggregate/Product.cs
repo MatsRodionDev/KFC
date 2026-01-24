@@ -3,6 +3,7 @@ using Catalog.Domain.Enums;
 using Catalog.Domain.Exceptions;
 using Catalog.Domain.IngredientAggregate;
 using Catalog.Domain.ValueObjects;
+using Contracts.Events;
 
 namespace Catalog.Domain.ProductAggregate
 {
@@ -27,7 +28,8 @@ namespace Catalog.Domain.ProductAggregate
 
         public string Name { get; private set; } = string.Empty;
         public string Description { get; private set; } = string.Empty;
-        public decimal? Price { get; private set; } 
+        public decimal? Price { get; private set; }
+        public string ImageName { get; private set; }
         public decimal IngredientsPrice => _productIngredients.Select(i => i.Price).Sum();
         public ProductCategory ProductCategory { get; private set; }
         public IReadOnlyCollection<ProductIngredient> ProductIngredients => _productIngredients;
@@ -52,21 +54,27 @@ namespace Catalog.Domain.ProductAggregate
                     baseIngredient,
                     baseIngredientQuantity);
             }
+            
+            product.Raise(
+                new ProductCreatedEvent(
+                    product.Id, 
+                    product.Name, 
+                    product.Description,
+                    0));
 
             return product;
         }
 
         public ProductIngredient AddIngredient(Ingredient ingredient, int quantity, int minQuantity, int maxQuantity)
         {
-            if (ingredient.ForProductCategory is not null 
-                && ingredient.ForProductCategory != ProductCategory)
-            {
-                throw new DomainException("This ingredient cant be used in product with such category");
-            }
-
             if (ingredient.IsBase)
             {
                 throw new DomainException("Base ingredient cant be added in product");
+            }
+
+            if (!ingredient.AvailableForProductCategory.Contains(ProductCategory))
+            {
+                throw new DomainException("This ingredient cant be used in product with such category");
             }
 
             var productIngredient = ProductIngredient.Create(ingredient, Id, quantity, minQuantity, maxQuantity);
@@ -91,6 +99,11 @@ namespace Catalog.Domain.ProductAggregate
             var baseIngredient = ProductIngredient.Create(ingredient, Id, quantity, quantity, quantity);
 
             _productIngredients.Add(baseIngredient);
+        }
+
+        public void AddImage(string imageName)
+        {
+            ImageName = imageName;
         }
     }
 }

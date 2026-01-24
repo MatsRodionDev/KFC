@@ -9,8 +9,8 @@
     <ItemGroup>
       <PackageReference Include="DistributedLock.Redis" Version="1.1.1" />
       <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.9" />
-      <PackageReference Include="Refit" Version="8.0.0" />
-      <PackageReference Include="Refit.HttpClientFactory" Version="8.0.0" />
+      <PackageReference Include="Refit" Version="9.0.2" />
+      <PackageReference Include="Refit.HttpClientFactory" Version="9.0.2" />
     </ItemGroup>
 
     <ItemGroup>

@@ -1,0 +1,124 @@
+.header {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 700;
+  color: #ff6a00;
+  text-decoration: none;
+}
+
+.navigation {
+  display: flex;
+  gap: 25px;
+}
+
+.nav-link {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  padding: 5px 0;
+  text-decoration: none;
+  transition: color 0.2s, border-bottom 0.2s;
+  border-bottom: 2px solid transparent;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: #ff6a00;
+  border-bottom: 2px solid #ff6a00;
+}
+
+.actions {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.action-button {
+  padding: 8px 15px;
+  background-color: #ff6a00;
+  color: #fff;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.action-button:hover {
+  background-color: #e05e00;
+}
+
+.header-cart-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background-color: #fff0e6;
+  border-radius: 50%;
+  transition: all 0.3s;
+  text-decoration: none;
+  color: #ff6a00;
+}
+
+.header-cart-icon:hover {
+  background-color: #ff6a00;
+  color: #fff;
+  transform: scale(1.1);
+}
+
+.header-cart-icon .cart-svg {
+  width: 22px;
+  height: 22px;
+  transition: transform 0.3s;
+}
+
+.header-cart-icon:hover .cart-svg {
+  transform: scale(1.1);
+}
+
+.header-cart-icon .cart-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background-color: #ff4d4f;
+  color: #fff;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  border: 2px solid #fff;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+

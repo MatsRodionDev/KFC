@@ -40,8 +40,15 @@ internal sealed class CartAddProductItemCommandHandler(IUnitOfWork unitOfWork,
         {
             throw new Exception($"Could not find product with id: {command.ProductId}");
         }
+
+        if (productResponse.UserId is not null
+            && productResponse.UserId != command.UserId)
+        {
+            throw new Exception($"You cannot add product with id: {productResponse.UserId}");
+        }
         
         var cartItem = productResponse.ToCartItem(command.UserId);
+        AddCustomizations(cartItem, command.IngredientsQuantityCustomizations);
         
         Guid cartItemId;
         var existingItem = cart.Items.FirstOrDefault(i => i.EqualToItem(cartItem));
@@ -49,7 +56,6 @@ internal sealed class CartAddProductItemCommandHandler(IUnitOfWork unitOfWork,
         if (existingItem is null)
         {
             cartItem.Quantity = command.Quantity;
-            AddCustomizations(cartItem, command.IngredientsQuantityCustomizations);
             cart.Items.Add(cartItem);
             
             await unitOfWork.CartItemRepository.AddAsync(cartItem, cancellationToken);

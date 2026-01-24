@@ -1,6 +1,8 @@
 ﻿using Contracts.Broker.Extensions;
+using Contracts.Geo;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Refit;
 using VenueService.BLL.Consumers;
 using VenueService.BLL.Mapper;
 using VenueService.BLL.Services;
@@ -12,6 +14,13 @@ public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddBusinessLayerDependencies(this IServiceCollection services, IConfiguration configuration)
     {
+        services
+            .AddRefitClient<IGeoApiClient>()
+            .ConfigureHttpClient(c =>
+            {
+                c.BaseAddress = new Uri("http://localhost:5172");
+            });
+        
         services
             .AddStackExchangeRedisCache(options =>
             {
@@ -46,10 +55,12 @@ public static class ServiceCollectionExtensions
 
     private static IServiceCollection AddMassTransit(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddCommonMassTransit(configuration, "venue-service", cfg =>
-        {
-            cfg.AddConsumer<OrderCreatedConsumer>();
-        });
+        services
+            .AddCommonEventBus()
+            .AddCommonMassTransit(configuration, "venue-service", cfg =>
+            {
+                cfg.AddConsumer<OrderCreatedConsumer>();
+            });
 
         return services;
     }

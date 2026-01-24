@@ -1,3 +1,4 @@
+using Contracts.Geo;
 using Contracts.Mediator;
 using Contracts.Mediator.Extensions;
 using Medallion.Threading;
@@ -31,6 +32,20 @@ public static class ApplicationServiceCollection
                 c.DefaultRequestHeaders.UserAgent.ParseAdd("MyApp/1.0 (rodion.mats11@gmail.com)");
             });
         
+        services
+            .AddRefitClient<IGeoApiClient>()
+            .ConfigureHttpClient(c =>
+            {
+                c.BaseAddress = new Uri("http://localhost:5172");
+            });
+        
+        services
+            .AddRefitClient<IRestaurantClient>()
+            .ConfigureHttpClient(c =>
+            {
+                c.BaseAddress = new Uri("http://localhost:5113");
+            });
+        
         services.AddSingleton<IConnectionMultiplexer>(sp =>
         {
             var configuration = "localhost:6380";
@@ -44,10 +59,15 @@ public static class ApplicationServiceCollection
         });
         
         return services
+            .AddScoped<IQueryHandler<GetCurrentOrdersQuery, List<Order>>, GetCurrentOrdersQueryHandler>()
             .AddScoped<ICommandHandler<CartAddProductItemCommand, Guid>, CartAddProductItemCommandHandler>()
             .AddScoped<ICommandHandler<OrderCreateCommand, Order>, OrderCreateCommandHandler>()
             .AddScoped<IQueryHandler<GetCartQuery, Cart>, GetCartQueryHandler>()
             .AddScoped<ICommandHandler<SetDeliveryCommand, Guid>, SetDeliveryCommandHandler>()
+            .AddScoped<IQueryHandler<GetOrdersQuery, List<Order>>, GetOrdersQueryHandler>()
+            .AddScoped<IQueryHandler<GetOrderByIdQuery, Order>, GetOrderByIdQueryHandler>()
+            .AddScoped<ICommandHandler<UpdateCardPaymentStatusCommand, Order>, UpdateCardPaymentStatusCommandHandler>()
+            .AddScoped< ICommandHandler<OrderEventCommand, bool>,ProcessOrderEventHandler>()
             .AddMediatorDispatcher();
     }
 }

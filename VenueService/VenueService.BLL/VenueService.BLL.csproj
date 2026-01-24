@@ -17,6 +17,7 @@
       <PackageReference Include="Microsoft.AspNetCore.SignalR.Common" Version="9.0.10" />
       <PackageReference Include="Microsoft.Extensions.Caching.Redis" Version="2.3.0" />
       <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="9.0.10" />
+      <PackageReference Include="Refit" Version="9.0.2" />
     </ItemGroup>
 
 </Project>

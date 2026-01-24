@@ -1,4 +1,5 @@
 using System.Collections.Concurrent;
+using Contracts.Broker.EventBus;
 using Contracts.Events;
 using Contracts.Order;
 using MassTransit;
@@ -18,40 +19,34 @@ public class OrderCreatedConsumer(
     VenueDbContext  dbContext,
     INotifyOrderService notifyOrderService,
     IOrderStorage orderStorge,
-    IRestaurantOrderService restaurantOrderService,
-    IRestaurantService restaurantService,
-    ILogger<OrderCreatedConsumer> logger) : IConsumer<OrderCreatedEvent>
+    IEventBus eventBus,
+    ILogger<OrderCreatedConsumer> logger) : IConsumer<SendOrderToVduEvent>
 {
-    public async Task Consume(ConsumeContext<OrderCreatedEvent> context)
+    public async Task Consume(ConsumeContext<SendOrderToVduEvent> context)
     {
         var order = context.Message.Order;
         
         logger.LogInformation("Received OrderCreatedEvent for OrderId: {OrderId}, UserId: {UserId}", 
             order.Id, order.UserId);
         
-        var coordinates = order.Delivery.Coordinates;
+        var storeInfo = order.Delivery.StoreAddressInfo;
 
-        var restaurant = (coordinates is not null) switch
+        if (storeInfo is null)
         {
-            true => await dbContext.Restaurants
-                .Where(r => r.IsActive)
-                .OrderBy(r
-                    => r.Location.Distance(new Point(coordinates.Latitude, coordinates.Longitude)))
-                .FirstOrDefaultAsync(),
+            return;
+        }
 
-            false => await dbContext.Restaurants
-                .Where(r => r.IsActive)
-                .OrderBy(r => EF.Functions.Random())
-                .FirstOrDefaultAsync()
-        };
+        var restaurant = await dbContext.Restaurants
+            .FirstOrDefaultAsync(r => r.Id == storeInfo.StoreId);
 
         if (restaurant is  null)
         {
-            // надо подумать как обрабатывать
             throw new NullReferenceException("Restaurant is null");
         }
         
         await orderStorge.AddCookingAsync(order, restaurant.Id);
         await notifyOrderService.Notify(order, restaurant.Id);
+        
+        await eventBus.PublishAsync(new OrderEvent(Guid.NewGuid(), order.Id, EventType.OrderCooking, DateTime.UtcNow));
     }
 }

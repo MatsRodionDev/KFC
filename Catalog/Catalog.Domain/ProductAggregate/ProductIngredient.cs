@@ -11,6 +11,7 @@ namespace Catalog.Domain.ProductAggregate
             Guid ingredientId,
             string ingredientName,
             decimal price,
+            string? imageName,
             Quantity quantity,
             Quantity minQuantity,
             Quantity maxQuantity,
@@ -21,6 +22,7 @@ namespace Catalog.Domain.ProductAggregate
             IngredientId = ingredientId;
             IngredientName = ingredientName;
             Price = price;
+            ImageName = imageName;
             Quantity = quantity;
             MinQuantity = minQuantity;
             MaxQuantity = maxQuantity;
@@ -34,6 +36,7 @@ namespace Catalog.Domain.ProductAggregate
         public Guid IngredientId { get; private set; }
         public string IngredientName { get; private set; }
         public decimal Price { get; private set; }
+        public string? ImageName { get; set; }
         public Nutrition TotalNutrition { get; private set; }
         public Quantity Quantity { get; private set; }
         public Quantity MaxQuantity { get; private set; }
@@ -49,6 +52,7 @@ namespace Catalog.Domain.ProductAggregate
                 ingredient.Id,
                 ingredient.Name,
                 ingredient.Price,
+                ingredient.ImageName,
                 Quantity.Create(quantity),
                 Quantity.Create(minQuantity),
                 Quantity.Create(maxQuantity),

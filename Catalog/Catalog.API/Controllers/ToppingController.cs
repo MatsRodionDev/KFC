@@ -9,7 +9,7 @@ namespace Catalog.API.Controllers;
 public class ToppingController(IDispatcher dispatcher) : ControllerBase
 {
     [HttpPost]
-    public async Task<IActionResult> AddTopping([FromBody] AddToppingCommand command, CancellationToken cancellationToken)
+    public async Task<IActionResult> AddTopping([FromForm] AddToppingCommand command, CancellationToken cancellationToken)
     {
         return Ok(await dispatcher.Dispatch(command, cancellationToken));
     }

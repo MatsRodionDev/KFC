@@ -12,10 +12,11 @@ public static class ProductToCartMapper
 
         var cartItem = new CartItem
         {
-            UserId = userId,
+            UserId = product.UserId,
             ProductId = product.Id,
             Name = product.Name,
             Price = product.Price,
+            ImageName = product.ImageName,
             ItemIngredients = product.ProductIngredients.Select(ToCartIngredient).ToList()
         };
 
@@ -29,6 +30,7 @@ public static class ProductToCartMapper
             IngredientId = ingredient.IngredientId,
             IngredientName = ingredient.IngredientName,
             Price = ingredient.Price,
+            ImageName = ingredient.ImageName,
             Quantity = ingredient.Quantity.Value,
             MinQuantity = ingredient.MinQuantity.Value,
             MaxQuantity = ingredient.MaxQuantity.Value,

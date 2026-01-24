@@ -1,11 +1,17 @@
+using Contracts.Geo;
+
 namespace OrderService.Domain.Models;
 
 public record Delivery 
 {
     public ServiceType ServiceType { get; set; } = ServiceType.ClickCollect;
-    public string? Address { get; set; }
-    public Coordinates? Coordinates { get; set; }
+    public AddressInfo? Address { get; set; }
+    public StoreInfo? StoreAddressInfo { get; set; }
 }
+
+public class AddressInfo : AddressGeocodeResponse;
+
+public class StoreAddressInfo : GeoStoreResponse;
 
 public record Coordinates
 {

@@ -88,12 +88,23 @@ namespace Catalog.Domain.Services
                 {
                     throw new DomainException("There is no such ingredient");
                 }
-                
-                product.AddIngredient(
-                    ingredient, 
-                    ingredientSnapshot.Quantity, 
-                    ingredientSnapshot.MinQuantity, 
-                    ingredientSnapshot.MaxQuantity);
+
+                if (userId is not null)
+                {
+                    product.AddIngredient(
+                        ingredient, 
+                        ingredientSnapshot.Quantity, 
+                        ingredientSnapshot.Quantity, 
+                        ingredientSnapshot.Quantity);
+                }
+                else
+                {
+                    product.AddIngredient(
+                        ingredient, 
+                        ingredientSnapshot.Quantity, 
+                        ingredientSnapshot.MinQuantity, 
+                        ingredientSnapshot.MaxQuantity);
+                }
             }
             
             return product;

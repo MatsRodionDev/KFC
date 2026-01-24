@@ -21,7 +21,14 @@ public class ProductController(IDispatcher dispatcher) : ControllerBase
     }
     
     [HttpPost]
-    public async Task<IActionResult> AddProduct([FromBody] AddProductCommand command,
+    public async Task<IActionResult> AddProduct([FromForm] AddProductCommand command,
+        CancellationToken cancellationToken)
+    {
+        return Ok(await dispatcher.Dispatch(command, cancellationToken));
+    }
+    
+    [HttpPost("custom")]
+    public async Task<IActionResult> AddCustomProduct([FromForm] AddCustomProductCommand command,
         CancellationToken cancellationToken)
     {
         return Ok(await dispatcher.Dispatch(command, cancellationToken));

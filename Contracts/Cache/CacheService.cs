@@ -1,9 +1,10 @@
 using AsyncKeyedLock;
 using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Logging;
 
 namespace Contracts.Cache;
 
-public class CacheService(IMemoryCache cache) : ICacheService
+public class CacheService(IMemoryCache cache, ILogger<CacheService> logger) : ICacheService
 {
     private class CacheValue<TValue>
     {
@@ -60,7 +61,17 @@ public class CacheService(IMemoryCache cache) : ICacheService
     private async Task<CacheValue<T>> GetValue<T>(Func<Task<T>> factory, 
         CancellationToken cancellationToken)
     {
-        var value = await factory();
+        T? value;
+
+        try
+        {
+            value = await factory();
+        }
+        catch(Exception ex)
+        {
+            logger.LogWarning("Get cache value error {Message}", ex.Message);
+            value = default;
+        }
 
         var cacheValue = new CacheValue<T>
         {

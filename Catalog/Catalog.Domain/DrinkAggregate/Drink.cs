@@ -1,6 +1,5 @@
 ﻿using Catalog.Domain.Abstractions;
 using Catalog.Domain.Exceptions;
-using Catalog.Domain.ProductAggregate;
 using Catalog.Domain.ToppingAggregate;
 using Shop.Domain.Enums;
 
@@ -28,6 +27,7 @@ namespace Catalog.Domain.DrinkAggregate
         public string Description { get; private set; } = string.Empty;
         public decimal Price { get; private set; }
         public DrinkType Type { get; private set; }
+        public string? ImageName { get; private set; }
         public IReadOnlyCollection<DrinkTopping> DrinkToppings => _drinkToppings;
 
         public static Drink Create(
@@ -53,6 +53,11 @@ namespace Catalog.Domain.DrinkAggregate
             
             return drinkTopping;
         }
+        
+        public void AddImage(string imageName)
+        {
+            ImageName = imageName;
+        }
     }
 
     public class DrinkTopping : Entity
@@ -60,17 +65,20 @@ namespace Catalog.Domain.DrinkAggregate
         private DrinkTopping(
             string name,
             decimal price,
+            string? imageName,
             Guid toppingId,
             Guid drinkId)
         {
             Name = name;    
             Price = price;
+            ImageName = imageName;
             ToppingId = toppingId;
             DrinkId = drinkId;
         }
         
         public string Name { get; private set; }
         public decimal Price { get; private set; }
+        public string? ImageName { get; set; }
         public Guid ToppingId { get; private set; }
         public Guid DrinkId { get; private set; }
         
@@ -81,6 +89,7 @@ namespace Catalog.Domain.DrinkAggregate
             var drinkTopping = new DrinkTopping(
                 topping.Name, 
                 topping.Price,
+                topping.ImageName,
                 topping.Id,
                 drinkId);
             

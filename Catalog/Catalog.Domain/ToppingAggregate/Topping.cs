@@ -19,6 +19,7 @@ namespace Catalog.Domain.ToppingAggregate
 
         public string Name { get; private set; } = string.Empty;
         public decimal Price { get; private set; }
+        public string? ImageName { get; private set; }
         public List<DrinkType> AvailableForTypes { get; private set; } = [];
 
         public static Topping Create(
@@ -29,6 +30,11 @@ namespace Catalog.Domain.ToppingAggregate
             var topping = new Topping(name, price, availableForTypes);
 
             return topping;
+        }
+        
+        public void AddImage(string imageName)
+        {
+            ImageName = imageName;
         }
     }
 }

@@ -1,5 +1,4 @@
 using Contracts.Cache;
-using Contracts.Events;
 using Contracts.Mediator;
 using Contracts.Middlewares;
 using Contracts.Product;
@@ -15,6 +14,7 @@ public record OrderCreateCommand(
     Guid UserId) : ICommand<Order>;
 
 internal sealed class OrderCreateCommandHandler(IUnitOfWork unitOfWork,
+    ITemporalService temporalService,
     IDistributedLockProvider distributedLockProvider,
     ICatalogClient catalogClient,
     ICacheService cacheService) 
@@ -33,11 +33,17 @@ internal sealed class OrderCreateCommandHandler(IUnitOfWork unitOfWork,
         await ValidateAsync(cart, commonMenu, customProducts, cancellationToken);
         
         var order = cart.ToOrder();
+        order.Payment = new Payment
+        {
+            OrderId = order.Id,
+            AmountTotal = order.TotalPrice
+        };
         cart.Clear();
 
         await unitOfWork.OrderRepository.AddAsync(order, cancellationToken);
-        var orderCreatedEvent = new OrderCreatedEvent(Guid.NewGuid(), order.ToContract());
-        await unitOfWork.SaveChangesAsync([orderCreatedEvent], cancellationToken);
+        // var orderCreatedEvent = new OrderCreatedEvent(Guid.NewGuid(), order.ToContract());
+        await unitOfWork.SaveChangesAsync(cancellationToken: cancellationToken);
+        await temporalService.StartOrderWorkFlowAsync(order.Id, command.UserId);
         
         return order;
     }

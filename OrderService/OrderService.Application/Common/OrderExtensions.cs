@@ -1,4 +1,3 @@
-using OrderService.Domain.Models;
 using OrderContract = Contracts.Order.Order;
 using Order = OrderService.Domain.Models.Order;
 using OrderStatusContract = Contracts.Order.OrderStatus;
@@ -6,7 +5,6 @@ using ServiceTypeContract = Contracts.Order.ServiceType;
 using OrderItemContract = Contracts.Order.OrderItem;
 using OrderItemIngredientContract = Contracts.Order.OrderItemIngredient;
 using DeliveryContract = Contracts.Order.Delivery;
-using CoordinatesContract = Contracts.Order.Coordinates;
 
 namespace OrderService.Application.Common;
 
@@ -24,13 +22,7 @@ public static class OrderExtensions
             {
                 ServiceType = Enum.Parse<ServiceTypeContract>(order.Delivery.ServiceType.ToString()),
                 Address = order.Delivery.Address,
-                Coordinates = order.Delivery.Coordinates is null 
-                    ? null 
-                    : new CoordinatesContract
-                    {
-                        Latitude = order.Delivery.Coordinates.Latitude,
-                        Longitude = order.Delivery.Coordinates.Longitude
-                    }
+                StoreAddressInfo = order.Delivery.StoreAddressInfo
             },
             Items = order.Items.Select(item => new OrderItemContract
             {

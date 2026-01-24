@@ -30,6 +30,7 @@ namespace Catalog.Domain.IngredientAggregate
         public Nutrition Nutrition { get; private set; }
         public bool IsBase { get; private set; }
         public ProductCategory? ForProductCategory { get; private set; }
+        public string? ImageName { get; private set; }
         public IReadOnlyList<ProductCategory> AvailableForProductCategory => [.. _availableForProductCategory];
 
         public static Ingredient Create(string name, decimal price, int weight, int calories)
@@ -65,6 +66,11 @@ namespace Catalog.Domain.IngredientAggregate
             }
             
             _availableForProductCategory.Add(productCategory);
+        }
+        
+        public void AddImage(string imageName)
+        {
+            ImageName = imageName;
         }
     }
 }

@@ -33,7 +33,7 @@ namespace Catalog.Infrastructure.Persistence.UoW
                 .Select(e => new Outbox
                 {
                     Type = e.GetType().FullName!,
-                    Content = JsonSerializer.Serialize(e),
+                    Content = JsonSerializer.Serialize(e, e.GetType()),
                     CreatedAt = DateTime.UtcNow
                 }).ToList();
 

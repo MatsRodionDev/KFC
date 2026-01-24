@@ -23,6 +23,10 @@ public class OrderConfiguration : IEntityTypeConfiguration<Order>
             .WithOne()
             .HasForeignKey(x => x.OrderId)
             .OnDelete(DeleteBehavior.Cascade);
+
+        builder.HasOne(x => x.Payment)
+            .WithOne()
+            .HasForeignKey<Payment>(p => p.OrderId);
         
         var comparer = new ValueComparer<Delivery>(
             (c1, c2) => JsonSerializer.Serialize(c1, JsonOptions) == JsonSerializer.Serialize(c2, JsonOptions),
@@ -39,5 +43,15 @@ public class OrderConfiguration : IEntityTypeConfiguration<Order>
             .SetValueComparer(comparer);
         
         builder.Property(x => x.Delivery).HasColumnType("jsonb");
+    }
+}
+
+public class PaymentConfiguration : IEntityTypeConfiguration<Payment>
+{
+    public void Configure(EntityTypeBuilder<Payment> builder)
+    {
+        builder.HasMany(p => p.PaymentEvents)
+            .WithOne()
+            .HasForeignKey(x => x.PaymentId);
     }
 }

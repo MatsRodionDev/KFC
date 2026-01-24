@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Contracts.Geo;
 using OrderService.Domain.Models;
 using Refit;
 

@@ -1,10 +1,12 @@
+using Contracts.Geo;
+
 namespace Contracts.Order;
 
 public record Delivery 
 {
     public ServiceType ServiceType { get; set; } = ServiceType.ClickCollect;
-    public string? Address { get; set; }
-    public Coordinates? Coordinates { get; set; }
+    public AddressGeocodeResponse? Address { get; set; }
+    public StoreInfo? StoreAddressInfo { get; set; }
 }
 
 public record Coordinates

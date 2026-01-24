@@ -94,13 +94,7 @@ public static class CartExtensions
             {
                 ServiceType = cart.Delivery.ServiceType,
                 Address = cart.Delivery.Address,
-                Coordinates = cart.Delivery.Coordinates is null 
-                    ? null 
-                    : new Coordinates
-                    {
-                        Latitude = cart.Delivery.Coordinates.Latitude,
-                        Longitude = cart.Delivery.Coordinates.Longitude
-                    }
+                StoreAddressInfo = cart.Delivery.StoreAddressInfo,
             },
             Items = cart.Items
                 .Select(i => new OrderItem
@@ -108,11 +102,13 @@ public static class CartExtensions
                     ProductId = i.ProductId,
                     Name = i.Name,
                     Price = i.TotalPrice,
+                    ImageName = i.ImageName,
                     Quantity = i.Quantity,
                     ItemIngredients = i.ItemIngredients
                         .Select(ii => new OrderItemIngredient
                         {
                             Name = ii.IngredientName,
+                            ImageName = ii.ImageName,
                             Quantity = ii.TotalQuantity
                         })
                         .ToList()

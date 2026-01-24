@@ -8,6 +8,7 @@ public class RestaurantEntity : BaseEntity
     [MaxLength(100)]
     public required string Name { get; set; }
 
+    public string Address { get; set; }
     public required Point Location { get; set; }
 
     public bool IsActive { get; set; } = true;
