@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
 * {
   box-sizing: border-box;
 }
@@ -42,4 +44,63 @@ main {
   flex-direction: column;
 }
 
+.app-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  padding: 2rem;
+  box-sizing: border-box;
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  background-attachment: fixed;
+}
 
+.loading-state {
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 3rem;
+  text-align: center;
+  border: 2px solid #e8e8e8;
+}
+
+.loading-text {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #ff6a00;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.error-state {
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 3rem;
+  text-align: center;
+  border: 2px solid #ff4d4f;
+}
+
+.error-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #ff4d4f;
+}
+
+.error-message {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.error-sub-message {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}

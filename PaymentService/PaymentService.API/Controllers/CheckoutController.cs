@@ -1,11 +1,12 @@
 using Contracts.Mediator;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PaymentService.Handlers;
-using PaymentService.Models;
 using PaymentService.Services;
 
 namespace PaymentService.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("api/[controller]")]
 public class CheckoutController(IStripeCheckoutService checkoutService, IDispatcher dispatcher, ILogger<CheckoutController> logger)

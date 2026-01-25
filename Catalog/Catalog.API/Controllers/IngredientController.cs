@@ -1,10 +1,12 @@
 using Catalog.Application.ProductUseCases;
 using Catalog.Domain.Enums;
 using Contracts.Mediator;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Catalog.API.Controllers;
 
+[Authorize]
 [Controller]
 [Route("api/ingredients")]
 public class IngredientController(IDispatcher dispatcher) : ControllerBase

@@ -1,5 +1,6 @@
 using Contracts.Mediator;
 using Contracts.Payment;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OrderService.Application.UseCases;
 using OrderService.Infrastructure.Workflows;
@@ -7,6 +8,7 @@ using Temporalio.Client;
 
 namespace OrderService.API.Controllers;
 
+[Authorize]
 [Controller]
 [Route("api/orders")]
 public class OrderController(IDispatcher dispatcher, ITemporalClient client) : ControllerBase

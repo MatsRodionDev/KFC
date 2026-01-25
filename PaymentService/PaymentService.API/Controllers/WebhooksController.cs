@@ -1,12 +1,13 @@
 using Contracts.Mediator;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PaymentService.Handlers;
-using PaymentService.Services;
 using Stripe;
 using Stripe.Checkout;
 
 namespace PaymentService.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("api/[controller]")]
 public class WebhooksController(IDispatcher dispatcher, ILogger<WebhooksController> logger)

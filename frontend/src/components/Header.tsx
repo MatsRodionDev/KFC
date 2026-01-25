@@ -1,11 +1,14 @@
 import { Link, useLocation } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
 import { useAppSelector } from '../store/hooks';
 import { selectCartItemCount } from '../store/slices/cartSlice';
+import { LogoutButton } from './auth';
 import './Header.css';
 
 export const Header = () => {
   const location = useLocation();
   const itemCount = useAppSelector(selectCartItemCount);
+  const { isAuthenticated } = useAuth0();
 
   const isActive = (path: string) => location.pathname === path;
 
@@ -26,9 +29,13 @@ export const Header = () => {
           <Link to="/history" className={`nav-link ${isActive('/history') ? 'active' : ''}`}>
             История заказов
           </Link>
+          <Link to="/profile" className={`nav-link ${isActive('/profile') ? 'active' : ''}`}>
+            Профиль
+          </Link>
         </nav>
 
         <div className="actions">
+          {isAuthenticated && <LogoutButton />}
           <Link to="/cart" className="header-cart-icon">
             <svg 
               width="24" 

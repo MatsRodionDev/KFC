@@ -111,6 +111,15 @@ services:
     volumes:
       - /var/lib/rabbitmq
 
+  stripe-cli:
+    image: stripe/stripe-cli:latest
+    container_name: stripe-cli
+    command: listen --forward-to http://host.docker.internal:5114/api/Webhooks
+    ports:
+      - "12111:12111"
+    volumes:
+      - ./Stripe/stripe.toml:/root/.config/stripe/config.toml
+
 networks:
   kfc-vector:
     driver: bridge

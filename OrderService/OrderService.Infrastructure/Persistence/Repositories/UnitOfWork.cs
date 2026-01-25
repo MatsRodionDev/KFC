@@ -1,10 +1,8 @@
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using Contracts.Events;
 using Contracts.Shared.Outbox;
 using OrderService.Application.Common.Interfaces;
 using OrderService.Domain.Repositories;
-using OrderService.Infrastructure.OutboxPattern;
 
 namespace OrderService.Infrastructure.Persistence.Repositories;
 

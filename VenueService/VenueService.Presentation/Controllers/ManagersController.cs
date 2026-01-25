@@ -1,4 +1,5 @@
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using VenueService.BLL.Models;
 using VenueService.BLL.Services;
@@ -7,6 +8,7 @@ using VenueService.Dtos.Responses;
 
 namespace VenueService.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("api/managers")]
 public class ManagersController(
@@ -56,4 +58,3 @@ public class ManagersController(
         await managerService.DeleteAsync(id, cancellationToken); 
     }
 }
-
