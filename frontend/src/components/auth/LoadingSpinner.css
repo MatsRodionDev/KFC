@@ -1,0 +1,24 @@
+.loading-state {
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 3rem;
+  text-align: center;
+  border: 2px solid #e8e8e8;
+}
+
+.loading-text {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #ff6a00;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}

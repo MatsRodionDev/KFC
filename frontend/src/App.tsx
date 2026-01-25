@@ -11,6 +11,9 @@ import { OrderCheckoutPage } from './pages/OrderCheckoutPage/index';
 import { OrderPage } from './pages/OrderPage/index';
 import { HistoryPage } from './pages/HistoryPage/index';
 import { CustomProductBuilder } from './pages/CustomProductBuilder/index';
+import { ProfilePage } from './pages/ProfilePage/index';
+import { LoginPage, ProtectedRoute } from './components/auth';
+import { useAuth } from './hooks/useAuth';
 import './styles/global.css';
 
 const AppLayout = () => {
@@ -29,6 +32,7 @@ const AppLayout = () => {
           <Route path="/order-checkout/:orderId" element={<OrderCheckoutPage />} />
           <Route path="/order/:id" element={<OrderPage />} />
           <Route path="/history" element={<HistoryPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
           <Route path="/custom-product" element={<CustomProductBuilder />} />
         </Routes>
       </main>
@@ -38,10 +42,25 @@ const AppLayout = () => {
 };
 
 function App() {
+  useAuth();
+
   return (
     <Provider store={store}>
       <BrowserRouter>
-        <AppLayout />
+        <Routes>
+          <Route 
+            path="/login" 
+            element={<LoginPage />} 
+          />
+          <Route 
+            path="/*" 
+            element={
+              <ProtectedRoute>
+                <AppLayout />
+              </ProtectedRoute>
+            } 
+          />
+        </Routes>
       </BrowserRouter>
     </Provider>
   );

@@ -1,0 +1,28 @@
+.button.login {
+  padding: 12px 32px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 32px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(255, 106, 0, 0.2);
+  outline: none;
+  font-family: inherit;
+  background-color: #ff6a00;
+  color: #fff;
+}
+
+.button.login:hover {
+  background-color: #e05e00;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 106, 0, 0.3);
+}
+
+.button.login:focus {
+  box-shadow: 0 0 0 4px rgba(255, 106, 0, 0.2);
+}
+
+.button.login:active {
+  transform: translateY(0);
+}

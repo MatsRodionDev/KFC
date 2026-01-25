@@ -1,4 +1,3 @@
-import axios from 'axios';
 import type {
   Product,
   MenuResponse,
@@ -18,41 +17,7 @@ import type {
   StoreInfo,
   OrderResponse
 } from '../types';
-
-const catalogApi = axios.create({
-  baseURL: '/api/catalog',
-  headers: {
-    'Content-Type': 'application/json'
-  }
-});
-
-const orderApi = axios.create({
-  baseURL: '/api/orders',
-  headers: {
-    'Content-Type': 'application/json'
-  }
-});
-
-const paymentApi = axios.create({
-  baseURL: '/api/checkout',
-  headers: {
-    'Content-Type': 'application/json'
-  }
-});
-
-const geoApi = axios.create({
-  baseURL: '/api/geo',
-  headers: {
-    'Content-Type': 'application/json'
-  }
-});
-
-const chatClientApi = axios.create({
-  baseURL: '/api/chatclient',
-  headers: {
-    'Content-Type': 'application/json'
-  }
-});
+import { catalogApi, orderApi, paymentApi, geoApi, chatClientApi } from './apiConfig';
 
 // Catalog API
 export const catalogService = {
