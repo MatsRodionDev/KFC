@@ -1,5 +1,6 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Contracts.Auth.Extensions;
 using Contracts.Broker.Extensions;
 using Contracts.Mediator;
 using Contracts.Mediator.Extensions;
@@ -103,7 +104,7 @@ builder.Services.AddScoped<ProductService>();
 builder.Services.AddScoped<PriceService>();
 builder.Services.AddScoped<PaymentIntentService>();
 builder.Services.AddScoped<CustomerService>();
-builder.Services.AddScoped<Stripe.Checkout.SessionService>();
+builder.Services.AddScoped<SessionService>();
 
 builder.Services.AddScoped<IStripeCustomerService, StripeCustomerService>();
 builder.Services.AddScoped<IStripeCheckoutService, StripeCheckoutService>();
@@ -125,6 +126,8 @@ builder.Services.AddScoped<PaymentService.Activities.ExpireCheckoutSessionActivi
 
 builder.Services.AddHostedService<TemporalWorkerService>();
 
+builder.Services.AddAuth0Authentication(builder.Configuration);
+
 var app = builder.Build();
 
 app.UseSwagger();
@@ -144,6 +147,9 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
+app.UseAuthentication();
+app.UseAuthorization();
+
 app.MapControllers();
 
-app.Run();
+await app.RunAsync();

@@ -1,3 +1,4 @@
+using Contracts.Auth.Extensions;
 using Contracts.Middlewares.Extensions;
 using Microsoft.EntityFrameworkCore;
 using OrderService.Application.Common;
@@ -11,6 +12,8 @@ builder.Services.AddControllers();
 builder.Services
     .AddInfrastructure(builder.Configuration)
     .AddApplicationLayer();
+
+builder.Services.AddAuth0Authentication(builder.Configuration);
 
 var app = builder.Build();
 
@@ -30,6 +33,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
+app.UseAuthorization();
+
 app.MapControllers();
 
 await app.RunAsync();

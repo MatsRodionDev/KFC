@@ -1,9 +1,11 @@
 using Contracts.Mediator;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OrderService.Application.UseCases;
 
 namespace OrderService.API.Controllers;
 
+[Authorize]
 [Controller]
 [Route("api/carts")]
 public class CartController(IDispatcher dispatcher) : ControllerBase
