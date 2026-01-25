@@ -1,10 +1,12 @@
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using VenueService.BLL.Services;
 using VenueService.Dtos.Responses;
 
 namespace VenueService.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("api/restaurant-orders")]
 public class RestaurantOrderController(
@@ -28,4 +30,3 @@ public class RestaurantOrderController(
         return orderResponse;
     }
 }
-

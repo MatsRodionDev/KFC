@@ -1,3 +1,4 @@
+using Contracts.Auth.Extensions;
 using Contracts.Middlewares.Extensions;
 using Microsoft.EntityFrameworkCore;
 using VenueService.BLL.Hubs;
@@ -10,6 +11,8 @@ builder.Services.AddOpenApi();
 builder.Services.AddPresentationDependencies(builder.Configuration);
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddAuth0Authentication(builder.Configuration);
 
 var app = builder.Build();
 
@@ -28,8 +31,14 @@ if (app.Environment.IsDevelopment())
     await context.Database.MigrateAsync();
 }
 
+app.UseAuthentication();
+app.UseAuthorization();
+
 app.MapControllers();
 
 app.MapHub<OrderNotificationHub>("order-hub");
+
+app.MapGet("/api/public", () => Results.Ok("Public")).AllowAnonymous();
+app.MapGet("/api/private", () => Results.Ok("Protected")).RequireAuthorization();
 
 await app.RunAsync();

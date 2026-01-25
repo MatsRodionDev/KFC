@@ -1,9 +1,11 @@
 using Catalog.Application.ProductUseCases;
 using Contracts.Mediator;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Catalog.API.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("api/products")]
 public class ProductController(IDispatcher dispatcher) : ControllerBase

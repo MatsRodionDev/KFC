@@ -1,9 +1,8 @@
 using Catalog.API.Extensions;
 using Catalog.Application.Common;
 using Catalog.Infrastructure;
-using Catalog.Infrastructure.Persistence;
+using Contracts.Auth.Extensions;
 using Contracts.Middlewares.Extensions;
-using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +12,8 @@ builder.Services.AddSwaggerGen();
 builder.Services
     .AddApplicationLayer()
     .AddInfrastructureLayer(builder.Configuration);
+
+builder.Services.AddAuth0Authentication(builder.Configuration);
 
 var app = builder.Build();
 
@@ -32,6 +33,7 @@ await app.AddBucketAsync();
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
