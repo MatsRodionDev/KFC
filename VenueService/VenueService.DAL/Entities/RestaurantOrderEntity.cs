@@ -1,4 +1,4 @@
-﻿using Contracts.Order;
+using Contracts.Order;
 
 namespace VenueService.DAL.Entities;
 
@@ -8,7 +8,7 @@ public class RestaurantOrderEntity : BaseEntity
 
     public Guid RestaurantId { get; set; }
 
-    public Guid UserId { get; set; }
+    public string UserId { get; set; } = string.Empty;
 
     public OrderStatus Status { get; set; }
 

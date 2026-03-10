@@ -3,9 +3,21 @@ using Contracts.Middlewares.Extensions;
 using Microsoft.EntityFrameworkCore;
 using OrderService.Application.Common;
 using OrderService.Infrastructure;
+using OrderService.Infrastructure.Hubs;
 using OrderService.Infrastructure.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        policy.WithOrigins("http://localhost:3000", "http://127.0.0.1:3000", "http://localhost:5173")
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials();
+    });
+});
 
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
@@ -33,10 +45,13 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseCors();
 
 app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapHub<OrderStatusHub>("order-status");
 
 await app.RunAsync();

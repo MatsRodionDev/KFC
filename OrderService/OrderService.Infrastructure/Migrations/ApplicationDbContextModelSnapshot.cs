@@ -61,8 +61,9 @@ namespace OrderService.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("jsonb");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uuid");
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -98,8 +99,8 @@ namespace OrderService.Infrastructure.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("integer");
 
-                    b.Property<Guid?>("UserId")
-                        .HasColumnType("uuid");
+                    b.Property<string>("UserId")
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -124,8 +125,9 @@ namespace OrderService.Infrastructure.Migrations
                     b.Property<decimal>("TotalPrice")
                         .HasColumnType("numeric");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uuid");
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -208,7 +210,6 @@ namespace OrderService.Infrastructure.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("CustomerId")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<DateTime>("OccuredAt")

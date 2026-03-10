@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Catalog.API.Controllers;
 
-[Authorize]
+// [Authorize]
 [ApiController]
 [Route("api/products")]
 public class ProductController(IDispatcher dispatcher) : ControllerBase
@@ -17,7 +17,7 @@ public class ProductController(IDispatcher dispatcher) : ControllerBase
     }
     
     [HttpGet("custom/{userId}")]
-    public async Task<IActionResult> GetCustomProducts(Guid userId, CancellationToken cancellationToken)
+    public async Task<IActionResult> GetCustomProducts(string userId, CancellationToken cancellationToken)
     {
         return Ok(await dispatcher.Dispatch(new GetCustomProductsQuery(userId), cancellationToken));
     }
@@ -30,7 +30,7 @@ public class ProductController(IDispatcher dispatcher) : ControllerBase
     }
     
     [HttpPost("custom")]
-    public async Task<IActionResult> AddCustomProduct([FromForm] AddCustomProductCommand command,
+    public async Task<IActionResult> AddCustomProduct([FromBody] AddCustomProductCommand command,
         CancellationToken cancellationToken)
     {
         return Ok(await dispatcher.Dispatch(command, cancellationToken));

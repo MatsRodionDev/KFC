@@ -13,7 +13,7 @@ public class ProductResponse
     public ProductCategory ProductCategory { get; set; }
     public NutritionResponse Nutrition { get; set; } = default!;
     public string? ImageName { get; set; }
-    public Guid? UserId { get; set; }
+    public string? UserId { get; set; }
     public List<ProductIngredientResponse> ProductIngredients { get; set; } = new();
 }
 

@@ -1,4 +1,4 @@
-﻿using Catalog.Domain.Enums;
+using Catalog.Domain.Enums;
 using Catalog.Domain.Exceptions;
 using Catalog.Domain.Interfaces.Repositories;
 using Catalog.Domain.ProductAggregate;
@@ -34,7 +34,7 @@ namespace Catalog.Domain.Services
             ProductCategory productCategory,
             IngredientSnapshot baseIngredientSnapshot,
             List<IngredientSnapshot> ingredientsSnapshots,
-            Guid userId,
+            string userId,
             CancellationToken cancellationToken = default)
         {
             if (!_categories.Contains(productCategory))
@@ -59,7 +59,7 @@ namespace Catalog.Domain.Services
             ProductCategory productCategory,
             IngredientSnapshot? baseIngredientSnapshot,
             List<IngredientSnapshot> ingredientsSnapshots,
-            Guid? userId,
+            string? userId,
             CancellationToken cancellationToken = default)
         {
             Product? product = default;

@@ -11,7 +11,7 @@ using OrderService.Domain.Models;
 namespace OrderService.Application.UseCases;
 
 public record OrderCreateCommand(
-    Guid UserId) : ICommand<Order>;
+    string UserId) : ICommand<Order>;
 
 internal sealed class OrderCreateCommandHandler(IUnitOfWork unitOfWork,
     ITemporalService temporalService,
@@ -48,7 +48,7 @@ internal sealed class OrderCreateCommandHandler(IUnitOfWork unitOfWork,
         return order;
     }
     
-    protected override Guid? GetUserId(OrderCreateCommand command)
+    protected override string? GetUserId(OrderCreateCommand command)
     {
         return command.UserId;
     }

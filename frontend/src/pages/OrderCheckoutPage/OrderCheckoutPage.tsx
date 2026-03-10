@@ -4,6 +4,9 @@ import { useAppSelector } from '../../store/hooks';
 import { selectCart } from '../../store/slices/cartSlice';
 import { geoService, orderService, paymentService } from '../../services/api';
 import { Order, OrderStatus, PaymentStatus, ServiceType } from '../../types';
+import { getCurrentPositionWithWatchFallback } from '../../utils/geolocation';
+import { useOrderStatusForOrder } from '../../hooks/useOrderStatusHub';
+import { useUserId } from '../../hooks/useUserId';
 import './OrderCheckoutPage.css';
 
 export const OrderCheckoutPage = () => {
@@ -11,21 +14,29 @@ export const OrderCheckoutPage = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const cart = useAppSelector(selectCart);
+  const userId = useUserId();
+  const { orderStatus } = useOrderStatusForOrder(userId, orderId ?? undefined);
   const [order, setOrder] = useState<Order | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isMapLoading, setIsMapLoading] = useState(false);
   const [resolvedDeliveryCoords, setResolvedDeliveryCoords] = useState<[number, number] | null>(null);
   const [resolvedStoreCoords, setResolvedStoreCoords] = useState<[number, number] | null>(null);
+  const [userCoords, setUserCoords] = useState<[number, number] | null>(null);
+  const [locationError, setLocationError] = useState<string | null>(null);
+  const [isLoadingLocation, setIsLoadingLocation] = useState(false);
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<any>(null);
   const markersRef = useRef<any[]>([]);
+  const routeRef = useRef<any>(null);
   const redirectingRef = useRef(false);
   const hideElementsIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const locationRequestIdRef = useRef(0);
 
   const DEFAULT_CENTER: [number, number] = [53.9, 30.35];
   const DEFAULT_ZOOM = 15;
-  const YANDEX_MAPS_SCRIPT_URL = 'https://api-maps.yandex.ru/2.1/?lang=ru_RU';
+  const YANDEX_MAPS_API_KEY = import.meta.env.VITE_YANDEX_MAPS_API_KEY ?? '45e040cd-8625-4021-b31a-795da9728fc2';
+  const YANDEX_MAPS_SCRIPT_URL = `https://api-maps.yandex.ru/2.1/?lang=ru_RU&apikey=${YANDEX_MAPS_API_KEY}&load=package.full`;
   const YANDEX_ELEMENTS_SELECTOR = [
     '[class*="ymaps-2-1-79-copyright"]',
     '[class*="ymaps-2-1-79-float-button"]',
@@ -59,6 +70,13 @@ export const OrderCheckoutPage = () => {
     fetchOrder();
   }, [orderId]);
 
+  /** Обновляем статус заказа в реальном времени из Order Status Hub (ConnectToOrderStatuses для одного заказа). */
+  useEffect(() => {
+    if (orderStatus == null || !order) return;
+    if (orderStatus === order.status) return;
+    setOrder((prev) => (prev ? { ...prev, status: orderStatus } : null));
+  }, [orderStatus, order?.status]);
+
   const hideYandexElements = useCallback(() => {
     const elements = document.querySelectorAll(YANDEX_ELEMENTS_SELECTOR);
     elements.forEach((el) => {
@@ -84,7 +102,58 @@ export const OrderCheckoutPage = () => {
     }, 5000);
   }, [hideYandexElements]);
 
+  const getLocationErrorMessage = useCallback((error: GeolocationPositionError | Error): string => {
+    const code = 'code' in error ? (error as GeolocationPositionError).code : undefined;
+    if (code === 1) {
+      return 'Доступ к геолокации запрещён. Разрешите его в настройках браузера или системы.';
+    }
+    if (code === 2) {
+      return 'Не удалось определить местоположение. Включите геолокацию в настройках устройства и разрешите доступ для сайта.';
+    }
+    if (code === 3) {
+      return 'Превышено время ожидания. Проверьте, что геолокация включена, и нажмите «Повторить».';
+    }
+    return 'Не удалось получить местоположение. Разрешите доступ к геолокации и нажмите «Повторить».';
+  }, []);
+
+  const requestUserLocation = useCallback(() => {
+    if (!navigator.geolocation) {
+      setLocationError('Геолокация не поддерживается вашим браузером.');
+      return;
+    }
+    const requestId = ++locationRequestIdRef.current;
+    setIsLoadingLocation(true);
+    setLocationError(null);
+    getCurrentPositionWithWatchFallback()
+      .then(({ lat, lon }) => {
+        if (requestId !== locationRequestIdRef.current) return;
+        setIsLoadingLocation(false);
+        setLocationError(null);
+        setUserCoords([lat, lon]);
+      })
+      .catch((err) => {
+        if (requestId !== locationRequestIdRef.current) return;
+        setIsLoadingLocation(false);
+        setLocationError(getLocationErrorMessage(err as GeolocationPositionError | Error));
+        setUserCoords(null);
+        console.error('Error getting user location:', err);
+      });
+  }, [getLocationErrorMessage]);
+
+  const handleRetryLocation = useCallback(() => {
+    setLocationError(null);
+    requestUserLocation();
+  }, [requestUserLocation]);
+
   const destroyMap = useCallback(() => {
+    if (routeRef.current && mapInstanceRef.current) {
+      try {
+        mapInstanceRef.current.geoObjects.remove(routeRef.current);
+      } catch (e) {
+        // ignore
+      }
+      routeRef.current = null;
+    }
     if (mapInstanceRef.current) {
       try {
         markersRef.current.forEach((marker) => {
@@ -228,6 +297,7 @@ export const OrderCheckoutPage = () => {
 
     const deliveryCoords = resolvedDeliveryCoords;
     const storeCoords = resolvedStoreCoords;
+    const isPickup = order.delivery?.serviceType === ServiceType.ClickCollect;
     const center =
       order.delivery?.serviceType === ServiceType.Delivery
         ? deliveryCoords || DEFAULT_CENTER
@@ -283,16 +353,64 @@ export const OrderCheckoutPage = () => {
           [60, 76],
           'Ресторан'
         );
-        if (order.delivery?.serviceType !== ServiceType.Delivery) {
+        if (!isPickup) {
           mapInstanceRef.current.setCenter(storeCoords, DEFAULT_ZOOM, { duration: 0 });
         }
+      }
+
+      if (isPickup && userCoords) {
+        addMarker(
+          userCoords,
+          svgToDataUrl(`
+            <svg width="48" height="60" viewBox="0 0 48 60" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="userGradient" x1="0" x2="1" y1="0" y2="1">
+                  <stop offset="0%" stop-color="#3b82f6"/>
+                  <stop offset="100%" stop-color="#2563eb"/>
+                </linearGradient>
+              </defs>
+              <circle cx="24" cy="24" r="16" fill="url(#userGradient)" stroke="#fff" stroke-width="2"/>
+              <path d="M 24 36 L 16 58 L 32 58 Z" fill="url(#userGradient)" stroke="#fff" stroke-width="1.5"/>
+              <text x="24" y="28" font-family="Arial" font-size="14" font-weight="700" fill="#fff" text-anchor="middle">👤</text>
+            </svg>
+          `),
+          [48, 60],
+          'Вы здесь'
+        );
+      }
+
+      if (isPickup && userCoords && storeCoords && window.ymaps.multiRouter?.MultiRoute) {
+        try {
+          if (routeRef.current && mapInstanceRef.current) {
+            mapInstanceRef.current.geoObjects.remove(routeRef.current);
+            routeRef.current = null;
+          }
+          const multiRoute = new window.ymaps.multiRouter.MultiRoute(
+            {
+              referencePoints: [userCoords, storeCoords]
+            },
+            {
+              boundsAutoApply: true,
+              zoomMargin: 40
+            }
+          );
+          mapInstanceRef.current.geoObjects.add(multiRoute);
+          routeRef.current = multiRoute;
+        } catch (e) {
+          console.warn('Не удалось построить маршрут:', e);
+          if (storeCoords) {
+            mapInstanceRef.current.setCenter(storeCoords, DEFAULT_ZOOM, { duration: 0 });
+          }
+        }
+      } else if (isPickup && storeCoords) {
+        mapInstanceRef.current.setCenter(storeCoords, DEFAULT_ZOOM, { duration: 0 });
       }
     }, 200);
 
     return () => {
       clearInterval(interval);
     };
-  }, [order, destroyMap, loadYandexMapsScript, addMarker, resolvedDeliveryCoords, resolvedStoreCoords]);
+  }, [order, destroyMap, loadYandexMapsScript, addMarker, resolvedDeliveryCoords, resolvedStoreCoords, userCoords]);
 
   useEffect(() => {
     if (!order) {
@@ -328,6 +446,13 @@ export const OrderCheckoutPage = () => {
       : null;
     setResolvedStoreCoords(cartStoreCoords ?? orderStoreCoords ?? null);
   }, [cart, order]);
+
+  useEffect(() => {
+    if (!order || order.delivery?.serviceType !== ServiceType.ClickCollect) {
+      return;
+    }
+    requestUserLocation();
+  }, [order?.id, order?.delivery?.serviceType, requestUserLocation]);
 
   useEffect(() => {
     const originalOverflow = document.body.style.overflow;
@@ -483,6 +608,20 @@ export const OrderCheckoutPage = () => {
           ← К истории заказов
         </button>
       </div>
+
+      {order.delivery?.serviceType === ServiceType.ClickCollect && locationError && (
+        <div className="order-checkout-location-panel">
+          <p className="order-checkout-location-error-text">{locationError}</p>
+          <button
+            type="button"
+            className="order-checkout-location-retry-btn"
+            onClick={handleRetryLocation}
+            disabled={isLoadingLocation}
+          >
+            {isLoadingLocation ? 'Запрос...' : 'Повторить'}
+          </button>
+        </div>
+      )}
     </div>
   );
 };

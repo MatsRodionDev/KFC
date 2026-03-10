@@ -1,4 +1,4 @@
-﻿using Catalog.Domain.Abstractions;
+using Catalog.Domain.Abstractions;
 using Catalog.Domain.Enums;
 using Catalog.Domain.Exceptions;
 using Catalog.Domain.IngredientAggregate;
@@ -15,7 +15,7 @@ namespace Catalog.Domain.ProductAggregate
             string description,
             decimal? price,
             ProductCategory productCategory,
-            Guid? userId)
+            string? userId)
         {
             Name = name;
             Description = description;
@@ -29,12 +29,12 @@ namespace Catalog.Domain.ProductAggregate
         public string Name { get; private set; } = string.Empty;
         public string Description { get; private set; } = string.Empty;
         public decimal? Price { get; private set; }
-        public string ImageName { get; private set; }
+        public string? ImageName { get; private set; }
         public decimal IngredientsPrice => _productIngredients.Select(i => i.Price).Sum();
         public ProductCategory ProductCategory { get; private set; }
         public IReadOnlyCollection<ProductIngredient> ProductIngredients => _productIngredients;
         public Nutrition ProductNutrition => ProductIngredients.Select(i => i.TotalNutrition).Aggregate((acc, nutrition) => acc + nutrition);
-        public Guid? UserId { get; set; }
+        public string? UserId { get; set; }
 
         public static Product Create(
             string name,
@@ -42,7 +42,7 @@ namespace Catalog.Domain.ProductAggregate
             decimal? price,
             ProductCategory productCategory,
             (Ingredient baseIngredient, int baseIngredientQuantity)? ingredient,
-            Guid? userId)
+            string? userId)
         {
             var product = new Product(name, description, price, productCategory, userId);
 

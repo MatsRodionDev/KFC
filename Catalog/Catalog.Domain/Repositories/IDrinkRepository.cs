@@ -6,6 +6,7 @@ namespace Catalog.Domain.Interfaces.Repositories
     {
         Task<Drink?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
         Task<List<Drink>> GetByIdsAsync(List<Guid> ids, CancellationToken cancellationToken = default);
+        Task<List<Drink>> GetAllAsync(CancellationToken cancellationToken = default);
         Task AddAsync(Drink drink, CancellationToken cancellationToken = default);
         void Update(Drink drink);
         void UpdateMany(List<Drink> drinks);

@@ -9,11 +9,12 @@ import {
   fetchCart 
 } from '../../store/slices/cartSlice';
 import { CartItem } from '../../components/CartItem';
-import { DEFAULT_USER_ID } from '../../constants';
+import { useUserId } from '../../hooks/useUserId';
 import './CartPage.css';
 
 export const CartPage = () => {
   const dispatch = useAppDispatch();
+  const userId = useUserId();
   const cart = useAppSelector(selectCart);
   const loading = useAppSelector(selectCartLoading);
   const error = useAppSelector(selectCartError);
@@ -21,19 +22,19 @@ export const CartPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(fetchCart(DEFAULT_USER_ID));
-  }, [dispatch]);
+    dispatch(fetchCart(userId));
+  }, [dispatch, userId]);
 
   const handleRemoveItem = async () => {
     // TODO: Implement remove item API call when available
     // For now, just refresh cart
-    await dispatch(fetchCart(DEFAULT_USER_ID));
+    await dispatch(fetchCart(userId));
   };
 
   const handleQuantityChange = async () => {
     // TODO: Implement update quantity API call when available
     // For now, just refresh cart
-    await dispatch(fetchCart(DEFAULT_USER_ID));
+    await dispatch(fetchCart(userId));
   };
 
   const handleGoToCheckout = () => {
@@ -60,7 +61,7 @@ export const CartPage = () => {
           <div className="error-icon">⚠️</div>
           <p className="error-title">Произошла ошибка</p>
           <p className="error-message">{error}</p>
-          <button onClick={() => dispatch(fetchCart(DEFAULT_USER_ID))} className="btn-primary" style={{ marginTop: '20px' }}>
+          <button onClick={() => dispatch(fetchCart(userId))} className="btn-primary" style={{ marginTop: '20px' }}>
             🔄 Попробовать снова
           </button>
         </div>

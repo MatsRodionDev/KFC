@@ -1,13 +1,19 @@
 import axios, { AxiosInstance, InternalAxiosRequestConfig, AxiosError } from 'axios';
 
 let getTokenFn: (() => Promise<string>) | null = null;
+let onTokenRefreshError: (() => void) | null = null;
 
 export const setAuthTokenGetter = (fn: (() => Promise<string>) | null) => {
   getTokenFn = fn;
 };
 
+export const setOnTokenRefreshError = (fn: (() => void) | null) => {
+  onTokenRefreshError = fn;
+};
+
 export const clearAuthTokenGetter = () => {
   getTokenFn = null;
+  onTokenRefreshError = null;
 };
 
 const setupAxiosInstance = (baseURL: string): AxiosInstance => {
@@ -28,6 +34,7 @@ const setupAxiosInstance = (baseURL: string): AxiosInstance => {
           }
         } catch (error) {
           console.error('Error getting access token:', error);
+          onTokenRefreshError?.();
           return Promise.reject(error);
         }
       }
@@ -52,6 +59,7 @@ const setupAxiosInstance = (baseURL: string): AxiosInstance => {
           }
         } catch (tokenError) {
           console.error('Error refreshing token:', tokenError);
+          onTokenRefreshError?.();
           return Promise.reject(tokenError);
         }
       }

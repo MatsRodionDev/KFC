@@ -20,6 +20,14 @@ namespace Catalog.Infrastructure.Persistence.Repositories
                 .Where(p => ids.Contains(p.Id))
                 .ToListAsync(cancellationToken);
         }
+        
+        public async Task<List<Drink>> GetAllAsync(CancellationToken cancellationToken = default)
+        {
+            return await context
+                .Drinks
+                .Include(p => p.DrinkToppings)
+                .ToListAsync(cancellationToken);
+        }
 
         public async Task AddAsync(Drink drink, CancellationToken cancellationToken = default)
         {

@@ -124,7 +124,6 @@ namespace Catalog.Infrastructure.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("ImageName")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Name")
@@ -139,8 +138,8 @@ namespace Catalog.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<Guid?>("UserId")
-                        .HasColumnType("uuid");
+                    b.Property<string>("UserId")
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 

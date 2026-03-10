@@ -47,11 +47,6 @@ public class StripeCheckoutService(
             }
         };
 
-        if (!string.IsNullOrWhiteSpace(request.CustomerId))
-        {
-            options.Customer = request.CustomerId;
-        }
-
         return await sessionService.CreateAsync(options, cancellationToken: cancellationToken);
     }
 }

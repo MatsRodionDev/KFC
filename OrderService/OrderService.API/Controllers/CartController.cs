@@ -5,13 +5,13 @@ using OrderService.Application.UseCases;
 
 namespace OrderService.API.Controllers;
 
-[Authorize]
+// [Authorize]
 [Controller]
 [Route("api/carts")]
 public class CartController(IDispatcher dispatcher) : ControllerBase
 {
     [HttpGet("{userId}")]
-    public async Task<IActionResult> GetCart(Guid userId, CancellationToken cancellationToken)
+    public async Task<IActionResult> GetCart(string userId, CancellationToken cancellationToken)
     {
         return Ok(await dispatcher.Dispatch(new GetCartQuery(userId), cancellationToken));
     }
@@ -22,6 +22,22 @@ public class CartController(IDispatcher dispatcher) : ControllerBase
         CancellationToken cancellationToken)
     {
         return Ok(await dispatcher.Dispatch(cartAddProductCommand, cancellationToken));
+    }
+    
+    [HttpPut("items")]
+    public async Task<IActionResult> UpdateItem(
+        [FromBody] CartUpdateItemCommand command,
+        CancellationToken cancellationToken)
+    {
+        return Ok(await dispatcher.Dispatch(command, cancellationToken));
+    }
+    
+    [HttpPut("items/ingredients")]
+    public async Task<IActionResult> UpdateItemIngredients(
+        [FromBody] CartUpdateItemIngredientsCommand command,
+        CancellationToken cancellationToken)
+    {
+        return Ok(await dispatcher.Dispatch(command, cancellationToken));
     }
     
     [HttpPost("address")]

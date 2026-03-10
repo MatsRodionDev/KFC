@@ -4,7 +4,7 @@ using Contracts.Mediator;
 
 namespace Catalog.Application.ProductUseCases;
 
-public sealed record GetCustomProductsQuery(Guid UserId) : IQuery<List<Product>>;
+public sealed record GetCustomProductsQuery(string UserId) : IQuery<List<Product>>;
 
 internal sealed class GetCustomProductsQueryHandler(IUnitOfWork unitOfWork) : IQueryHandler<GetCustomProductsQuery, List<Product>>
 {

@@ -4,7 +4,7 @@ using OrderService.Domain.Models;
 
 namespace OrderService.Application.UseCases;
 
-public sealed record GetOrdersQuery(Guid customerId) : IQuery<List<Order>>;
+public sealed record GetOrdersQuery(string customerId) : IQuery<List<Order>>;
 
 public class GetOrdersQueryHandler(IUnitOfWork unitOfWork) : IQueryHandler<GetOrdersQuery, List<Order>>
 {

@@ -9,6 +9,7 @@ using Npgsql;
 using OrderService.Application.Common.Interfaces;
 using OrderService.Domain.Repositories;
 using OrderService.Infrastructure.Broker.Consumers;
+using OrderService.Infrastructure.Hubs;
 using OrderService.Infrastructure.OutboxPattern;
 using OrderService.Infrastructure.Persistence;
 using OrderService.Infrastructure.Persistence.Repositories;
@@ -75,12 +76,19 @@ public static class ServiceCollectionInfrastructure
 
         var dataSource = dataSourceBuilder.Build();
         
+        services.AddSignalR()
+            .AddJsonProtocol(options =>
+            {
+                options.PayloadSerializerOptions.PropertyNamingPolicy = System.Text.Json.JsonNamingPolicy.CamelCase;
+            });
+        
         return services
             .AddDbContext<ApplicationDbContext>(options 
                 => options.UseNpgsql(dataSource))
             .AddCacheServices(configuration)
             .AddHostedService<OutboxProcessingBackgroundService>()
             .AddCommonEventBus()
+            .AddScoped<IOrderStatusService, OrderStatusService>()
             .AddScoped<ITemporalService, TemporalService>()
             .AddScoped<ICartRepository, CartRepository>()
             .AddScoped<ICartItemRepository, CartItemRepository>()

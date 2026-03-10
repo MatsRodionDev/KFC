@@ -21,13 +21,14 @@ import {
 } from '../../store/slices/uiSlice';
 import { orderService, geoService, paymentService } from '../../services/api';
 import { ServiceType } from '../../types';
-import { DEFAULT_USER_ID } from '../../constants';
+import { useUserId } from '../../hooks/useUserId';
 import { AddressMapModal } from '../../components/AddressMapModal';
 import { StoreMapModal } from '../../components/StoreMapModal';
 import './CheckoutPage.css';
 
 export const CheckoutPage = () => {
   const dispatch = useAppDispatch();
+  const userId = useUserId();
   const cart = useAppSelector(selectCart);
   const loading = useAppSelector(selectCartLoading);
   const error = useAppSelector(selectCartError);
@@ -50,8 +51,8 @@ export const CheckoutPage = () => {
     : cart?.delivery?.storeAddressInfo?.address?.address?.trim() || 'Не выбран';
 
   useEffect(() => {
-    dispatch(fetchCart(DEFAULT_USER_ID));
-  }, [dispatch]);
+    dispatch(fetchCart(userId));
+  }, [dispatch, userId]);
 
   useEffect(() => {
     if (cart?.delivery) {
@@ -102,7 +103,7 @@ export const CheckoutPage = () => {
         // Если адрес не установлен, устанавливаем его перед созданием заказа
         try {
           await dispatch(setDeliveryAddressAction({
-            userId: DEFAULT_USER_ID,
+            userId,
             address: deliveryAddress.trim()
           })).unwrap();
         } catch (err: any) {
@@ -117,13 +118,13 @@ export const CheckoutPage = () => {
     try {
       dispatch(setCreatingOrder(true));
       const order = await orderService.createOrder({
-        userId: DEFAULT_USER_ID
+        userId
       });
 
       const baseUrl = window.location.origin;
       const session = await paymentService.createSession({
         orderId: order.id,
-        customerId: 'cus_TfEuJbgTzUv7wL',
+        customerId: userId,
         successUrl: `${baseUrl}/order-checkout/${order.id}?payment=success`,
         cancelUrl: `${baseUrl}/order-checkout/${order.id}?payment=cancel`
       });
@@ -371,8 +372,9 @@ export const CheckoutPage = () => {
           isOpen={isMapModalOpen}
           onClose={() => dispatch(closeAddressMapModal())}
           initialAddress={cart.delivery.address || null}
+          userId={userId}
           onAddressSaved={async () => {
-            await dispatch(fetchCart(DEFAULT_USER_ID));
+            await dispatch(fetchCart(userId));
           }}
         />
       )}
@@ -388,7 +390,7 @@ export const CheckoutPage = () => {
               
               // Передаем storeId в метод доставки с serviceType = 0 (ClickCollect)
               await dispatch(setDeliveryAddressAction({
-                userId: DEFAULT_USER_ID,
+                userId,
                 address: store.address,
                 serviceType: ServiceType.ClickCollect,
                 storeId: storeInfo.storeId

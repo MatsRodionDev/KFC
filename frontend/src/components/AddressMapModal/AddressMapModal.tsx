@@ -8,6 +8,7 @@ interface AddressMapModalProps {
   isOpen: boolean;
   onClose: () => void;
   initialAddress?: AddressGeocodeResponse | null;
+  userId?: string;
   onAddressSaved?: () => void;
 }
 
@@ -33,7 +34,8 @@ const YANDEX_ELEMENTS_SELECTOR = [
   'a[href*="yandex.com/maps"]'
 ].join(', ');
 
-export const AddressMapModal = ({ isOpen, onClose, initialAddress, onAddressSaved }: AddressMapModalProps) => {
+export const AddressMapModal = ({ isOpen, onClose, initialAddress, userId: userIdProp, onAddressSaved }: AddressMapModalProps) => {
+  const userId = userIdProp ?? DEFAULT_USER_ID;
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<any>(null);
   const hideElementsIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -284,7 +286,7 @@ export const AddressMapModal = ({ isOpen, onClose, initialAddress, onAddressSave
     try {
       setIsLoadingAddress(true);
       await orderService.setDeliveryAddress({
-        userId: DEFAULT_USER_ID,
+        userId,
         address: selectedAddress.address,
         serviceType: 1
       });

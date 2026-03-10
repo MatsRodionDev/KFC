@@ -37,14 +37,13 @@ export const ProfilePage = () => {
   return (
     <div className="container">
       <h1>Профиль</h1>
-      
       <div className="profile-container">
         <div className="profile-card">
-          <div className="profile-header">
+          <div className="profile-header profile-header--minimal">
             {picture && (
               <div className="profile-picture-wrapper">
-                <img 
-                  src={picture} 
+                <img
+                  src={picture}
                   alt={displayName}
                   className="profile-picture"
                   onError={(e) => {
@@ -56,7 +55,11 @@ export const ProfilePage = () => {
             <div className="profile-info">
               <h2 className="profile-name">{displayName}</h2>
               <p className="profile-email">{email}</p>
-              <div className={`profile-email-status ${user.email_verified ? 'verified' : 'unverified'}`}>
+              <div
+                className={`profile-email-status ${
+                  user.email_verified ? 'verified' : 'unverified'
+                }`}
+              >
                 {emailVerified}
               </div>
             </div>
@@ -64,39 +67,39 @@ export const ProfilePage = () => {
 
           <div className="profile-details">
             <div className="profile-detail-item">
-              <span className="detail-label">Имя пользователя:</span>
+              <span className="detail-label">Имя пользователя</span>
               <span className="detail-value">{user.nickname || 'Не указано'}</span>
             </div>
-            
+
             {user.given_name && (
               <div className="profile-detail-item">
-                <span className="detail-label">Имя:</span>
+                <span className="detail-label">Имя</span>
                 <span className="detail-value">{user.given_name}</span>
               </div>
             )}
 
             {user.family_name && (
               <div className="profile-detail-item">
-                <span className="detail-label">Фамилия:</span>
+                <span className="detail-label">Фамилия</span>
                 <span className="detail-value">{user.family_name}</span>
               </div>
             )}
 
             <div className="profile-detail-item">
-              <span className="detail-label">ID пользователя:</span>
+              <span className="detail-label">ID пользователя</span>
               <span className="detail-value detail-value-small">{user.sub}</span>
             </div>
 
             {user.updated_at && (
               <div className="profile-detail-item">
-                <span className="detail-label">Последнее обновление:</span>
+                <span className="detail-label">Последнее обновление</span>
                 <span className="detail-value">
                   {new Date(user.updated_at).toLocaleDateString('ru-RU', {
                     year: 'numeric',
                     month: 'long',
                     day: 'numeric',
                     hour: '2-digit',
-                    minute: '2-digit'
+                    minute: '2-digit',
                   })}
                 </span>
               </div>

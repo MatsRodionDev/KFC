@@ -6,6 +6,12 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 3000,
+    strictPort: false,
+    hmr: { overlay: true },
+    watch: {
+      usePolling: true,
+      interval: 300,
+    },
     proxy: {
       '/api/catalog': {
         target: 'http://localhost:5079',
@@ -16,6 +22,11 @@ export default defineConfig({
         target: 'http://localhost:5046',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api\/orders/, '/api')
+      },
+      '/order-status': {
+        target: 'http://localhost:5046',
+        changeOrigin: true,
+        ws: true
       },
       '/api/checkout': {
         target: 'http://localhost:5114',

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Catalog.API.Controllers;
 
-[Authorize]
+// [Authorize]
 [Controller]
 [Route("api/ingredients")]
 public class IngredientController(IDispatcher dispatcher) : ControllerBase

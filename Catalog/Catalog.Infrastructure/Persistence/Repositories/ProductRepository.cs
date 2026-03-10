@@ -1,4 +1,4 @@
-﻿using Catalog.Domain.Interfaces.Repositories;
+using Catalog.Domain.Interfaces.Repositories;
 using Catalog.Domain.ProductAggregate;
 using Microsoft.EntityFrameworkCore;
 
@@ -33,7 +33,7 @@ namespace Catalog.Infrastructure.Persistence.Repositories
                 .ToListAsync(cancellationToken);
         }
         
-        public async Task<List<Product>> GetCustomAsync(Guid userId, CancellationToken cancellationToken = default)
+        public async Task<List<Product>> GetCustomAsync(string userId, CancellationToken cancellationToken = default)
         {
             return await context
                 .Products

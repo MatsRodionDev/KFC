@@ -21,6 +21,7 @@ public class StripeCustomerService : IStripeCustomerService
             Phone = request.Phone,
             Metadata = request.Metadata ?? new Dictionary<string, string>()
         };
+        
 
         return await _customerService.CreateAsync(options, cancellationToken: cancellationToken);
     }

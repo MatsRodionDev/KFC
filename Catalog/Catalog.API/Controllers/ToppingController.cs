@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Catalog.API.Controllers;
 
-[Authorize]
+// [Authorize]
 [Controller]
 [Route("api/toppings")]
 public class ToppingController(IDispatcher dispatcher) : ControllerBase

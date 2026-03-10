@@ -1,3 +1,287 @@
+/* --- Секция активных заказов (оранжевая тема) --- */
+.active-orders-section {
+  margin-bottom: 28px;
+}
+
+.active-orders-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #c2410c;
+  margin: 0 0 14px 0;
+  letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.active-orders-title::before {
+  content: '';
+  width: 6px;
+  height: 20px;
+  background: linear-gradient(180deg, #ff6a00 0%, #ea580c 100%);
+  border-radius: 3px;
+  animation: active-orders-title-bar 2s ease-in-out infinite;
+}
+
+@keyframes active-orders-title-bar {
+  0%, 100% { opacity: 0.7; transform: scaleY(0.95); }
+  50% { opacity: 1; transform: scaleY(1); }
+}
+
+.active-orders-scroll {
+  overflow-x: auto;
+  overflow-y: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 106, 0, 0.5) rgba(255, 106, 0, 0.08);
+  padding-bottom: 6px;
+}
+
+.active-orders-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+
+.active-orders-scroll::-webkit-scrollbar-track {
+  background: rgba(255, 106, 0, 0.08);
+  border-radius: 3px;
+}
+
+.active-orders-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255, 106, 0, 0.4);
+  border-radius: 3px;
+}
+
+.active-orders-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 106, 0, 0.6);
+}
+
+.active-orders-scroll-inner {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  padding: 6px 2px 10px 2px;
+  min-width: min-content;
+}
+
+/* Карточка заказа — горизонтальный блок: инфо слева, кнопка справа */
+.active-order-card {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  padding: 16px 20px 16px 20px;
+  min-width: 320px;
+  max-width: 420px;
+  background: linear-gradient(160deg, #ffffff 0%, #fff8f2 35%, #fff4eb 100%);
+  border: 1px solid rgba(255, 106, 0, 0.18);
+  border-radius: 16px;
+  color: inherit;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  box-shadow: 0 2px 10px rgba(255, 106, 0, 0.06);
+}
+
+.active-order-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(255, 106, 0, 0.14);
+  border-color: rgba(255, 106, 0, 0.35);
+}
+
+.active-order-card:active {
+  transform: translateY(0);
+}
+
+.active-order-card-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  row-gap: 6px;
+}
+
+.active-order-card-actions {
+  flex-shrink: 0;
+}
+
+/* Как кнопка «Оформить заказ» на странице корзины (.btn-checkout), уменьшенный вариант */
+.active-order-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  color: #fff;
+  white-space: nowrap;
+  font-family: inherit;
+  background: linear-gradient(135deg, #ff6a00 0%, #e05e00 100%);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  box-shadow: none;
+}
+
+.active-order-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.active-order-btn:hover {
+  background: linear-gradient(135deg, #e05e00 0%, #cc5500 100%);
+  color: #fff;
+}
+
+.active-order-btn:hover::before {
+  left: 100%;
+}
+
+.active-order-btn:active {
+  transform: scale(0.98);
+}
+
+.active-order-btn--pay {
+  background: linear-gradient(135deg, #ff6a00 0%, #e05e00 100%);
+}
+
+.active-order-btn--pay:hover {
+  background: linear-gradient(135deg, #e05e00 0%, #cc5500 100%);
+}
+
+.active-order-btn--details {
+  background: linear-gradient(135deg, #ff6a00 0%, #e05e00 100%);
+}
+
+.active-order-btn--details:hover {
+  background: linear-gradient(135deg, #e05e00 0%, #cc5500 100%);
+  color: #fff;
+}
+
+/* Варианты карточки по статусу — левая полоска в общий дизайн */
+.active-order-card--created {
+  border-left: 4px solid #fdba74;
+}
+
+.active-order-card--paid {
+  border-left: 4px solid #fb923c;
+}
+
+.active-order-card--cooking {
+  border-left: 4px solid #ff6a00;
+  box-shadow: 0 2px 12px rgba(255, 106, 0, 0.1);
+}
+
+.active-order-card--ready {
+  border-left: 4px solid #ea580c;
+}
+
+.active-order-card--shipped {
+  border-left: 4px solid #c2410c;
+}
+
+.active-order-card--cancelled {
+  border-left: 4px solid #a8a29e;
+}
+
+/* Инфо в одну линию: id · статус · тип доставки */
+.active-order-card-id {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #b45309;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  opacity: 0.92;
+}
+
+.active-order-status {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: #9a3412;
+  line-height: 1.2;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  animation: active-order-status-pulse 2.5s ease-in-out infinite;
+}
+
+.active-order-status::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+  flex-shrink: 0;
+  animation: active-order-status-dot 1.8s ease-in-out infinite;
+}
+
+
+@keyframes active-order-status-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.85; }
+}
+
+@keyframes active-order-status-dot {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(234, 88, 12, 0.4);
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 0.9;
+    box-shadow: 0 0 0 6px rgba(234, 88, 12, 0);
+  }
+}
+
+/* Карточки в процессе — усиленная анимация статуса */
+.active-order-card--cooking .active-order-status,
+.active-order-card--paid .active-order-status {
+  animation: active-order-status-pulse 1.8s ease-in-out infinite;
+}
+
+.active-order-card--cooking .active-order-status::before,
+.active-order-card--paid .active-order-status::before {
+  animation: active-order-status-dot 1.2s ease-in-out infinite;
+  background: #ea580c;
+}
+
+.active-order-delivery {
+  font-size: 0.875rem;
+  color: #9a3412;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  opacity: 0.95;
+}
+
+.active-order-delivery--delivery {
+  color: #c2410c;
+}
+
+.active-order-delivery--pickup {
+  color: #78716c;
+}
+
+/* Скрыть любое лишнее содержимое внутри карточки */
+.active-order-card .product-price,
+.active-order-card [class*="price"],
+.active-order-card .total-price-label,
+.active-order-card .total-price-value {
+  display: none !important;
+}
+
 .catalog-controls {
   position: sticky;
   top: 60px;

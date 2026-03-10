@@ -15,7 +15,7 @@ public class GeoController(
 {
     private const string StoreKey = "geo:store";
     
-    [HttpGet("stres/radius")]
+    [HttpGet("stores/radius")]
     public async Task<IActionResult> GetRadiusStores(
         [FromQuery] double latitude, 
         [FromQuery] double longitude, 

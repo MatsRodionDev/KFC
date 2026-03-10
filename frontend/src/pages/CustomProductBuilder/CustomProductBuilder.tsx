@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { catalogService, orderService } from '../../services/api';
 import { ProductCategory, Ingredient, IngredientSnapshot } from '../../types';
 import { useCart } from '../../hooks/useCart';
-import { DEFAULT_USER_ID } from '../../constants';
+import { useUserId } from '../../hooks/useUserId';
 import './CustomProductBuilder.css';
 
 interface SelectedIngredient {
@@ -15,6 +15,7 @@ interface SelectedIngredient {
 
 export const CustomProductBuilder = () => {
   const navigate = useNavigate();
+  const userId = useUserId();
   const { refreshCart } = useCart();
   const [selectedCategory, setSelectedCategory] = useState<ProductCategory | null>(null);
   const [ingredients, setIngredients] = useState<Ingredient[]>([]);
@@ -261,7 +262,8 @@ export const CustomProductBuilder = () => {
   };
 
   const handleSaveAndAddToCart = async () => {
-    if (!selectedCategory) {
+    // Проверяем именно null/undefined: категория "Пицца" = 0, и !0 в JS даёт true
+    if (selectedCategory === null || selectedCategory === undefined) {
       alert('Выберите категорию продукта');
       return;
     }
@@ -298,19 +300,27 @@ export const CustomProductBuilder = () => {
           maxQuantity: sel.maxQuantity
         }));
 
+      // Категория, выбранная на шаге 1 — обязательно передаём в запрос
+      const category = selectedCategory ?? null;
+      if (category === null) {
+        alert('Выберите категорию продукта');
+        return;
+      }
+      const categoryValue = typeof category === 'number' ? category : Number(category);
+
       // Создаем кастомный продукт
       const productId = await catalogService.addCustomProduct({
         name: productName.trim(),
         description: productDescription.trim() || 'Кастомный продукт',
-        userId: DEFAULT_USER_ID,
-        productCategory: selectedCategory,
+        userId,
+        productCategory: categoryValue,
         baseIngredient: baseIngredientSnapshot,
         ingredients: ingredientsSnapshots
       });
 
       // Добавляем в корзину
       await orderService.addItemToCart({
-        userId: DEFAULT_USER_ID,
+        userId,
         productId,
         quantity,
         ingredientsQuantityCustomizations: []
@@ -639,7 +649,7 @@ export const CustomProductBuilder = () => {
                 <button
                   className="btn-save-product"
                   onClick={handleSaveAndAddToCart}
-                  disabled={saving || !baseIngredient || !productName.trim() || loading}
+                  disabled={saving || selectedCategory === null || !baseIngredient || !productName.trim() || loading}
                 >
                   {saving ? (
                     <>

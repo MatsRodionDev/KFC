@@ -5,7 +5,7 @@ namespace OrderService.Application.Common.Mappers;
 
 public static class ProductToCartMapper
 {
-    public static CartItem ToCartItem(this ProductResponse product, Guid? userId = null)
+    public static CartItem ToCartItem(this ProductResponse product, string? userId = null)
     {
         if (product == null)
             throw new ArgumentNullException(nameof(product));
@@ -23,7 +23,7 @@ public static class ProductToCartMapper
         return cartItem;
     }
 
-    private static CartItemIngredient ToCartIngredient(ProductIngredientResponse ingredient)
+    public static CartItemIngredient ToCartIngredient(this ProductIngredientResponse ingredient)
     {
         return new CartItemIngredient
         {
