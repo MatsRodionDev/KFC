@@ -1,0 +1,46 @@
+version: "3.9"
+
+services:
+  timescaledb:
+    image: timescale/timescaledb:2.16.0-pg16
+    container_name: analytics-system-timescaledb
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin123
+      POSTGRES_DB: cafeteria
+    ports:
+      - "5433:5432"
+    volumes:
+      - timescale_data:/var/lib/postgresql/data
+      - ./initdb:/docker-entrypoint-initdb.d 
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: analytics-system-pgadmin
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin123
+    ports:
+      - "8080:80"
+    depends_on:
+      - timescaledb
+
+  grafana:
+    image: grafana/grafana
+    container_name: analytics-system-grafana
+    restart: unless-stopped
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin123
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+    depends_on:
+      - timescaledb
+
+volumes:
+  timescale_data:
+  grafana_data:
