@@ -233,7 +233,7 @@ public class AgentFactory
     {
         return new OpenAI.Chat.ChatClient("openai/gpt-4.1",
             new ApiKeyCredential(
-                "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"),
+                ""),
             new OpenAIClientOptions
             {
                 Endpoint = new Uri("https://models.github.ai/inference")

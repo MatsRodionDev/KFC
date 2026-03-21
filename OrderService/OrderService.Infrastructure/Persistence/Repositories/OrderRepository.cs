@@ -15,7 +15,7 @@ internal sealed class OrderRepository(ApplicationDbContext context) : IOrderRepo
             .FirstOrDefaultAsync(o => o.Id == orderId, cancellationToken);
     }
 
-    public async Task<List<Order>> GetByUserIdAsync(Guid userId, CancellationToken cancellationToken)
+    public async Task<List<Order>> GetByUserIdAsync(string userId, CancellationToken cancellationToken)
     {
         return await context.Orders
             .Include(o => o.Items)
@@ -25,7 +25,7 @@ internal sealed class OrderRepository(ApplicationDbContext context) : IOrderRepo
             .ToListAsync(cancellationToken);
     }
     
-    public async Task<List<Order>> GetCurrentOrdersAsync(Guid userId, CancellationToken cancellationToken)
+    public async Task<List<Order>> GetCurrentOrdersAsync(string userId, CancellationToken cancellationToken)
     {
         return await context.Orders
             .Include(o => o.Items)

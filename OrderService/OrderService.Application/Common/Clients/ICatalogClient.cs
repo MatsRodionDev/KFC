@@ -12,7 +12,7 @@ public interface ICatalogClient
     Task<MenuResponse> GetMenu(CancellationToken cancellationToken);
     
     [Get("/api/products/custom/{userId}")]
-    Task<List<ProductResponse>> GetCustomProducts(Guid userId, CancellationToken cancellationToken);
+    Task<List<ProductResponse>> GetCustomProducts(string userId, CancellationToken cancellationToken);
 }
 
 public sealed record MenuResponse(

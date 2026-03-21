@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { catalogService, orderService } from '../../services/api';
 import { Product, ProductCategory, IngredientQuantityCustomization } from '../../types';
 import { useCart } from '../../hooks/useCart';
-import { DEFAULT_USER_ID } from '../../constants';
+import { useUserId } from '../../hooks/useUserId';
 import './ProductPage.css';
 
 interface IngredientCustomization {
@@ -20,6 +20,7 @@ interface IngredientCustomization {
 export const ProductPage = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const userId = useUserId();
   const { refreshCart } = useCart();
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
@@ -128,7 +129,7 @@ export const ProductPage = () => {
     try {
       setAddingToCart(true);
       await orderService.addItemToCart({
-        userId: DEFAULT_USER_ID,
+        userId,
         productId: product.id,
         quantity,
         ingredientsQuantityCustomizations: customizations

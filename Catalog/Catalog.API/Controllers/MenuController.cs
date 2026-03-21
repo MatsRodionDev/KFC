@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Catalog.API.Controllers;
 
-[Authorize]
+// [Authorize]
 [Controller]
 [Route("api/menus")]
 public class MenuController(IDispatcher dispatcher) : ControllerBase

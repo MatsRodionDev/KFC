@@ -143,8 +143,6 @@ app.UseSwaggerUI(options =>
 
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 
-app.UseHttpsRedirection();
-
 app.UseAuthorization();
 
 app.UseAuthentication();

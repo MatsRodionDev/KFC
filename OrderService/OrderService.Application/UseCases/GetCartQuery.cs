@@ -4,7 +4,7 @@ using OrderService.Domain.Models;
 
 namespace OrderService.Application.UseCases;
 
-public sealed record GetCartQuery(Guid UserId) 
+public sealed record GetCartQuery(string UserId) 
     : IQuery<Cart>;
 
 internal sealed class GetCartQueryHandler(IUnitOfWork unitOfWork) : IQueryHandler<GetCartQuery, Cart>

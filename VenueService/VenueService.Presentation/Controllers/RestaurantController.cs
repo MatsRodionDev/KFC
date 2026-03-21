@@ -8,7 +8,7 @@ using VenueService.Dtos.Responses;
 
 namespace VenueService.Controllers;
 
-[Authorize]
+// [Authorize]
 [ApiController]
 [Route("api/restaurants")]
 public class RestaurantController(

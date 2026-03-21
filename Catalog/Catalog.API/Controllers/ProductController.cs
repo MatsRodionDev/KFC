@@ -1,15 +1,32 @@
 using Catalog.Application.ProductUseCases;
+using Catalog.Domain.Enums;
 using Contracts.Mediator;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Catalog.API.Controllers;
 
-[Authorize]
+// [Authorize]
 [ApiController]
 [Route("api/products")]
 public class ProductController(IDispatcher dispatcher) : ControllerBase
 {
+    [HttpGet]
+    public async Task<IActionResult> GetProductsPaged(
+        [FromQuery] int page = 1,
+        [FromQuery] int pageSize = 20,
+        [FromQuery] string? name = null,
+        [FromQuery] string? description = null,
+        [FromQuery] ProductCategory? productCategory = null,
+        [FromQuery] string? userId = null,
+        CancellationToken cancellationToken = default)
+    {
+        var result = await dispatcher.Dispatch(
+            new GetProductsPagedQuery(page, pageSize, name, description, productCategory, userId),
+            cancellationToken);
+        return Ok(result);
+    }
+
     [HttpGet("{productId}")]
     public async Task<IActionResult> GetProduct(Guid productId, CancellationToken cancellationToken)
     {
@@ -17,7 +34,7 @@ public class ProductController(IDispatcher dispatcher) : ControllerBase
     }
     
     [HttpGet("custom/{userId}")]
-    public async Task<IActionResult> GetCustomProducts(Guid userId, CancellationToken cancellationToken)
+    public async Task<IActionResult> GetCustomProducts(string userId, CancellationToken cancellationToken)
     {
         return Ok(await dispatcher.Dispatch(new GetCustomProductsQuery(userId), cancellationToken));
     }
@@ -30,7 +47,7 @@ public class ProductController(IDispatcher dispatcher) : ControllerBase
     }
     
     [HttpPost("custom")]
-    public async Task<IActionResult> AddCustomProduct([FromForm] AddCustomProductCommand command,
+    public async Task<IActionResult> AddCustomProduct([FromBody] AddCustomProductCommand command,
         CancellationToken cancellationToken)
     {
         return Ok(await dispatcher.Dispatch(command, cancellationToken));

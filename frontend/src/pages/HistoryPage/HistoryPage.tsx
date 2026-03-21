@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { orderService } from '../../services/api';
+import { orderApi } from '../../services/apiConfig';
 import { Order, OrderStatus } from '../../types';
-import { DEFAULT_USER_ID } from '../../constants';
+import { useUserId } from '../../hooks/useUserId';
 import './HistoryPage.css';
 
 export const HistoryPage = () => {
   const navigate = useNavigate();
+  const userId = useUserId();
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -16,7 +17,7 @@ export const HistoryPage = () => {
       try {
         setLoading(true);
         setError(null);
-        const ordersData = await orderService.getOrdersByUserId(DEFAULT_USER_ID);
+        const { data: ordersData } = await orderApi.post<Order[]>('/orders/by_userid', { customerId: userId });
         setOrders(ordersData);
       } catch (err) {
         const errorMessage = err instanceof Error ? err.message : 'Не удалось загрузить заказы';
@@ -28,7 +29,7 @@ export const HistoryPage = () => {
     };
 
     fetchOrders();
-  }, []);
+  }, [userId]);
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);

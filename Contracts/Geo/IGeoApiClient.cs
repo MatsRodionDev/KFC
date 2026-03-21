@@ -13,7 +13,7 @@ public interface IGeoApiClient
     /// <param name="latitude">Широта</param>
     /// <param name="longitude">Долгота</param>
     /// <param name="radius">Радиус поиска (в км, по умолчанию 15)</param>
-    [Get("/api/geo/stres/radius")]
+    [Get("/api/geo/stores/radius")]
     Task<ApiResponse<IEnumerable<GeoStoreResponse>>> GetStoresInRadiusAsync(
         [Query] double latitude,
         [Query] double longitude,

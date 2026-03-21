@@ -5,7 +5,7 @@ using OrderService.Domain.Models;
 
 namespace OrderService.Application.UseCases;
 
-public record GetCurrentOrdersQuery(Guid UserId) : IQuery<List<Order>>;
+public record GetCurrentOrdersQuery(string UserId) : IQuery<List<Order>>;
 
 public class GetCurrentOrdersQueryHandler(IUnitOfWork unitOfWork) : IQueryHandler<GetCurrentOrdersQuery, List<Order>>
 {

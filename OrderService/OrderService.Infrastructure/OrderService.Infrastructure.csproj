@@ -17,6 +17,9 @@
       <PackageReference Include="Refit" Version="9.0.2" />
       <PackageReference Include="Stripe.net" Version="50.2.0-beta.1" />
       <PackageReference Include="Temporalio" Version="1.9.0" />
+      <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.2.0" />
+      <PackageReference Include="Microsoft.AspNetCore.SignalR.Client.Core" Version="9.0.10" />
+      <PackageReference Include="Microsoft.AspNetCore.SignalR.Common" Version="9.0.10" />
     </ItemGroup>
 
     <ItemGroup>

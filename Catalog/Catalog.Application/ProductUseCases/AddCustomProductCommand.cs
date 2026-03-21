@@ -8,7 +8,7 @@ namespace Catalog.Application.ProductUseCases;
 public record AddCustomProductCommand(
     string Name, 
     string Description, 
-    Guid UserId,
+    string UserId,
     ProductCategory ProductCategory,
     IngredientSnapshot BaseIngredient,
     List<IngredientSnapshot> Ingredients) : ICommand<Guid>;

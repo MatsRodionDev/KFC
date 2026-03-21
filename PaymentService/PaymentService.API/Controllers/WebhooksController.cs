@@ -7,7 +7,7 @@ using Stripe.Checkout;
 
 namespace PaymentService.Controllers;
 
-[Authorize]
+// [Authorize]
 [ApiController]
 [Route("api/[controller]")]
 public class WebhooksController(IDispatcher dispatcher, ILogger<WebhooksController> logger)

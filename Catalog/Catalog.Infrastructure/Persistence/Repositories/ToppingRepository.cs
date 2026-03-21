@@ -1,6 +1,7 @@
-﻿using Catalog.Domain.Interfaces.Repositories;
+using Catalog.Domain.Interfaces.Repositories;
 using Catalog.Domain.ToppingAggregate;
 using Microsoft.EntityFrameworkCore;
+using Shop.Domain.Enums;
 
 namespace Catalog.Infrastructure.Persistence.Repositories
 {
@@ -19,6 +20,27 @@ namespace Catalog.Infrastructure.Persistence.Repositories
                 .Toppings
                 .Where(p => ids.Contains(p.Id))
                 .ToListAsync(cancellationToken);
+        }
+
+        public async Task<(List<Topping> Items, int TotalCount)> GetPagedAsync(
+            int page,
+            int pageSize,
+            string? name,
+            DrinkType? availableForDrinkType,
+            CancellationToken cancellationToken = default)
+        {
+            var query = context.Toppings.AsNoTracking();
+            if (!string.IsNullOrWhiteSpace(name))
+                query = query.Where(t => t.Name.Contains(name));
+            if (availableForDrinkType.HasValue)
+                query = query.Where(t => t.AvailableForTypes.Contains(availableForDrinkType.Value));
+            var totalCount = await query.CountAsync(cancellationToken);
+            var items = await query
+                .OrderBy(t => t.Name)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync(cancellationToken);
+            return (items, totalCount);
         }
 
         public async Task AddAsync(Topping topping, CancellationToken cancellationToken = default)

@@ -10,7 +10,7 @@ public class RestaurantOrderResponse
     
     public Guid RestaurantId { get; set; }
     
-    public Guid UserId { get; set; }
+    public string UserId { get; set; } = string.Empty;
     
     public OrderStatus Status { get; set; }
     

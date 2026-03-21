@@ -32,6 +32,7 @@ public class CreateSessionCommand : ICommand<Session>
 
 public sealed class CreateSessionHandler(
     IStripeCheckoutService service,
+    IStripeCustomerService customerService,
     ITemporalClient temporalClient,
     IOrderServiceClient orderServiceClient,
     IOptions<TemporalOptions> temporalOptions,

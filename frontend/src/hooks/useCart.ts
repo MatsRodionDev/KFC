@@ -1,9 +1,10 @@
 import { useState, useEffect, useCallback } from 'react';
 import { orderService } from '../services/api';
 import type { Cart } from '../types';
-import { DEFAULT_USER_ID } from '../constants';
+import { useUserId } from './useUserId';
 
 export const useCart = () => {
+  const userId = useUserId();
   const [cart, setCart] = useState<Cart | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -12,7 +13,7 @@ export const useCart = () => {
     try {
       setLoading(true);
       setError(null);
-      const cartData = await orderService.getCart(DEFAULT_USER_ID);
+      const cartData = await orderService.getCart(userId);
       // Убеждаемся, что items всегда массив
       if (cartData && !cartData.items) {
         cartData.items = [];
@@ -25,7 +26,7 @@ export const useCart = () => {
       // При ошибке создаем пустую корзину
       setCart({
         id: '',
-        userId: DEFAULT_USER_ID,
+        userId,
         totalPrice: 0,
         delivery: {
           serviceType: 0
@@ -35,7 +36,7 @@ export const useCart = () => {
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [userId]);
 
   useEffect(() => {
     fetchCart();

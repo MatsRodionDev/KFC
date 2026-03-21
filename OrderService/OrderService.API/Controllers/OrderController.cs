@@ -8,7 +8,7 @@ using Temporalio.Client;
 
 namespace OrderService.API.Controllers;
 
-[Authorize]
+// [Authorize]
 [Controller]
 [Route("api/orders")]
 public class OrderController(IDispatcher dispatcher, ITemporalClient client) : ControllerBase

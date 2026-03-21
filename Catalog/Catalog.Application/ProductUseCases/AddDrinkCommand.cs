@@ -28,7 +28,8 @@ internal sealed class AddDrinkCommandHandler(
             command.Price,
             command.DrinkType);
 
-        await toppingToDrinkAdditionService.AddToppings(drink, command.ToppingsIds, cancellationToken);
+        var toppingIds = command.ToppingsIds ?? [];
+        await toppingToDrinkAdditionService.AddToppings(drink, toppingIds, cancellationToken);
         
         if (command.Image is not null)
         {

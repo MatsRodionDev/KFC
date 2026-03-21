@@ -64,6 +64,7 @@ public static class ApplicationServiceCollection
             .AddScoped<ICommandHandler<OrderCreateCommand, Order>, OrderCreateCommandHandler>()
             .AddScoped<IQueryHandler<GetCartQuery, Cart>, GetCartQueryHandler>()
             .AddScoped<ICommandHandler<SetDeliveryCommand, Guid>, SetDeliveryCommandHandler>()
+            .AddScoped<ICommandHandler<CartUpdateItemCommand, Guid>, CartUpdateItemCommandHandler>()
             .AddScoped<IQueryHandler<GetOrdersQuery, List<Order>>, GetOrdersQueryHandler>()
             .AddScoped<IQueryHandler<GetOrderByIdQuery, Order>, GetOrderByIdQueryHandler>()
             .AddScoped<ICommandHandler<UpdateCardPaymentStatusCommand, Order>, UpdateCardPaymentStatusCommandHandler>()

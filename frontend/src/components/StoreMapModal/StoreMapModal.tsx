@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { geoService } from '../../services/api';
 import { GeoStoreResponse } from '../../types';
+import { getCurrentPositionWithWatchFallback } from '../../utils/geolocation';
 import './StoreMapModal.css';
 
 interface StoreMapModalProps {
@@ -41,6 +42,7 @@ export const StoreMapModal = ({ isOpen, onClose, onStoreSelect }: StoreMapModalP
   const [userLocation, setUserLocation] = useState<{ lat: number; lon: number } | null>(null);
   const [savedUserLocation, setSavedUserLocation] = useState<{ lat: number; lon: number } | null>(null);
   const [selectedStore, setSelectedStore] = useState<GeoStoreResponse | null>(null);
+  const [locationError, setLocationError] = useState<string | null>(null);
 
   const destroyMap = useCallback(() => {
     if (mapInstanceRef.current) {
@@ -104,31 +106,37 @@ export const StoreMapModal = ({ isOpen, onClose, onStoreSelect }: StoreMapModalP
     }, 5000);
   }, [hideYandexElements]);
 
-  const getUserLocation = useCallback((): Promise<{ lat: number; lon: number }> => {
-    return new Promise((resolve, reject) => {
-      if (!navigator.geolocation) {
-        reject(new Error('Geolocation is not supported'));
-        return;
-      }
-
-      setIsLoadingLocation(true);
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          setIsLoadingLocation(false);
-          resolve({
-            lat: position.coords.latitude,
-            lon: position.coords.longitude
-          });
-        },
-        (error) => {
-          setIsLoadingLocation(false);
-          console.error('Error getting user location:', error);
-          reject(error);
-        },
-        { timeout: 10000, enableHighAccuracy: true }
-      );
-    });
+  const getLocationErrorMessage = useCallback((error: GeolocationPositionError | Error): string => {
+    const code = 'code' in error ? (error as GeolocationPositionError).code : undefined;
+    if (code === 1) {
+      return 'Доступ к геолокации запрещён. Разрешите его в настройках браузера или системы.';
+    }
+    if (code === 2) {
+      return 'Не удалось определить местоположение. Включите геолокацию в настройках устройства и разрешите доступ для сайта.';
+    }
+    if (code === 3) {
+      return 'Превышено время ожидания. Проверьте, что геолокация включена, и нажмите «Повторить».';
+    }
+    return 'Не удалось получить местоположение. Разрешите доступ к геолокации и нажмите «Повторить».';
   }, []);
+
+  const getUserLocation = useCallback((): Promise<{ lat: number; lon: number }> => {
+    setIsLoadingLocation(true);
+    setLocationError(null);
+    return getCurrentPositionWithWatchFallback()
+      .then((coords) => {
+        setLocationError(null);
+        return coords;
+      })
+      .catch((error) => {
+        setLocationError(getLocationErrorMessage(error as GeolocationPositionError | Error));
+        console.error('Error getting user location:', error);
+        throw error;
+      })
+      .finally(() => {
+        setIsLoadingLocation(false);
+      });
+  }, [getLocationErrorMessage]);
 
   const calculateDistance = useCallback((lat1: number, lon1: number, lat2: number, lon2: number): number => {
     const R = 6371; // Радиус Земли в километрах
@@ -374,16 +382,11 @@ export const StoreMapModal = ({ isOpen, onClose, onStoreSelect }: StoreMapModalP
   }, [initializeMap, loadStores, addUserLocationMarker]);
 
   const getOrRequestUserLocation = useCallback(async (): Promise<{ lat: number; lon: number }> => {
-    // Если координаты уже сохранены, используем их
     if (savedUserLocation) {
       return savedUserLocation;
     }
-
-    // Если координаты не сохранены, запрашиваем их
     try {
-      setIsLoadingLocation(true);
       const location = await getUserLocation();
-      // Сохраняем координаты для будущего использования
       setSavedUserLocation(location);
       return location;
     } catch (error) {
@@ -394,14 +397,37 @@ export const StoreMapModal = ({ isOpen, onClose, onStoreSelect }: StoreMapModalP
     }
   }, [savedUserLocation, getUserLocation]);
 
+  const handleRetryLocation = useCallback(async () => {
+    setLocationError(null);
+    setSavedUserLocation(null);
+    if (!mapInstanceRef.current) return;
+    try {
+      setIsLoadingLocation(true);
+      const location = await getUserLocation();
+      setSavedUserLocation(location);
+      setUserLocation(location);
+      mapInstanceRef.current.setCenter([location.lat, location.lon], DEFAULT_ZOOM, { duration: 300 });
+      await loadStores(location.lat, location.lon);
+      setTimeout(() => addUserLocationMarker(location), 200);
+    } catch (err) {
+      const message = getLocationErrorMessage(err as GeolocationPositionError | Error);
+      setLocationError(message);
+      console.error('Retry location failed:', err);
+    } finally {
+      setIsLoadingLocation(false);
+    }
+  }, [getUserLocation, getLocationErrorMessage, loadStores, addUserLocationMarker]);
+
   const loadYandexMapsScript = useCallback(async () => {
     const initMap = async () => {
       try {
         const location = await getOrRequestUserLocation();
         await initializeWithUserLocation(location);
       } catch (error) {
-        // Если не удалось получить геолокацию, используем центр по умолчанию
+        const err = error as GeolocationPositionError | Error;
+        setLocationError(getLocationErrorMessage(err));
         initializeMap(DEFAULT_CENTER);
+        await loadStores(DEFAULT_CENTER[0], DEFAULT_CENTER[1]);
       }
     };
 
@@ -443,7 +469,7 @@ export const StoreMapModal = ({ isOpen, onClose, onStoreSelect }: StoreMapModalP
     };
 
     document.head.appendChild(script);
-  }, [getOrRequestUserLocation, initializeWithUserLocation, initializeMap]);
+  }, [getOrRequestUserLocation, initializeWithUserLocation, initializeMap, getLocationErrorMessage, loadStores]);
 
   useEffect(() => {
     if (stores.length > 0 && mapInstanceRef.current) {
@@ -453,7 +479,6 @@ export const StoreMapModal = ({ isOpen, onClose, onStoreSelect }: StoreMapModalP
 
   useEffect(() => {
     if (!isOpen) {
-      // Очищаем все при закрытии (кроме сохраненных координат)
       if (hideElementsIntervalRef.current) {
         clearInterval(hideElementsIntervalRef.current);
         hideElementsIntervalRef.current = null;
@@ -462,13 +487,14 @@ export const StoreMapModal = ({ isOpen, onClose, onStoreSelect }: StoreMapModalP
       setStores([]);
       setSelectedStore(null);
       setUserLocation(null);
+      setLocationError(null);
       setIsLoadingLocation(false);
       setIsLoading(false);
       setIsLoadingStores(false);
       return;
     }
 
-    // При открытии сбрасываем состояния (кроме savedUserLocation)
+    setLocationError(null);
     setIsLoading(true);
     // Показываем индикатор загрузки только если координаты еще не сохранены
     if (!savedUserLocation) {
@@ -532,6 +558,15 @@ export const StoreMapModal = ({ isOpen, onClose, onStoreSelect }: StoreMapModalP
             </div>
           )}
         </div>
+
+        {locationError && (
+          <div className="store-map-location-error">
+            <p className="store-map-location-error-text">{locationError}</p>
+            <button type="button" className="store-map-location-retry-btn" onClick={handleRetryLocation} disabled={isLoadingLocation}>
+              {isLoadingLocation ? 'Запрос...' : 'Повторить'}
+            </button>
+          </div>
+        )}
 
         <div className="stores-panel">
           <div className="stores-panel-header">

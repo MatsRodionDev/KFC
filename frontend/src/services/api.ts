@@ -95,15 +95,10 @@ export const orderService = {
     return response.data;
   },
 
-  getOrdersByUserId: async (userId: string): Promise<Order[]> => {
-    const response = await orderApi.post<Order[]>('/orders/by_userid', { customerId: userId });
-    return response.data;
-  },
-
   getOrderById: async (orderId: string): Promise<Order> => {
     const response = await orderApi.get<Order>(`/orders/${orderId}`);
     return response.data;
-  }
+  },
 };
 
 // Payment Service API
@@ -136,7 +131,7 @@ export const geoService = {
   },
 
   getStoresInRadius: async (latitude: number, longitude: number, radius: number = 15): Promise<GeoStoreResponse[]> => {
-    const response = await geoApi.get<GeoStoreResponse[]>('/stres/radius', {
+    const response = await geoApi.get<GeoStoreResponse[]>('/stores/radius', {
       params: { latitude, longitude, radius }
     });
     return response.data;

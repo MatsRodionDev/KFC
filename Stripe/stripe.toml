@@ -1,0 +1,10 @@
+color = ''
+project-name = 'default'
+
+[default]
+account_id = 'acct_1ShsE90ZIE9VHzzn'
+device_name = 'MacBook-Air-Rodion.local'
+display_name = 'New business sandbox'
+test_mode_api_key = 'sk_test_51ShsE90ZIE9VHzznag7MuMGRsvORXKeKmRXAboR64EHdJBVU9gu9xEA08NeGz3zHnyvOX5TDNxArkqrrAf2LbgzJ00QF4rFwLj'
+test_mode_key_expires_at = '2026-03-27'
+test_mode_pub_key = 'pk_test_51ShsE90ZIE9VHzzn6RrvwgWHktDfZvQfN9C4aBnwHGn3tuyaEWujL9EAsXPLc5S12NbQQjZwa565uu5W7izwKLxj00l0TMWpy4'

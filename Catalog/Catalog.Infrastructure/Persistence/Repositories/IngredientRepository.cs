@@ -1,4 +1,4 @@
-﻿using Catalog.Application.ProductUseCases;
+using Catalog.Application.ProductUseCases;
 using Catalog.Domain.Enums;
 using Catalog.Domain.IngredientAggregate;
 using Catalog.Domain.Interfaces.Repositories;
@@ -22,6 +22,32 @@ namespace Catalog.Infrastructure.Persistence.Repositories
                 .Ingredients
                 .Where(p => ids.Contains(p.Id))
                 .ToListAsync(cancellationToken);
+        }
+
+        public async Task<(List<Ingredient> Items, int TotalCount)> GetPagedAsync(
+            int page,
+            int pageSize,
+            string? name,
+            bool? isBase,
+            ProductCategory? forProductCategory,
+            CancellationToken cancellationToken = default)
+        {
+            var query = context.Ingredients.AsNoTracking();
+            if (!string.IsNullOrWhiteSpace(name))
+                query = query.Where(i => i.Name.Contains(name));
+            if (isBase.HasValue)
+                query = query.Where(i => i.IsBase == isBase.Value);
+            if (forProductCategory.HasValue)
+                query = query.Where(i =>
+                    i.ForProductCategory == forProductCategory.Value
+                    || i.AvailableForProductCategory.Contains(forProductCategory.Value));
+            var totalCount = await query.CountAsync(cancellationToken);
+            var items = await query
+                .OrderBy(i => i.Name)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync(cancellationToken);
+            return (items, totalCount);
         }
 
         public async Task<List<Ingredient>> GetByCategoryAsync(ProductCategory category, CancellationToken cancellationToken)

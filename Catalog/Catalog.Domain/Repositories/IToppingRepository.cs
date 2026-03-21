@@ -1,4 +1,5 @@
-﻿using Catalog.Domain.ToppingAggregate;
+using Shop.Domain.Enums;
+using Catalog.Domain.ToppingAggregate;
 
 namespace Catalog.Domain.Interfaces.Repositories
 {
@@ -6,6 +7,12 @@ namespace Catalog.Domain.Interfaces.Repositories
     {
         Task<Topping?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
         Task<List<Topping>> GetByIdsAsync(List<Guid> ids, CancellationToken cancellationToken = default);
+        Task<(List<Topping> Items, int TotalCount)> GetPagedAsync(
+            int page,
+            int pageSize,
+            string? name,
+            DrinkType? availableForDrinkType,
+            CancellationToken cancellationToken = default);
         Task AddAsync(Topping topping, CancellationToken cancellationToken = default);
         void Update(Topping topping);
         void UpdateMany(List<Topping> toppings);

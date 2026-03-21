@@ -10,7 +10,7 @@ using OrderService.Domain.Models;
 namespace OrderService.Application.UseCases;
 
 public sealed record CartAddProductItemCommand(
-    Guid UserId,
+    string UserId,
     Guid ProductId,
     int Quantity,
     List<IngredientQuantityCustomization> IngredientsQuantityCustomizations) : ICommand<Guid>;
@@ -99,7 +99,7 @@ internal sealed class CartAddProductItemCommandHandler(IUnitOfWork unitOfWork,
         }
     }
 
-    protected override Guid? GetUserId(CartAddProductItemCommand command)
+    protected override string? GetUserId(CartAddProductItemCommand command)
     {
         return command.UserId;
     }

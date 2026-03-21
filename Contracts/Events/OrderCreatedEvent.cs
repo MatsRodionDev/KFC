@@ -18,7 +18,8 @@ public enum EventType
     OrderPickedUp,
     OrderDelivered,
     OrderTaken,
-    OrderPaymentError
+    OrderPaymentError,
+    OrderCookingExpired
 }
     
 public record ProductCreatedEvent(Guid ProductId, string Name, string Description, decimal Price) : IEvent;

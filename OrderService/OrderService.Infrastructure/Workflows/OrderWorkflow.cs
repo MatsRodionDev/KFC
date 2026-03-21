@@ -16,7 +16,7 @@ public class OrderWorkflow
     private const int HoursBeforeOrderCancel = 4;
     
     [WorkflowRun]
-    public async Task<bool> RunAsync(Guid orderId, Guid userId)
+    public async Task<bool> RunAsync(Guid orderId, string userId)
     {
         var order = await ExecuteActivityAsync<GetOrderByIdActivity, Order?>(
             a => a.GetByIdAsync(orderId),
@@ -83,7 +83,7 @@ public class OrderWorkflow
         
         var orderExpireAt = UtcNow.AddHours(HoursBeforeOrderCancel);
 
-        while (true)
+        while (orderExpireAt > UtcNow)
         {
             await WaitConditionAsync(IsReceivedSignal, orderExpireAt - UtcNow);
 
@@ -101,6 +101,10 @@ public class OrderWorkflow
             
             if (UtcNow > orderExpireAt)
             {
+                await ExecuteActivityAsync<ProcessOrderEventActivity>(
+                    a => a.ProcessOrderEventAsync(
+                        new OrderEvent(Guid.NewGuid(), orderId, EventType.OrderPaymentError, UtcNow)),
+                    CreateActivityOptions());
                 return false;
             }
         }

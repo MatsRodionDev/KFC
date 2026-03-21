@@ -11,7 +11,7 @@ using OrderService.Domain.Models;
 namespace OrderService.Application.UseCases;
 
 public sealed record SetDeliveryCommand(
-    Guid UserId,
+    string UserId,
     ServiceType ServiceType,
     string? Address,
     Guid? StoreId) : ICommand<Guid>;
@@ -44,9 +44,9 @@ public sealed class SetDeliveryCommandHandler(
         return cart.Id;
     }
 
-    protected override Guid? GetUserId(SetDeliveryCommand command) => command.UserId;
+    protected override string? GetUserId(SetDeliveryCommand command) => command.UserId;
     
-    private async Task<Cart> GetOrCreateCartAsync(Guid userId, CancellationToken ct)
+    private async Task<Cart> GetOrCreateCartAsync(string userId, CancellationToken ct)
     {
         var cart = await unitOfWork.CartRepository.GetByUserIdAsync(userId, ct);
         if (cart is not null)

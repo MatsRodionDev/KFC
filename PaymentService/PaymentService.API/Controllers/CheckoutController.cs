@@ -6,7 +6,7 @@ using PaymentService.Services;
 
 namespace PaymentService.Controllers;
 
-[Authorize]
+// [Authorize]
 [ApiController]
 [Route("api/[controller]")]
 public class CheckoutController(IStripeCheckoutService checkoutService, IDispatcher dispatcher, ILogger<CheckoutController> logger)

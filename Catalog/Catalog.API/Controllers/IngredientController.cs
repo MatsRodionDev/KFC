@@ -6,11 +6,26 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Catalog.API.Controllers;
 
-[Authorize]
+// [Authorize]
 [Controller]
 [Route("api/ingredients")]
 public class IngredientController(IDispatcher dispatcher) : ControllerBase
 {
+    [HttpGet]
+    public async Task<IActionResult> GetPaged(
+        [FromQuery] int page = 1,
+        [FromQuery] int pageSize = 20,
+        [FromQuery] string? name = null,
+        [FromQuery] bool? isBase = null,
+        [FromQuery] ProductCategory? forProductCategory = null,
+        CancellationToken cancellationToken = default)
+    {
+        var result = await dispatcher.Dispatch(
+            new GetIngredientsPagedQuery(page, pageSize, name, isBase, forProductCategory),
+            cancellationToken);
+        return Ok(result);
+    }
+
     [HttpGet("{ingredientId:guid}")]
     public async Task<IActionResult> Get(Guid ingredientId, CancellationToken cancellationToken)
     {

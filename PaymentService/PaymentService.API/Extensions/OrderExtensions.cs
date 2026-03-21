@@ -16,7 +16,7 @@ public static class OrderExtensions
             PriceData = new SessionLineItemPriceDataOptions
             {
                 Currency = "usd",
-                UnitAmount = (long)item.Price * 100,
+                UnitAmount = (long) item.Price / item.Quantity * 100,
                 ProductData = new SessionLineItemPriceDataProductDataOptions
                 {
                     Name = item.Name,
