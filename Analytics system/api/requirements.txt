@@ -1,0 +1,15 @@
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+psycopg2-binary==2.9.9
+opencv-python==4.8.1.78
+torch==2.1.0
+torchvision==0.16.0
+ultralytics==8.0.196
+numpy==1.24.3
+scipy==1.11.4
+matplotlib==3.7.2
+pandas==2.0.3
+requests==2.31.0
+python-dotenv==1.0.0
+google-generativeai==0.3.2
+pydantic==2.5.0
