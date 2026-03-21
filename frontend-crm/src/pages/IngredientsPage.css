@@ -1,0 +1,304 @@
+.ingredients-page {
+  width: 100%;
+  background: var(--crm-bg);
+}
+
+.ingredients-page__inner {
+  padding-top: var(--crm-spacing);
+  padding-bottom: var(--crm-spacing);
+}
+
+.ingredients-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--crm-spacing);
+  gap: var(--crm-spacing-sm);
+}
+
+.ingredients-header-left {
+  display: flex;
+  align-items: center;
+  gap: var(--crm-spacing-xs);
+}
+
+.ingredients-title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--crm-text);
+}
+
+.ingredients-btn-primary {
+  padding: 12px 24px;
+  border-radius: 20px;
+  border: none;
+  background: var(--crm-orange);
+  color: #fff;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.05s;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.ingredients-btn-primary:hover:not(:disabled) {
+  background: var(--crm-orange-dark);
+}
+
+.ingredients-btn-primary:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.ingredients-btn-primary:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(255, 106, 0, 0.2);
+}
+
+.ingredients-btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.ingredients-filters {
+  background: var(--crm-card-bg);
+  border: 1px solid var(--crm-border);
+  border-radius: var(--crm-radius-lg);
+  padding: var(--crm-spacing);
+  margin-bottom: var(--crm-spacing);
+}
+
+.ingredients-filters-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--crm-spacing-sm);
+  margin-bottom: var(--crm-spacing-sm);
+}
+
+.ingredients-filter-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ingredients-filter-field label {
+  font-size: 0.8rem;
+  color: var(--crm-text-muted);
+  font-weight: 500;
+}
+
+.ingredients-filter-field input,
+.ingredients-filter-field select {
+  padding: 8px 12px;
+  border: 1px solid var(--crm-border);
+  border-radius: var(--crm-radius);
+  background: #fff;
+  color: var(--crm-text);
+  font-size: 0.9rem;
+}
+
+.ingredients-filter-field input:focus,
+.ingredients-filter-field select:focus {
+  outline: none;
+  border-color: var(--crm-orange);
+  box-shadow: 0 0 0 4px rgba(255, 106, 0, 0.2);
+}
+
+.ingredients-filters-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--crm-spacing-xs);
+}
+
+.ingredients-total {
+  font-size: 0.9rem;
+  color: var(--crm-text-muted);
+}
+
+.ingredients-btn-reset {
+  padding: 8px var(--crm-spacing);
+  border-radius: 20px;
+  border: 2px solid var(--crm-orange);
+  background: #fff;
+  color: var(--crm-orange);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+
+.ingredients-btn-reset:hover {
+  background: var(--crm-orange);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(255, 106, 0, 0.2);
+}
+
+.ingredients-btn-reset:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(255, 106, 0, 0.2);
+}
+
+.ingredients-table-card {
+  background: var(--crm-card-bg);
+  border: 1px solid var(--crm-border);
+  border-radius: var(--crm-radius-lg);
+  overflow: hidden;
+}
+
+.ingredients-table-wrap {
+  overflow-x: auto;
+}
+
+.ingredients-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.ingredients-table th,
+.ingredients-table td {
+  padding: var(--crm-spacing-xs) var(--crm-spacing-sm);
+  text-align: left;
+  border-bottom: 1px solid var(--crm-border);
+}
+
+.ingredients-table th {
+  background: var(--crm-th-bg);
+  color: var(--crm-text-muted);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.ingredients-table tbody tr:hover {
+  background: var(--crm-hover);
+}
+
+.ingredients-table td {
+  color: var(--crm-text);
+  vertical-align: middle;
+}
+
+.ingredients-cell-image {
+  width: 56px;
+}
+
+.ingredients-cell-image .img-placeholder {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--crm-radius);
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--crm-text-muted);
+  font-size: 1.2rem;
+}
+
+.ingredients-cell-image img {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: var(--crm-radius);
+}
+
+.ingredients-cell-id {
+  font-family: ui-monospace, monospace;
+  font-size: 0.8rem;
+  color: var(--crm-text-muted);
+}
+
+.ingredients-cell-name {
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ingredients-loading,
+.ingredients-error {
+  padding: 40px var(--crm-spacing);
+  text-align: center;
+  color: var(--crm-text-muted);
+}
+
+.ingredients-error {
+  color: var(--crm-error);
+}
+
+.ingredients-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--crm-spacing-xs);
+  padding: var(--crm-spacing-sm) var(--crm-spacing);
+  border-top: 1px solid var(--crm-border);
+  background: var(--crm-card-bg);
+}
+
+.ingredients-pagination-info {
+  font-size: 0.875rem;
+  color: var(--crm-text-muted);
+}
+
+.ingredients-pagination-btns {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.ingredients-pagination-btns button {
+  min-width: 36px;
+  padding: 8px 12px;
+  border-radius: 20px;
+  border: 2px solid var(--crm-orange);
+  background: #fff;
+  color: var(--crm-orange);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.ingredients-pagination-btns button:hover:not(:disabled) {
+  background: var(--crm-orange);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(255, 106, 0, 0.2);
+}
+
+.ingredients-pagination-btns button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  border-color: var(--crm-border);
+  color: var(--crm-text-muted);
+}
+
+.ingredients-pagination-btns button.active {
+  background: var(--crm-orange);
+  border-color: var(--crm-orange);
+  color: #fff;
+}
+
+.ingredients-pagination-btns .ingredients-pagination-arrow {
+  padding: 8px 10px;
+  font-size: 16px;
+  line-height: 1;
+}
+
+.ingredients-pagination-ellipsis {
+  padding: 0 4px;
+  color: var(--crm-text-muted);
+  font-size: 14px;
+  user-select: none;
+}

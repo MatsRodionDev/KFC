@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Orange theme (как в frontend) */
+  --crm-orange: #ff6a00;
+  --crm-orange-dark: #e05e00;
+  --crm-bg: #f5f5f5;
+  --crm-card-bg: #ffffff;
+  --crm-border: #e0e0e0;
+  --crm-text: #333;
+  --crm-text-muted: #666;
+  --crm-th-bg: #fafafa;
+  --crm-hover: #f0f0f0;
+  --crm-radius: 8px;
+  --crm-radius-lg: 12px;
+  --crm-error: #c0392b;
+  /* Modal (опирается на тему выше) */
+  --crm-modal-overlay: rgba(0, 0, 0, 0.42);
+  --crm-modal-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.06), 0 10px 40px -10px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.04);
+  --crm-modal-shadow-strong: 0 25px 50px -12px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.05);
+  --crm-focus-ring: 0 0 0 3px rgba(255, 106, 0, 0.25);
+  /* Layout */
+  --crm-max-width: 1200px;
+  --crm-spacing: 24px;
+  --crm-spacing-sm: 16px;
+  --crm-spacing-xs: 12px;
+
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.6;
+  font-weight: 400;
+  color: var(--crm-text);
+  background-color: var(--crm-bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+a {
+  color: var(--crm-orange);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  font-family: inherit;
+}
+
+/* Общий контейнер страниц — выравнивание с хедером */
+.container {
+  width: 100%;
+  max-width: var(--crm-max-width);
+  margin: 0 auto;
+  padding: 0 var(--crm-spacing);
+  box-sizing: border-box;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  padding: var(--crm-spacing);
+  box-sizing: border-box;
+  background: var(--crm-bg);
+}

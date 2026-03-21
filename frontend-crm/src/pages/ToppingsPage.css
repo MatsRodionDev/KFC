@@ -1,0 +1,310 @@
+.toppings-page {
+  width: 100%;
+  background: var(--crm-bg);
+}
+
+.toppings-page__inner {
+  padding-top: var(--crm-spacing);
+  padding-bottom: var(--crm-spacing);
+}
+
+.toppings-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--crm-spacing);
+  gap: var(--crm-spacing-sm);
+}
+
+.toppings-header-left {
+  display: flex;
+  align-items: center;
+  gap: var(--crm-spacing-xs);
+}
+
+.toppings-title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--crm-text);
+}
+
+.toppings-btn-primary {
+  padding: 12px 24px;
+  border-radius: 20px;
+  border: none;
+  background: var(--crm-orange);
+  color: #fff;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.05s;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.toppings-btn-primary:hover:not(:disabled) {
+  background: var(--crm-orange-dark);
+}
+
+.toppings-btn-primary:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.toppings-btn-primary:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(255, 106, 0, 0.2);
+}
+
+.toppings-btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.toppings-filters {
+  background: var(--crm-card-bg);
+  border: 1px solid var(--crm-border);
+  border-radius: var(--crm-radius-lg);
+  padding: var(--crm-spacing);
+  margin-bottom: var(--crm-spacing);
+}
+
+.toppings-filters-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--crm-spacing-sm);
+  margin-bottom: var(--crm-spacing-sm);
+}
+
+.toppings-filter-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.toppings-filter-field label {
+  font-size: 0.8rem;
+  color: var(--crm-text-muted);
+  font-weight: 500;
+}
+
+.toppings-filter-field input,
+.toppings-filter-field select {
+  padding: 8px 12px;
+  border: 1px solid var(--crm-border);
+  border-radius: var(--crm-radius);
+  background: #fff;
+  color: var(--crm-text);
+  font-size: 0.9rem;
+}
+
+.toppings-filter-field input:focus,
+.toppings-filter-field select:focus {
+  outline: none;
+  border-color: var(--crm-orange);
+  box-shadow: 0 0 0 4px rgba(255, 106, 0, 0.2);
+}
+
+.toppings-filters-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--crm-spacing-xs);
+}
+
+.toppings-total {
+  font-size: 0.9rem;
+  color: var(--crm-text-muted);
+}
+
+.toppings-btn-reset {
+  padding: 8px var(--crm-spacing);
+  border-radius: 20px;
+  border: 2px solid var(--crm-orange);
+  background: #fff;
+  color: var(--crm-orange);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+
+.toppings-btn-reset:hover {
+  background: var(--crm-orange);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(255, 106, 0, 0.2);
+}
+
+.toppings-btn-reset:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(255, 106, 0, 0.2);
+}
+
+.toppings-table-card {
+  background: var(--crm-card-bg);
+  border: 1px solid var(--crm-border);
+  border-radius: var(--crm-radius-lg);
+  overflow: hidden;
+}
+
+.toppings-table-wrap {
+  overflow-x: auto;
+}
+
+.toppings-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.toppings-table th,
+.toppings-table td {
+  padding: var(--crm-spacing-xs) var(--crm-spacing-sm);
+  text-align: left;
+  border-bottom: 1px solid var(--crm-border);
+}
+
+.toppings-table th {
+  background: var(--crm-th-bg);
+  color: var(--crm-text-muted);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.toppings-table tbody tr:hover {
+  background: var(--crm-hover);
+}
+
+.toppings-table td {
+  color: var(--crm-text);
+  vertical-align: middle;
+}
+
+.toppings-cell-image {
+  width: 56px;
+}
+
+.toppings-cell-image .img-placeholder {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--crm-radius);
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--crm-text-muted);
+  font-size: 1.2rem;
+}
+
+.toppings-cell-image img {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: var(--crm-radius);
+}
+
+.toppings-cell-id {
+  font-family: ui-monospace, monospace;
+  font-size: 0.8rem;
+  color: var(--crm-text-muted);
+}
+
+.toppings-cell-name {
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.toppings-cell-types {
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.toppings-loading,
+.toppings-error {
+  padding: 40px var(--crm-spacing);
+  text-align: center;
+  color: var(--crm-text-muted);
+}
+
+.toppings-error {
+  color: var(--crm-error);
+}
+
+.toppings-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--crm-spacing-xs);
+  padding: var(--crm-spacing-sm) var(--crm-spacing);
+  border-top: 1px solid var(--crm-border);
+  background: var(--crm-card-bg);
+}
+
+.toppings-pagination-info {
+  font-size: 0.875rem;
+  color: var(--crm-text-muted);
+}
+
+.toppings-pagination-btns {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.toppings-pagination-btns button {
+  min-width: 36px;
+  padding: 8px 12px;
+  border-radius: 20px;
+  border: 2px solid var(--crm-orange);
+  background: #fff;
+  color: var(--crm-orange);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.toppings-pagination-btns button:hover:not(:disabled) {
+  background: var(--crm-orange);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(255, 106, 0, 0.2);
+}
+
+.toppings-pagination-btns button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  border-color: var(--crm-border);
+  color: var(--crm-text-muted);
+}
+
+.toppings-pagination-btns button.active {
+  background: var(--crm-orange);
+  border-color: var(--crm-orange);
+  color: #fff;
+}
+
+.toppings-pagination-btns .toppings-pagination-arrow {
+  padding: 8px 10px;
+  font-size: 16px;
+  line-height: 1;
+}
+
+.toppings-pagination-ellipsis {
+  padding: 0 4px;
+  color: var(--crm-text-muted);
+  font-size: 14px;
+  user-select: none;
+}

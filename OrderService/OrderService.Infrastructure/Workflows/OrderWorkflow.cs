@@ -101,6 +101,10 @@ public class OrderWorkflow
             
             if (UtcNow > orderExpireAt)
             {
+                await ExecuteActivityAsync<ProcessOrderEventActivity>(
+                    a => a.ProcessOrderEventAsync(
+                        new OrderEvent(Guid.NewGuid(), orderId, EventType.OrderPaymentError, UtcNow)),
+                    CreateActivityOptions());
                 return false;
             }
         }

@@ -1,0 +1,728 @@
+/* Overlay — в стилистике сайта: нейтральное затемнение + размытие (best practice) */
+.add-product-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--crm-modal-overlay);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: var(--crm-spacing);
+  animation: add-product-overlay-in 0.2s ease-out;
+}
+
+@keyframes add-product-overlay-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Окно модалки — скругления и тени из дизайн-системы сайта */
+.add-product-modal {
+  background: var(--crm-card-bg);
+  border-radius: var(--crm-radius-lg);
+  box-shadow: var(--crm-modal-shadow-strong);
+  max-width: 520px;
+  width: 100%;
+  max-height: 90vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  animation: add-product-modal-in 0.22s cubic-bezier(0.21, 0.57, 0.29, 0.99);
+}
+
+@keyframes add-product-modal-in {
+  from {
+    opacity: 0;
+    transform: scale(0.97) translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Акцентная полоска — фирменный оранжевый */
+.add-product-modal::before {
+  content: '';
+  height: 4px;
+  background: linear-gradient(90deg, var(--crm-orange), var(--crm-orange-dark));
+  border-radius: var(--crm-radius-lg) var(--crm-radius-lg) 0 0;
+}
+
+.add-product-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--crm-spacing) var(--crm-spacing) 0;
+}
+
+.add-product-modal-title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--crm-text);
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+}
+
+.add-product-modal-close {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: var(--crm-hover);
+  color: var(--crm-text-muted);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  border-radius: var(--crm-radius);
+  transition: background 0.2s, color 0.2s, transform 0.1s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-product-modal-close:hover {
+  background: rgba(255, 106, 0, 0.1);
+  color: var(--crm-orange);
+}
+
+.add-product-modal-close:active {
+  transform: scale(0.96);
+}
+
+.add-product-modal-close:focus-visible {
+  outline: none;
+  box-shadow: var(--crm-focus-ring);
+}
+
+.add-product-form {
+  padding: var(--crm-spacing);
+  overflow-y: auto;
+  flex: 1;
+}
+
+.add-product-error {
+  padding: var(--crm-spacing-xs) var(--crm-spacing-sm);
+  margin-bottom: var(--crm-spacing-sm);
+  background: #ffebee;
+  color: var(--crm-error);
+  border-radius: var(--crm-radius);
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: 1px solid rgba(192, 57, 43, 0.12);
+}
+
+.add-product-field {
+  margin-bottom: var(--crm-spacing-sm);
+}
+
+.add-product-field label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--crm-text-muted);
+  margin-bottom: 6px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.add-product-field input[type="text"],
+.add-product-field input[type="number"],
+.add-product-field textarea,
+.add-product-field select {
+  width: 100%;
+  padding: var(--crm-spacing-xs) var(--crm-spacing-sm);
+  border: 1px solid var(--crm-border);
+  border-radius: var(--crm-radius);
+  font-size: 0.95rem;
+  font-family: inherit;
+  background: var(--crm-card-bg);
+  color: var(--crm-text);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.add-product-field input::placeholder,
+.add-product-field textarea::placeholder {
+  color: var(--crm-text-muted);
+  opacity: 0.85;
+}
+
+.add-product-field input:focus,
+.add-product-field textarea:focus,
+.add-product-field select:focus {
+  outline: none;
+  border-color: var(--crm-orange);
+  box-shadow: var(--crm-focus-ring);
+}
+
+/* Блок выбора файла — весь блок кликабелен, без отдельной кнопки */
+.add-product-file-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 56px;
+  padding: var(--crm-spacing-sm) var(--crm-spacing);
+  border: 2px dashed var(--crm-border);
+  border-radius: var(--crm-radius);
+  background: var(--crm-th-bg);
+  transition: border-color 0.2s, background 0.2s;
+  cursor: pointer;
+}
+
+.add-product-file-wrap:hover {
+  border-color: var(--crm-orange);
+  background: rgba(255, 106, 0, 0.04);
+}
+
+.add-product-file-input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  font-size: 0;
+}
+
+.add-product-file-name {
+  font-size: 0.9rem;
+  color: var(--crm-text-muted);
+  pointer-events: none;
+  text-align: center;
+}
+
+.add-product-file-wrap:hover .add-product-file-name {
+  color: var(--crm-text);
+}
+
+/* Чекбокс в модалке (например, «Базовый ингредиент») */
+.add-product-field label:has(input[type="checkbox"]) {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-transform: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--crm-text);
+  cursor: pointer;
+}
+
+/* Скрытый нативный чекбокс — визуально только кастомный вид */
+.add-product-field input[type="checkbox"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.add-product-field label:has(input[type="checkbox"])::before {
+  content: '';
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--crm-border);
+  border-radius: 4px;
+  background: var(--crm-card-bg);
+  transition: border-color 0.2s, background 0.2s;
+  display: inline-block;
+  box-sizing: border-box;
+}
+
+.add-product-field label:has(input[type="checkbox"]:checked)::before {
+  background: var(--crm-orange);
+  border-color: var(--crm-orange);
+  content: '✓';
+  font-size: 12px;
+  font-weight: bold;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  box-sizing: border-box;
+}
+
+.add-product-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--crm-spacing-sm);
+}
+
+.add-product-row--3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* Группа чекбоксов (например, «Доступен для категорий») */
+.add-product-field-group {
+  margin-bottom: var(--crm-spacing-sm);
+}
+
+.add-product-field-group .add-product-field-group-title {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--crm-text-muted);
+  margin-bottom: 8px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.add-product-field-group .add-product-field-group-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--crm-spacing-xs) var(--crm-spacing-sm);
+}
+
+.add-product-field-group .add-product-field-group-options label {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  padding: var(--crm-spacing-xs) var(--crm-spacing-sm);
+  background: var(--crm-th-bg);
+  border: 1px solid var(--crm-border);
+  border-radius: var(--crm-radius);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--crm-text);
+  cursor: pointer;
+  text-transform: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+/* Скрытый нативный чекбокс в группе категорий */
+.add-product-field-group .add-product-field-group-options input[type="checkbox"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Кастомный квадрат вместо нативного чекбокса */
+.add-product-field-group .add-product-field-group-options label .add-product-custom-checkbox {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--crm-border);
+  border-radius: 4px;
+  background: var(--crm-card-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.add-product-field-group .add-product-field-group-options label:has(input:checked) .add-product-custom-checkbox {
+  background: var(--crm-orange);
+  border-color: var(--crm-orange);
+}
+
+.add-product-field-group .add-product-field-group-options label:has(input:checked) .add-product-custom-checkbox::after {
+  content: '✓';
+  font-size: 12px;
+  font-weight: bold;
+  color: #fff;
+  line-height: 1;
+}
+
+.add-product-field-group .add-product-field-group-options label:hover {
+  border-color: rgba(255, 106, 0, 0.35);
+  background: rgba(255, 106, 0, 0.04);
+}
+
+.add-product-field-group .add-product-field-group-options label:has(input:checked) {
+  border-color: var(--crm-orange);
+  background: rgba(255, 106, 0, 0.08);
+}
+
+.add-product-field-group .add-product-field-group-hint {
+  font-size: 0.75rem;
+  color: var(--crm-error);
+  margin-top: 6px;
+}
+
+.add-product-ingredients-block {
+  margin-bottom: 16px;
+}
+
+.add-product-ingredients-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  gap: 12px;
+}
+
+.add-product-ingredients-header label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--crm-text);
+}
+
+.add-product-ingredients-hint {
+  margin: 4px 0 0;
+  font-size: 0.75rem;
+  color: var(--crm-text-muted);
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+.add-product-btn-add-ing {
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: 2px solid var(--crm-orange);
+  background: #fff;
+  color: var(--crm-orange);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s;
+}
+
+.add-product-btn-add-ing:hover:not(:disabled) {
+  background: var(--crm-orange);
+  color: #fff;
+}
+
+.add-product-btn-add-ing:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.add-product-ingredient-table {
+  border: 1px solid var(--crm-border);
+  border-radius: var(--crm-radius);
+  overflow: hidden;
+  margin-top: 8px;
+}
+
+.add-product-ingredient-row {
+  display: grid;
+  grid-template-columns: 1fr 72px 72px 72px 40px;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  min-height: 44px;
+}
+
+.add-product-ingredient-row:not(.add-product-ingredient-header) {
+  border-top: 1px solid var(--crm-border);
+}
+
+.add-product-ingredient-header {
+  background: var(--crm-th-bg);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--crm-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.add-product-ingredient-header .add-product-ingredient-col-qty,
+.add-product-ingredient-header .add-product-ingredient-col-min,
+.add-product-ingredient-header .add-product-ingredient-col-max {
+  text-align: center;
+}
+
+.add-product-ingredient-col-name select {
+  width: 100%;
+  min-width: 0;
+  padding: 8px 10px;
+  border: 1px solid var(--crm-border);
+  border-radius: var(--crm-radius);
+  font-size: 0.9rem;
+  font-family: inherit;
+}
+
+.add-product-ingredient-col-name select:focus {
+  outline: none;
+  border-color: var(--crm-orange);
+}
+
+.add-product-ingredient-display {
+  min-width: 0;
+}
+
+.add-product-ingredient-display-inner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.add-product-ingredient-thumb-img {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: var(--crm-radius);
+  overflow: hidden;
+  background: var(--crm-hover);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-product-ingredient-display-inner .add-product-ingredient-thumb-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.add-product-ingredient-thumb-placeholder {
+  font-size: 1.2rem;
+  opacity: 0.7;
+}
+
+.add-product-ingredient-thumb-name {
+  font-size: 0.9rem;
+  color: var(--crm-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Picker overlay — в той же стилистике, что и основная модалка */
+.add-product-picker-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--crm-modal-overlay);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1100;
+  padding: var(--crm-spacing);
+  animation: add-product-overlay-in 0.2s ease-out;
+}
+
+.add-product-picker {
+  background: var(--crm-card-bg);
+  border-radius: var(--crm-radius-lg);
+  box-shadow: var(--crm-modal-shadow-strong);
+  max-width: 480px;
+  width: 100%;
+  max-height: 80vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--crm-border);
+}
+
+.add-product-picker-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--crm-border);
+}
+
+.add-product-picker-title {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--crm-text);
+}
+
+.add-product-picker-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 0;
+  overflow-y: auto;
+}
+
+.add-product-ingredient-picker-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  border: none;
+  border-bottom: 1px solid var(--crm-border);
+  border-radius: 0;
+  background: #fff;
+  cursor: pointer;
+  font-family: inherit;
+  text-align: left;
+  width: 100%;
+  transition: background 0.2s;
+}
+
+.add-product-ingredient-picker-card:last-child {
+  border-bottom: none;
+}
+
+.add-product-ingredient-picker-card:hover {
+  background: rgba(255, 106, 0, 0.08);
+}
+
+.add-product-ingredient-picker-card:active {
+  background: rgba(255, 106, 0, 0.12);
+}
+
+.add-product-ingredient-picker-card .add-product-ingredient-thumb-img {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+}
+
+.add-product-ingredient-picker-card .add-product-ingredient-thumb-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.add-product-ingredient-picker-card .add-product-ingredient-thumb-name {
+  font-size: 0.9rem;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+  min-width: 0;
+}
+
+.add-product-picker-empty {
+  padding: 24px 20px;
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--crm-text-muted);
+  text-align: center;
+}
+
+.add-product-ingredient-col-qty input,
+.add-product-ingredient-col-min input,
+.add-product-ingredient-col-max input {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--crm-border);
+  border-radius: var(--crm-radius);
+  font-size: 0.9rem;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.add-product-ingredient-col-qty input:focus,
+.add-product-ingredient-col-min input:focus,
+.add-product-ingredient-col-max input:focus {
+  outline: none;
+  border-color: var(--crm-orange);
+}
+
+.add-product-ingredient-col-qty input::placeholder,
+.add-product-ingredient-col-min input::placeholder,
+.add-product-ingredient-col-max input::placeholder {
+  color: var(--crm-text-muted);
+  opacity: 0.7;
+}
+
+.add-product-ingredient-col-action {
+  display: flex;
+  justify-content: center;
+}
+
+.add-product-btn-remove-ing {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: none;
+  background: var(--crm-hover);
+  color: var(--crm-text-muted);
+  font-size: 14px;
+  border-radius: var(--crm-radius);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, color 0.2s;
+}
+
+.add-product-btn-remove-ing:hover {
+  background: #ffcdd2;
+  color: var(--crm-error);
+}
+
+.add-product-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--crm-spacing-xs);
+  padding: var(--crm-spacing-sm) var(--crm-spacing) var(--crm-spacing);
+  border-top: 1px solid var(--crm-border);
+  margin: 0 calc(-1 * var(--crm-spacing)) calc(-1 * var(--crm-spacing));
+  background: var(--crm-th-bg);
+  border-radius: 0 0 var(--crm-radius-lg) var(--crm-radius-lg);
+}
+
+.add-product-modal-footer .add-product-btn-primary {
+  padding: var(--crm-spacing-xs) var(--crm-spacing);
+  border-radius: var(--crm-radius);
+  border: none;
+  background: var(--crm-orange);
+  color: #fff;
+  font-family: inherit;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+}
+
+.add-product-modal-footer .add-product-btn-primary:hover:not(:disabled) {
+  background: var(--crm-orange-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 106, 0, 0.3);
+}
+
+.add-product-modal-footer .add-product-btn-primary:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.add-product-modal-footer .add-product-btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.add-product-modal-footer .add-product-btn-primary:focus-visible {
+  outline: none;
+  box-shadow: var(--crm-focus-ring);
+}
+
+.add-product-modal-footer .add-product-btn-secondary {
+  padding: var(--crm-spacing-xs) var(--crm-spacing);
+  border-radius: var(--crm-radius);
+  border: 1px solid var(--crm-border);
+  background: var(--crm-card-bg);
+  color: var(--crm-text);
+  font-family: inherit;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s, color 0.2s;
+}
+
+.add-product-modal-footer .add-product-btn-secondary:hover {
+  border-color: var(--crm-orange);
+  background: rgba(255, 106, 0, 0.06);
+  color: var(--crm-orange);
+}
+
+.add-product-modal-footer .add-product-btn-secondary:focus-visible {
+  outline: none;
+  box-shadow: var(--crm-focus-ring);
+}

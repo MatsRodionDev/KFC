@@ -1,0 +1,52 @@
+.header {
+  background-color: var(--crm-card-bg);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 64px;
+  max-width: var(--crm-max-width);
+  margin: 0 auto;
+  padding: 0 var(--crm-spacing);
+  box-sizing: border-box;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 700;
+  color: #ff6a00;
+  text-decoration: none;
+}
+
+.navigation {
+  display: flex;
+  gap: 25px;
+}
+
+.nav-link {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  padding: 5px 0;
+  text-decoration: none;
+  transition: color 0.2s, border-bottom 0.2s;
+  border-bottom: 2px solid transparent;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: #ff6a00;
+  border-bottom: 2px solid #ff6a00;
+}
+
+.actions {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}

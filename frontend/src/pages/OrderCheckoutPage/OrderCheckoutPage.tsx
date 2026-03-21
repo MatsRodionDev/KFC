@@ -32,6 +32,8 @@ export const OrderCheckoutPage = () => {
   const redirectingRef = useRef(false);
   const hideElementsIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const locationRequestIdRef = useRef(0);
+  /** Карта переинициализируется только при смене orderId или типа доставки; при смене только статуса — не трогаем. */
+  const mapInitedForRef = useRef<{ orderId: string; serviceType: number } | null>(null);
 
   const DEFAULT_CENTER: [number, number] = [53.9, 30.35];
   const DEFAULT_ZOOM = 15;
@@ -292,24 +294,13 @@ export const OrderCheckoutPage = () => {
       return;
     }
 
-    setIsMapLoading(true);
-    destroyMap();
-
     const deliveryCoords = resolvedDeliveryCoords;
     const storeCoords = resolvedStoreCoords;
     const isPickup = order.delivery?.serviceType === ServiceType.ClickCollect;
-    const center =
-      order.delivery?.serviceType === ServiceType.Delivery
-        ? deliveryCoords || DEFAULT_CENTER
-        : storeCoords || DEFAULT_CENTER;
-    loadYandexMapsScript(center);
+    const serviceType = order.delivery?.serviceType ?? ServiceType.ClickCollect;
 
-    const interval = setInterval(() => {
-      if (!mapInstanceRef.current || !window.ymaps) {
-        return;
-      }
-
-      clearInterval(interval);
+    const runMarkersUpdate = () => {
+      if (!mapInstanceRef.current || !window.ymaps) return;
       if (deliveryCoords && order.delivery?.serviceType === ServiceType.Delivery) {
         addMarker(
           deliveryCoords,
@@ -405,12 +396,32 @@ export const OrderCheckoutPage = () => {
       } else if (isPickup && storeCoords) {
         mapInstanceRef.current.setCenter(storeCoords, DEFAULT_ZOOM, { duration: 0 });
       }
+      mapInitedForRef.current = { orderId: order.id, serviceType };
+    };
+
+    if (mapInstanceRef.current && mapInitedForRef.current?.orderId === order.id && mapInitedForRef.current?.serviceType === serviceType) {
+      return;
+    }
+
+    mapInitedForRef.current = null;
+    setIsMapLoading(true);
+    destroyMap();
+    const center =
+      order.delivery?.serviceType === ServiceType.Delivery
+        ? deliveryCoords || DEFAULT_CENTER
+        : storeCoords || DEFAULT_CENTER;
+    loadYandexMapsScript(center);
+
+    const interval = setInterval(() => {
+      if (!mapInstanceRef.current || !window.ymaps) return;
+      clearInterval(interval);
+      runMarkersUpdate();
     }, 200);
 
     return () => {
       clearInterval(interval);
     };
-  }, [order, destroyMap, loadYandexMapsScript, addMarker, resolvedDeliveryCoords, resolvedStoreCoords, userCoords]);
+  }, [order?.id, order?.delivery?.serviceType, destroyMap, loadYandexMapsScript, addMarker, resolvedDeliveryCoords, resolvedStoreCoords, userCoords]);
 
   useEffect(() => {
     if (!order) {
@@ -557,15 +568,20 @@ export const OrderCheckoutPage = () => {
             <div className="order-checkout-title">Заказ #{order.id}</div>
             <div className="order-checkout-date">{formatDate(order.createdAt)}</div>
           </div>
-          <div className={`order-checkout-status ${isPaid ? 'paid' : isCancelled ? 'cancelled' : 'pending'}`}>
-            {isPaid ? 'Оплачен' : isCancelled ? 'Отменен' : 'Ожидает оплаты'}
+          <div
+            key={order.status}
+            className={`order-checkout-status order-checkout-status--order order-checkout-status--${typeof order.status === 'number' ? OrderStatus[order.status]?.toLowerCase() ?? 'created' : 'created'}`}
+          >
+            {getStatusText(order.status)}
           </div>
         </div>
 
         <div className="order-checkout-section">
           <div className="order-checkout-row">
-            <span className="order-checkout-label">Статус</span>
-            <span className="order-checkout-value">{getStatusText(order.status)}</span>
+            <span className="order-checkout-label">Оплата</span>
+            <span className={`order-checkout-payment-badge ${isPaid ? 'paid' : isCancelled ? 'cancelled' : 'pending'}`}>
+              {isPaid ? 'Оплачен' : isCancelled ? 'Отменен' : 'Ожидает оплаты'}
+            </span>
           </div>
           <div className="order-checkout-row">
             <span className="order-checkout-label">{deliveryLabel}</span>

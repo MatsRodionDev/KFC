@@ -36,6 +36,14 @@ public class ProcessOrderEventHandler(IUnitOfWork unitOfWork, IOrderStatusServic
                 if (order.Status != OrderStatus.Paid)
                     return false;
                 
+                order.Status = OrderStatus.Cooking;
+                await unitOfWork.SaveChangesAsync(cancellationToken: cancellationToken);
+                break;
+            
+            case EventType.OrderCookingExpired:
+                if (order.Status != OrderStatus.Cooking)
+                    return false;
+                order.Status = OrderStatus.Cancelled;
                 await unitOfWork.SaveChangesAsync(cancellationToken: cancellationToken);
                 break;
             

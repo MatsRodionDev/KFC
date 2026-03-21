@@ -1,0 +1,304 @@
+.drinks-page {
+  width: 100%;
+  background: var(--crm-bg);
+}
+
+.drinks-page__inner {
+  padding-top: var(--crm-spacing);
+  padding-bottom: var(--crm-spacing);
+}
+
+.drinks-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--crm-spacing);
+  gap: var(--crm-spacing-sm);
+}
+
+.drinks-header-left {
+  display: flex;
+  align-items: center;
+  gap: var(--crm-spacing-xs);
+}
+
+.drinks-title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--crm-text);
+}
+
+.drinks-btn-primary {
+  padding: 12px 24px;
+  border-radius: 20px;
+  border: none;
+  background: var(--crm-orange);
+  color: #fff;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.05s;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.drinks-btn-primary:hover:not(:disabled) {
+  background: var(--crm-orange-dark);
+}
+
+.drinks-btn-primary:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.drinks-btn-primary:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(255, 106, 0, 0.2);
+}
+
+.drinks-btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.drinks-filters {
+  background: var(--crm-card-bg);
+  border: 1px solid var(--crm-border);
+  border-radius: var(--crm-radius-lg);
+  padding: var(--crm-spacing);
+  margin-bottom: var(--crm-spacing);
+}
+
+.drinks-filters-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--crm-spacing-sm);
+  margin-bottom: var(--crm-spacing-sm);
+}
+
+.drinks-filter-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.drinks-filter-field label {
+  font-size: 0.8rem;
+  color: var(--crm-text-muted);
+  font-weight: 500;
+}
+
+.drinks-filter-field input,
+.drinks-filter-field select {
+  padding: 8px 12px;
+  border: 1px solid var(--crm-border);
+  border-radius: var(--crm-radius);
+  background: #fff;
+  color: var(--crm-text);
+  font-size: 0.9rem;
+}
+
+.drinks-filter-field input:focus,
+.drinks-filter-field select:focus {
+  outline: none;
+  border-color: var(--crm-orange);
+  box-shadow: 0 0 0 4px rgba(255, 106, 0, 0.2);
+}
+
+.drinks-filters-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--crm-spacing-xs);
+}
+
+.drinks-total {
+  font-size: 0.9rem;
+  color: var(--crm-text-muted);
+}
+
+.drinks-btn-reset {
+  padding: 8px var(--crm-spacing);
+  border-radius: 20px;
+  border: 2px solid var(--crm-orange);
+  background: #fff;
+  color: var(--crm-orange);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+
+.drinks-btn-reset:hover {
+  background: var(--crm-orange);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(255, 106, 0, 0.2);
+}
+
+.drinks-btn-reset:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(255, 106, 0, 0.2);
+}
+
+.drinks-table-card {
+  background: var(--crm-card-bg);
+  border: 1px solid var(--crm-border);
+  border-radius: var(--crm-radius-lg);
+  overflow: hidden;
+}
+
+.drinks-table-wrap {
+  overflow-x: auto;
+}
+
+.drinks-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.drinks-table th,
+.drinks-table td {
+  padding: var(--crm-spacing-xs) var(--crm-spacing-sm);
+  text-align: left;
+  border-bottom: 1px solid var(--crm-border);
+}
+
+.drinks-table th {
+  background: var(--crm-th-bg);
+  color: var(--crm-text-muted);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.drinks-table tbody tr:hover {
+  background: var(--crm-hover);
+}
+
+.drinks-table td {
+  color: var(--crm-text);
+  vertical-align: middle;
+}
+
+.drinks-cell-image {
+  width: 56px;
+}
+
+.drinks-cell-image .img-placeholder {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--crm-radius);
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--crm-text-muted);
+  font-size: 1.2rem;
+}
+
+.drinks-cell-image img {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: var(--crm-radius);
+}
+
+.drinks-cell-id {
+  font-family: ui-monospace, monospace;
+  font-size: 0.8rem;
+  color: var(--crm-text-muted);
+}
+
+.drinks-cell-name {
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.drinks-loading,
+.drinks-error {
+  padding: 40px var(--crm-spacing);
+  text-align: center;
+  color: var(--crm-text-muted);
+}
+
+.drinks-error {
+  color: var(--crm-error);
+}
+
+.drinks-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--crm-spacing-xs);
+  padding: var(--crm-spacing-sm) var(--crm-spacing);
+  border-top: 1px solid var(--crm-border);
+  background: var(--crm-card-bg);
+}
+
+.drinks-pagination-info {
+  font-size: 0.875rem;
+  color: var(--crm-text-muted);
+}
+
+.drinks-pagination-btns {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.drinks-pagination-btns button {
+  min-width: 36px;
+  padding: 8px 12px;
+  border-radius: 20px;
+  border: 2px solid var(--crm-orange);
+  background: #fff;
+  color: var(--crm-orange);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.drinks-pagination-btns button:hover:not(:disabled) {
+  background: var(--crm-orange);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(255, 106, 0, 0.2);
+}
+
+.drinks-pagination-btns button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  border-color: var(--crm-border);
+  color: var(--crm-text-muted);
+}
+
+.drinks-pagination-btns button.active {
+  background: var(--crm-orange);
+  border-color: var(--crm-orange);
+  color: #fff;
+}
+
+.drinks-pagination-btns .drinks-pagination-arrow {
+  padding: 8px 10px;
+  font-size: 16px;
+  line-height: 1;
+}
+
+.drinks-pagination-ellipsis {
+  padding: 0 4px;
+  color: var(--crm-text-muted);
+  font-size: 14px;
+  user-select: none;
+}
