@@ -1,0 +1,50 @@
+[
+  {
+    "id": "1",
+    "clientName": "Иван Иванов",
+    "clientPhone": "+79991234567",
+    "addressA": "ул. Пушкина, 10",
+    "addressB": "ул. Лермонтова, 25",
+    "price": 350,
+    "distance": "2.5 км",
+    "status": "new",
+    "pickupCoords": { "latitude": 55.7512, "longitude": 37.6184 },
+    "destinationCoords": { "latitude": 55.7558, "longitude": 37.6173 },
+    "items": [
+      { "id": "101", "name": "Пицца Маргарита 30см", "quantity": 1 },
+      { "id": "102", "name": "Кока-Кола 1л", "quantity": 2 }
+    ]
+  },
+  {
+    "id": "2",
+    "clientName": "Анна Смирнова",
+    "clientPhone": "+79009876543",
+    "addressA": "пр. Мира, 42",
+    "addressB": "ул. Чехова, 1",
+    "price": 500,
+    "distance": "4.1 км",
+    "status": "new",
+    "pickupCoords": { "latitude": 55.7650, "longitude": 37.6250 },
+    "destinationCoords": { "latitude": 55.7600, "longitude": 37.6200 },
+    "items": [
+      { "id": "201", "name": "Сет суши 'Филадельфия'", "quantity": 1 },
+      { "id": "202", "name": "Соевый соус", "quantity": 3 }
+    ]
+  },
+  {
+    "id": "3",
+    "clientName": "Петр Сергеев",
+    "clientPhone": "+79112223344",
+    "addressA": "ул. Гагарина, 8",
+    "addressB": "ул. Ленина, 99",
+    "price": 420,
+    "distance": "3.2 км",
+    "status": "new",
+    "pickupCoords": { "latitude": 55.7450, "longitude": 37.6050 },
+    "destinationCoords": { "latitude": 55.7500, "longitude": 37.6100 },
+    "items": [
+      { "id": "301", "name": "Бургер Классический", "quantity": 2 },
+      { "id": "302", "name": "Картофель Фри", "quantity": 1 }
+    ]
+  }
+]
