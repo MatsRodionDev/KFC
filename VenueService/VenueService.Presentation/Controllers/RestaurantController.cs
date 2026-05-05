@@ -1,4 +1,7 @@
 using AutoMapper;
+using Contracts.Broker.EventBus;
+using Contracts.Events;
+using Contracts.Order;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using VenueService.BLL.Models;
@@ -13,6 +16,8 @@ namespace VenueService.Controllers;
 [Route("api/restaurants")]
 public class RestaurantController(
     IRestaurantService restaurantService,
+    IOrderStorage orderStorage,
+    IEventBus eventBus,
     IMapper mapper) : ControllerBase
 {
     [HttpGet]
@@ -30,6 +35,40 @@ public class RestaurantController(
         var restaurant = await restaurantService.GetByIdAsync(id, cancellationToken);
         var restaurantResponse = mapper.Map<RestaurantResponse>(restaurant);
         return restaurantResponse;
+    }
+    
+    [HttpGet("{restaurantId:guid}/orders")]
+    public async Task<IActionResult> GetAllCookings(Guid restaurantId, CancellationToken cancellationToken = default) 
+        => Ok(await orderStorage.GetCookingsAsync(restaurantId));
+    
+    [HttpGet("{restaurantId:guid}/orders/{orderId:guid}")]
+    public async Task<IActionResult> GetCooking(Guid restaurantId, Guid orderId, CancellationToken cancellationToken = default) 
+        => Ok(await orderStorage.GetCookingAsync(restaurantId, orderId));
+
+    [HttpPatch("{restaurantId:guid}/orders/{orderId:guid}/ready")]
+    public async Task<IActionResult> SetCooking([FromBody] SetCookingReadyRequest request, CancellationToken cancellationToken = default)
+    {
+        var order = await orderStorage.SetCookingReadyAsync(request.RestaurantId, request.OrderId);
+        await eventBus.PublishAsync(new OrderEvent(Guid.NewGuid(), order.Id, EventType.OrderReady, DateTime.UtcNow), cancellationToken);
+        
+        return Ok(order);
+    }
+    
+    [HttpDelete("{restaurantId:guid}/orders/{orderId:guid}/collected")]
+    public async Task<IActionResult> SetCollected([FromBody] SetCookingReadyRequest request, CancellationToken cancellationToken = default)
+    {
+        var order = await orderStorage.GetCookingAsync(request.RestaurantId, request.OrderId);
+        await orderStorage.RemoveCookingAsync(request.RestaurantId, request.OrderId);
+        if (order.Delivery.ServiceType is ServiceType.ClickCollect)
+        {
+            await eventBus.PublishAsync(new OrderEvent(Guid.NewGuid(), order.Id, EventType.OrderCollected, DateTime.UtcNow), cancellationToken);
+        }
+        else
+        {
+            await eventBus.PublishAsync(new OrderEvent(Guid.NewGuid(), order.Id, EventType.OrderPickedUp, DateTime.UtcNow), cancellationToken);
+        }
+        
+        return NoContent();
     }
 
     [HttpPost]
@@ -58,3 +97,5 @@ public class RestaurantController(
         await restaurantService.DeleteAsync(id, cancellationToken);
     }
 }
+
+public record SetCookingReadyRequest(Guid RestaurantId, Guid OrderId);

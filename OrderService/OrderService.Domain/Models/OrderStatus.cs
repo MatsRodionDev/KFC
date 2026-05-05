@@ -6,6 +6,7 @@ public enum OrderStatus
     Paid,
     Cooking,
     Ready,
-    Shipped,
+    InDelivery,
+    Collected,
     Cancelled
 }

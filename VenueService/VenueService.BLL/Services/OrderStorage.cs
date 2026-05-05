@@ -7,7 +7,9 @@ namespace VenueService.BLL.Services;
 
 public interface IOrderStorage
 {
-    Task<List<Order>> GetCookingAsync(Guid restaurantId);
+    Task<List<Order>> GetCookingsAsync(Guid restaurantId);
+    Task<Order?> GetCookingAsync(Guid restaurantId, Guid orderId);
+    Task<Order?> SetCookingReadyAsync(Guid restaurantId, Guid orderId);
     Task AddCookingAsync(Order order, Guid restaurantId);
     Task RemoveCookingAsync(Guid orderId, Guid restaurantId);
 }
@@ -20,9 +22,37 @@ public class OrderStorage(IDistributedCache cache) : IOrderStorage
         WriteIndented = false
     };
 
-    public async Task<List<Order>> GetCookingAsync(Guid restaurantId)
+    public async Task<List<Order>> GetCookingsAsync(Guid restaurantId)
     {
         return await GetOrdersInternalAsync(GetCookingCacheKey(restaurantId));
+    }
+    
+    public async Task<Order?> GetCookingAsync(Guid restaurantId, Guid orderId)
+    {
+        return (await GetOrdersInternalAsync(GetCookingCacheKey(restaurantId))).FirstOrDefault(x => x.Id == orderId);
+    }
+    
+    public async Task<Order?> SetCookingReadyAsync(Guid restaurantId, Guid orderId)
+    {
+        var cacheKey = GetCookingCacheKey(restaurantId);
+        using var locker = await Locks<string>.Wait(cacheKey);
+        
+        var orders = await GetOrdersInternalAsync(GetCookingCacheKey(restaurantId));
+        
+        var order = orders.FirstOrDefault(x => x.Id == orderId);
+
+        if (order == null)
+        {
+            throw new Exception("Order not found");
+        }
+        
+        if (order.Status == OrderStatus.Ready)
+            throw new Exception("Order ready");
+        
+        order.Status = OrderStatus.Ready;
+        await cache.SetStringAsync(cacheKey, JsonSerializer.Serialize(orders, JsonOptions));
+        
+        return order;
     }
 
     public async Task AddCookingAsync(Order order, Guid restaurantId)

@@ -1,4 +1,4 @@
-namespace CourierTracker.API.Contracts;
+namespace Contracts.Courier;
 
 public class CourierLocation
 {

@@ -11,7 +11,7 @@ public class IncorrectOrderResponseExecutor() : ReflectingExecutor<IncorrectOrde
         CancellationToken cancellationToken = new CancellationToken())
     {
         var messageResponse = $"""
-                               Выша запрос "{message.Message}" не был идентифицирован как заказ.
+                               Ваш запрос "{message.Message}" не был идентифицирован как заказ.
                                Пожалуйста, уточните запрос.
                                """;
         var response = new OrderResponse { Comment = messageResponse, Products = [] };

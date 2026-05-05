@@ -41,7 +41,7 @@ public class OrderCreatedConsumer(
 
         if (restaurant is  null)
         {
-            throw new NullReferenceException("Restaurant is null");
+            return;
         }
         
         await orderStorge.AddCookingAsync(order, restaurant.Id);

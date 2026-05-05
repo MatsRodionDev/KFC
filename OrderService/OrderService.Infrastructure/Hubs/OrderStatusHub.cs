@@ -22,7 +22,7 @@ public class OrderStatusHub(ApplicationDbContext context) : Hub<IOrderStatus>
             .AsNoTracking()
             .Where(o => o.UserId == userId
                         && o.Status != OrderStatus.Cancelled
-                        && o.Status < OrderStatus.Shipped)
+                        && o.Status < OrderStatus.Collected)
             .ToListAsync())
             .Select(o => new OrderSummaryDto(o.Id, o.Delivery.ServiceType, o.Status)).ToList();
 

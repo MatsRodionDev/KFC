@@ -1,5 +1,5 @@
 using System.Text.Json;
-using CourierTracker.API.Contracts;
+using Contracts.Courier;
 using CourierTracker.API.Hubs;
 using MassTransit;
 using Microsoft.AspNetCore.SignalR;

@@ -37,11 +37,42 @@ public class ProcessOrderEventHandler(IUnitOfWork unitOfWork, IOrderStatusServic
                     return false;
                 
                 order.Status = OrderStatus.Cooking;
-                await unitOfWork.SaveChangesAsync(cancellationToken: cancellationToken);
+                
+                var courierEvent = new SendOrderToCourierEvent(Guid.NewGuid(), order.ToContract());
+                await unitOfWork.SaveChangesAsync(events: order.Delivery.ServiceType is ServiceType.Delivery ? [courierEvent] : [], cancellationToken: cancellationToken);
                 break;
             
-            case EventType.OrderCookingExpired:
+            case EventType.OrderReady:
                 if (order.Status != OrderStatus.Cooking)
+                    return false;
+                
+                order.Status = OrderStatus.Ready;
+                var readyEvent = new OrderReadyToCourierEvent(Guid.NewGuid(), order.ToContract());
+                await unitOfWork.SaveChangesAsync(events: order.Delivery.ServiceType is ServiceType.Delivery ?  [readyEvent] : [], cancellationToken: cancellationToken);
+            break;
+            
+            case EventType.OrderPickedUp:
+                if (order.Status != OrderStatus.Ready)
+                    return false;
+                
+                order.Status = OrderStatus.InDelivery;
+                var pickedUpEvent = new OrderCourierPickedUpEvent(Guid.NewGuid(), order.ToContract());
+                await unitOfWork.SaveChangesAsync(events: order.Delivery.ServiceType is ServiceType.Delivery ?  [pickedUpEvent] : [], cancellationToken: cancellationToken);
+            break;
+            
+            case EventType.OrderCollected:
+                if ((order.Delivery.ServiceType is not ServiceType.Delivery
+                     && order.Status != OrderStatus.InDelivery)
+                    || (order.Delivery.ServiceType is not ServiceType.ClickCollect
+                        && order.Status != OrderStatus.Ready))
+                    return false;
+                
+                order.Status = OrderStatus.InDelivery;
+                await unitOfWork.SaveChangesAsync(cancellationToken: cancellationToken);
+            break;
+            
+            case EventType.OrderCookingExpired:
+                if (order.Status is not OrderStatus.Cooking)
                     return false;
                 order.Status = OrderStatus.Cancelled;
                 await unitOfWork.SaveChangesAsync(cancellationToken: cancellationToken);

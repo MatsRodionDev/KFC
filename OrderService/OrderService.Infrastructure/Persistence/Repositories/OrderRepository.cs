@@ -33,7 +33,7 @@ internal sealed class OrderRepository(ApplicationDbContext context) : IOrderRepo
             .ThenInclude(p => p.PaymentEvents)
             .Where(o => o.UserId == userId)
             .Where(o => o.Status != OrderStatus.Cancelled 
-                           && o.Status < OrderStatus.Shipped)   
+                           && o.Status < OrderStatus.Collected)   
             .ToListAsync(cancellationToken);
     }
 

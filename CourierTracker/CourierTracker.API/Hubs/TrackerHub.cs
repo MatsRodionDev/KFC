@@ -1,5 +1,5 @@
 using System.Text.Json;
-using CourierTracker.API.Contracts;
+using Contracts.Courier;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Caching.Distributed;
 
