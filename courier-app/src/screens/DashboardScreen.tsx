@@ -11,12 +11,10 @@ type Props = {
 };
 
 export default function DashboardScreen({ navigation }: Props) {
-  // Теперь берем заказы прямо из глобального состояния
   const { isOnline, toggleStatus, orders, logout } = useAppStore();
   
   const [maxDistance, setMaxDistance] = useState<number>(10);
 
-  // Фильтруем: оставляем только АКТИВНЫЕ заказы (не доставленные) в заданном радиусе
   const activeOrders = orders.filter((order) => {
     const orderDistance = parseFloat(order.distance);
     return order.status !== 'delivered' && orderDistance <= maxDistance;
@@ -30,7 +28,6 @@ export default function DashboardScreen({ navigation }: Props) {
       </View>
       <Text style={styles.address}>А: {item.addressA}</Text>
       <Text style={styles.address}>Б: {item.addressB}</Text>
-      {/* Показываем текущий статус для удобства */}
       <Text style={styles.statusBadge}>Статус: {item.status}</Text> 
     </TouchableOpacity>
   );
@@ -43,7 +40,6 @@ export default function DashboardScreen({ navigation }: Props) {
             <Switch value={isOnline} onValueChange={toggleStatus} />
         </View>
         
-        {/* Кнопка перехода в историю */}
         <TouchableOpacity style={styles.historyBtn} onPress={() => navigation.navigate('History')}>
             <Text style={styles.historyBtnText}>🗓 История</Text>
         </TouchableOpacity>

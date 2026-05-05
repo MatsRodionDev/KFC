@@ -20,7 +20,6 @@ export default function LoginScreen({ navigation }: Props) {
       return;
     }
     
-    // Пытаемся залогиниться
     const isSuccess = login(phone, password);
     
     if (!isSuccess) {

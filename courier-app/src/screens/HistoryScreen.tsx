@@ -6,10 +6,8 @@ import { Order } from '../types';
 export default function HistoryScreen() {
   const { orders } = useAppStore();
 
-  // Берем только завершенные заказы
   const historyOrders = orders.filter(order => order.status === 'delivered');
 
-  // Считаем заработок за день
   const totalEarned = historyOrders.reduce((sum, order) => sum + order.price, 0);
 
   const renderItem = ({ item }: { item: Order }) => (
@@ -25,7 +23,6 @@ export default function HistoryScreen() {
 
   return (
     <View style={styles.container}>
-      {/* Плашка со статистикой */}
       <View style={styles.statsPanel}>
         <Text style={styles.statsLabel}>Заработано за смену:</Text>
         <Text style={styles.statsValue}>{totalEarned} ₽</Text>

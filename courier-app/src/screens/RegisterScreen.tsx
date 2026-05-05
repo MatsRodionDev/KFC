@@ -24,7 +24,7 @@ export default function RegisterScreen({ navigation }: Props) {
 
     if (isSuccess) {
       Alert.alert('Успех', 'Вы успешно зарегистрированы! Теперь вы можете войти.', [
-        { text: 'ОК', onPress: () => navigation.navigate('Login') } // Возвращаем на экран входа
+        { text: 'ОК', onPress: () => navigation.navigate('Login') }
       ]);
     } else {
       Alert.alert('Ошибка', 'Пользователь с таким номером телефона уже существует.');
