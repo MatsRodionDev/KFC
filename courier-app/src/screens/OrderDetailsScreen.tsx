@@ -7,6 +7,7 @@ import * as Location from 'expo-location';
 import * as ImagePicker from 'expo-image-picker';
 
 import { RootStackParamList, Order } from '../types';
+import { verifyDeliveryPhoto } from '../api/cvApi';
 
 type Props = {
   route: RouteProp<RootStackParamList, 'OrderDetails'>;
@@ -21,13 +22,18 @@ const STATUS_FLOW = {
   delivered: { label: 'Заказ завершен', next: null },
 } as const;
 
+/** Состояние CV-верификации фото доставки */
+type CvState = 'idle' | 'verifying' | 'success' | 'failed';
+
 export default function OrderDetailsScreen({ route, navigation }: Props) {
   const { order } = route.params;
   const [status, setStatus] = useState<Order['status']>(order.status);
-  
+
   const [location, setLocation] = useState<Location.LocationObjectCoords | null>(null);
   const [isLoadingMap, setIsLoadingMap] = useState(true);
   const [deliveryPhoto, setDeliveryPhoto] = useState<string | null>(null);
+  const [cvState, setCvState] = useState<CvState>('idle');
+  const [cvMessage, setCvMessage] = useState<string>('');
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   // === НОВОЕ: ДОСТАЕМ РАЗМЕРЫ ЭКРАНА В РЕАЛЬНОМ ВРЕМЕНИ ===
@@ -60,15 +66,53 @@ export default function OrderDetailsScreen({ route, navigation }: Props) {
       Alert.alert('Ошибка', 'Для фотоотчета нужен доступ к камере.');
       return;
     }
-    const result = await ImagePicker.launchCameraAsync({ allowsEditing: true, aspect: [4, 3], quality: 0.5 });
-    if (!result.canceled) {
-      setDeliveryPhoto(result.assets[0].uri);
+
+    const result = await ImagePicker.launchCameraAsync({
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 0.6,
+    });
+
+    if (result.canceled) return;
+
+    const photoUri = result.assets[0].uri;
+    setDeliveryPhoto(photoUri);
+    setCvState('verifying');
+    setCvMessage('Проверяем фото доставки…');
+
+    try {
+      const cvResult = await verifyDeliveryPhoto(photoUri);
+
+      if (cvResult.verified) {
+        setCvState('success');
+        setCvMessage(cvResult.message);
+        setStatus('delivered');
+      } else {
+        // CV не подтвердила — показываем ошибку, сбрасываем фото
+        setCvState('failed');
+        setCvMessage(cvResult.message);
+        setDeliveryPhoto(null);
+        Alert.alert(
+          'Фото не принято',
+          `${cvResult.message}\n\nПожалуйста, сфотографируйте посылку у двери клиента ещё раз.`,
+          [{ text: 'Повторить' }],
+        );
+      }
+    } catch (error) {
+      // Сетевая или серверная ошибка — не блокируем курьера, принимаем фото
+      console.warn('CV-сервис недоступен:', error);
+      setCvState('success');
+      setCvMessage('CV-сервис недоступен. Фото принято без автоверификации.');
       setStatus('delivered');
     }
   };
 
   const handleFinalCompletion = () => {
-    Alert.alert('Успешно', 'Заказ завершен. Фото прикреплено.', [{ text: 'ОК', onPress: () => navigation.goBack() }]);
+    Alert.alert(
+      'Успешно',
+      'Заказ завершён. Фото доставки прикреплено.',
+      [{ text: 'ОК', onPress: () => navigation.goBack() }],
+    );
   };
 
   const handleAction = () => {
@@ -123,7 +167,25 @@ export default function OrderDetailsScreen({ route, navigation }: Props) {
       {/* Правая/Нижняя часть с деталями. Обернули в ScrollView, чтобы ничего не обрезалось! */}
       <View style={{ flex: 1, width: isLandscape ? '50%' : '100%' }}>
         <ScrollView contentContainerStyle={styles.detailsScrollContent}>
-          {status === 'delivered' && deliveryPhoto && (
+          {/* CV-статус верификации */}
+          {cvState === 'verifying' && (
+            <View style={styles.cvBadge}>
+              <ActivityIndicator size="small" color="#fff" style={{ marginRight: 8 }} />
+              <Text style={styles.cvBadgeText}>CV проверяет фото…</Text>
+            </View>
+          )}
+          {cvState === 'success' && (
+            <View style={[styles.cvBadge, styles.cvBadgeSuccess]}>
+              <Text style={styles.cvBadgeText}>✅ {cvMessage}</Text>
+            </View>
+          )}
+          {cvState === 'failed' && (
+            <View style={[styles.cvBadge, styles.cvBadgeFailed]}>
+              <Text style={styles.cvBadgeText}>❌ {cvMessage}</Text>
+            </View>
+          )}
+
+          {status === 'delivered' && deliveryPhoto && cvState !== 'verifying' && (
             <View style={styles.photoSuccessBadge}><Text style={styles.photoSuccessText}>✅ Фотоотчет прикреплен</Text></View>
           )}
 
@@ -193,34 +255,4 @@ const styles = StyleSheet.create({
   map: { width: '100%', height: '100%' },
   errorText: { color: '#888', fontSize: 16 },
   
-  detailsScrollContent: { padding: 15, paddingBottom: 20 },
-  
-  targetIndicator: { backgroundColor: '#f0f0f0', padding: 8, borderRadius: 8, marginBottom: 10, alignItems: 'center' },
-  targetIndicatorText: { fontSize: 14, fontWeight: '600', color: '#333' },
-  clientName: { fontSize: 22, fontWeight: 'bold', marginBottom: 10 },
-  quickActionsRow: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 15 },
-  quickActionButton: { flex: 1, backgroundColor: '#e8e8e8', padding: 12, borderRadius: 10, alignItems: 'center', marginRight: 10 },
-  navButton: { backgroundColor: '#007AFF', marginRight: 0 },
-  quickActionText: { fontSize: 16, fontWeight: '600', color: '#333' },
-  itemsButton: { backgroundColor: '#f0f0f0', padding: 12, borderRadius: 8, marginBottom: 15, alignItems: 'center', borderWidth: 1, borderColor: '#ddd' },
-  itemsButtonText: { fontSize: 16, fontWeight: '600', color: '#333' },
-  addressBlock: { marginBottom: 10, padding: 5, borderRadius: 5 },
-  activeAddress: { backgroundColor: '#e8f0fe', borderWidth: 1, borderColor: '#d2e3fc' },
-  label: { fontSize: 13, color: '#666', marginBottom: 2 },
-  address: { fontSize: 16 },
-  price: { fontSize: 22, fontWeight: 'bold', color: '#28a745', marginTop: 5 },
-  actionButton: { backgroundColor: '#FF9500', padding: 18, margin: 15, borderRadius: 12, alignItems: 'center' },
-  actionButtonText: { color: '#fff', fontSize: 19, fontWeight: 'bold' },
-  photoSuccessBadge: { backgroundColor: '#28a745', padding: 10, borderRadius: 8, marginBottom: 15, alignItems: 'center' },
-  photoSuccessText: { color: '#fff', fontSize: 16, fontWeight: 'bold' },
-  
-  modalOverlay: { flex: 1, backgroundColor: 'rgba(0,0,0,0.5)', justifyContent: 'flex-end' },
-  modalContent: { backgroundColor: '#fff', borderTopLeftRadius: 20, borderTopRightRadius: 20, padding: 20, maxHeight: '60%' },
-  modalTitle: { fontSize: 22, fontWeight: 'bold', marginBottom: 15, textAlign: 'center' },
-  modalList: { marginBottom: 20 },
-  modalItemRow: { flexDirection: 'row', justifyContent: 'space-between', paddingVertical: 10, borderBottomWidth: 1, borderBottomColor: '#eee' },
-  modalItemName: { fontSize: 16, flex: 1, paddingRight: 10 },
-  modalItemQty: { fontSize: 16, fontWeight: 'bold', color: '#007AFF' },
-  modalCloseBtn: { backgroundColor: '#333', padding: 15, borderRadius: 10, alignItems: 'center' },
-  modalCloseBtnText: { color: '#fff', fontSize: 18, fontWeight: 'bold' },
-});
+  details

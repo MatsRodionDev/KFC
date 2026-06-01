@@ -15,35 +15,38 @@ public class OrderController(IDispatcher dispatcher, ITemporalClient client) : C
 {
     [HttpGet("{id}")]
     public async Task<IActionResult> GetByUserId(
-        Guid id, 
+        Guid id,
         CancellationToken cancellationToken)
     {
         return Ok(await dispatcher.Dispatch(new GetOrderByIdQuery(id), cancellationToken));
     }
-    
+
     [HttpPost("by_userid")]
     public async Task<IActionResult> GetByUserId(
-        [FromBody] GetOrdersQuery query, 
+        [FromBody] GetOrdersQuery query,
         CancellationToken cancellationToken)
     {
         return Ok(await dispatcher.Dispatch(query, cancellationToken));
     }
-    
+
     [HttpPost]
     public async Task<IActionResult> CreateOrder(
-        [FromBody] OrderCreateCommand command, 
+        [FromBody] OrderCreateCommand command,
         CancellationToken cancellationToken)
     {
         return Ok(await dispatcher.Dispatch(command, cancellationToken));
     }
-    
+
     [HttpPost("payment")]
     public async Task<IActionResult> UpdateOrderPayment(
         [FromBody] PaymentEvent paymentEvent,
         CancellationToken cancellationToken)
     {
-        await client.SignalAsync<OrderWorkflow>(paymentEvent.OrderId, workflow => workflow.PaymentUpdateEvent(paymentEvent));
+        await client.SignalAsync<OrderWorkflow>(
+            paymentEvent.OrderId,
+            workflow => workflow.PaymentUpdateEvent(paymentEvent));
         return Ok();
-        return Ok(await dispatcher.Dispatch(new UpdateCardPaymentStatusCommand(paymentEvent) ,cancellationToken));
     }
-}
+
+    /// <summary>
+    /// Верификация комплектности заказа через CV

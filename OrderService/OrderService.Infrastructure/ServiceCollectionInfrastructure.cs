@@ -9,6 +9,7 @@ using Npgsql;
 using OrderService.Application.Common.Interfaces;
 using OrderService.Domain.Repositories;
 using OrderService.Infrastructure.Broker.Consumers;
+using OrderService.Infrastructure.CvVerification;
 using OrderService.Infrastructure.Hubs;
 using OrderService.Infrastructure.OutboxPattern;
 using OrderService.Infrastructure.Persistence;
@@ -82,17 +83,16 @@ public static class ServiceCollectionInfrastructure
                 options.PayloadSerializerOptions.PropertyNamingPolicy = System.Text.Json.JsonNamingPolicy.CamelCase;
             });
         
+        // CV-сервис: HTTP-клиент к Analytics API
+        services.AddHttpClient<ICvVerificationService, CvVerificationService>(client =>
+        {
+            var analyticsBaseUrl = configuration["CvService:BaseUrl"] ?? "http://localhost:8000";
+            client.BaseAddress = new Uri(analyticsBaseUrl);
+            client.Timeout = TimeSpan.FromSeconds(30);
+        });
+
         return services
-            .AddDbContext<ApplicationDbContext>(options 
+            .AddDbContext<ApplicationDbContext>(options
                 => options.UseNpgsql(dataSource))
             .AddCacheServices(configuration)
-            .AddHostedService<OutboxProcessingBackgroundService>()
-            .AddCommonEventBus()
-            .AddScoped<IOrderStatusService, OrderStatusService>()
-            .AddScoped<ITemporalService, TemporalService>()
-            .AddScoped<ICartRepository, CartRepository>()
-            .AddScoped<ICartItemRepository, CartItemRepository>()
-            .AddScoped<IOrderRepository, OrderRepository>()
-            .AddScoped<IUnitOfWork, UnitOfWork>();
-    }
-}
+            .AddHostedService<Ou

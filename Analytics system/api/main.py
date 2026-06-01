@@ -1,5 +1,6 @@
-from fastapi import FastAPI, HTTPException, BackgroundTasks
+from fastapi import FastAPI, HTTPException, BackgroundTasks, UploadFile, File, Form
 from fastapi.middleware.cors import CORSMiddleware
+import json
 from contextlib import asynccontextmanager
 import uvicorn
 import logging
@@ -12,7 +13,7 @@ import os
 from datetime import datetime
 
 from models import (
-    DetectionStartRequest, 
+    DetectionStartRequest,
     DetectionStartResponse,
     DetectionStopRequest,
     DetectionStopResponse,
@@ -25,10 +26,14 @@ from models import (
     CameraResponse,
     CameraListResponse,
     StatusResponse,
+    OrderItemRequest,
+    VerifyCompletenessResponse,
+    VerifyDeliveryResponse,
 )
 from services.detection_service import DetectionService
 from services.forecast_service import ForecastService
 from services.email_service import EmailService
+from services.cv_order_service import verify_order_completeness, verify_delivery_photo
 
 # Настройка логирования
 logging.basicConfig(
@@ -603,11 +608,4 @@ async def delete_camera(camera_id: int):
 
 
 
-if __name__ == "__main__":
-    uvicorn.run(
-        "main:app",
-        host=os.getenv("API_HOST", "0.0.0.0"),
-        port=int(os.getenv("API_PORT", "8000")),
-        reload=os.getenv("API_RELOAD", "true").lower() == "true",
-        log_level=os.getenv("API_LOG_LEVEL", "info")
-    )
+# ── CV Order Endpoints ──────────────────�

@@ -68,7 +68,5 @@ public static class ApplicationServiceCollection
             .AddScoped<IQueryHandler<GetOrdersQuery, List<Order>>, GetOrdersQueryHandler>()
             .AddScoped<IQueryHandler<GetOrderByIdQuery, Order>, GetOrderByIdQueryHandler>()
             .AddScoped<ICommandHandler<UpdateCardPaymentStatusCommand, Order>, UpdateCardPaymentStatusCommandHandler>()
-            .AddScoped< ICommandHandler<OrderEventCommand, bool>,ProcessOrderEventHandler>()
-            .AddMediatorDispatcher();
-    }
-}
+            .AddScoped<ICommandHandler<OrderEventCommand, bool>, ProcessOrderEventHandler>()
+            .AddScoped<ICommandHandler<MarkOrde

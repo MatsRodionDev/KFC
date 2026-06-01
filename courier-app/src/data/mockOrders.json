@@ -1,18 +1,17 @@
 [
   {
     "id": "1",
-    "clientName": "Иван Иванов",
-    "clientPhone": "+79991234567",
-    "addressA": "ул. Пушкина, 10",
-    "addressB": "ул. Лермонтова, 25",
-    "price": 350,
+    "clientName": "Родион Мац",
+    "clientPhone": "+375293393987",
+    "addressA": "Беларусь, Могилёв, улица Лазаренко, 61",
+    "addressB": "Беларусь, Могилёв, улица Лазаренко, 57Б",
+    "price": 30,
     "distance": "2.5 км",
     "status": "new",
-    "pickupCoords": { "latitude": 55.7512, "longitude": 37.6184 },
-    "destinationCoords": { "latitude": 55.7558, "longitude": 37.6173 },
+    "pickupCoords": { "latitude": 53.907488, "longitude": 30.313119 },
+    "destinationCoords": { "latitude": 53.90639, "longitude": 30.314107 },
     "items": [
-      { "id": "101", "name": "Пицца Маргарита 30см", "quantity": 1 },
-      { "id": "102", "name": "Кока-Кола 1л", "quantity": 2 }
+      { "id": "101", "name": "Пицца с беконом", "quantity": 1 }
     ]
   },
   {
