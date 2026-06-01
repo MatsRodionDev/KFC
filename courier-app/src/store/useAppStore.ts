@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { Order } from '../types';
+import { getNewlyUnlocked } from '../utils/achievements';
 import ordersData from '../data/mockOrders.json';
 
 interface User {
@@ -12,12 +13,17 @@ interface AppState {
   isOnline: boolean;
   orders: Order[];
   users: User[];
-  
+  /** ID достижений, для которых уже показывался попап. */
+  shownAchievements: string[];
+  /** Достижение для показа в тосте (null = скрыт). */
+  pendingAchievement: string | null;
+
   login: (phone: string, password: string) => boolean;
   register: (phone: string, password: string) => boolean;
   logout: () => void;
   toggleStatus: () => void;
   updateOrderStatus: (id: string, status: Order['status']) => void;
+  dismissAchievement: () => void;
 }
 
 export const useAppStore = create<AppState>((set, get) => ({
@@ -25,33 +31,21 @@ export const useAppStore = create<AppState>((set, get) => ({
   isOnline: false,
   orders: ordersData as Order[],
   users: [],
-  
+  shownAchievements: [],
+  pendingAchievement: null,
+
   register: (phone, password) => {
     const { users } = get();
-    const userExists = users.some(u => u.phone === phone);
-    if (userExists) return false;
-
+    if (users.some(u => u.phone === phone)) return false;
     set({ users: [...users, { phone, password }] });
     return true;
   },
 
   login: (phone, password) => {
     const { users } = get();
-    const isValidUser = users.some(u => u.phone === phone && u.password === password);
-    
-    if (isValidUser) {
-      set({ isAuthenticated: true });
-      return true;
-    }
-    return false;
+    const ok = users.some(u => u.phone === phone && u.password === password);
+    if (ok) set({ isAuthenticated: true });
+    return ok;
   },
 
-  logout: () => set({ isAuthenticated: false, isOnline: false }),
-  toggleStatus: () => set((state) => ({ isOnline: !state.isOnline })),
-  
-  updateOrderStatus: (id, status) => set((state) => ({
-    orders: state.orders.map(order => 
-      order.id === id ? { ...order, status } : order
-    )
-  })),
-}));
+  logout: () =>

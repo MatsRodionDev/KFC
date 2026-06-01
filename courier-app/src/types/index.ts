@@ -13,8 +13,8 @@ export interface Order {
   price: number;
   distance: string;
   status: 'new' | 'accepted' | 'arrived_a' | 'picked_up' | 'arrived_b' | 'delivered';
-  pickupCoords: { latitude: number; longitude: number; };
-  destinationCoords: { latitude: number; longitude: number; };
+  pickupCoords: { latitude: number; longitude: number };
+  destinationCoords: { latitude: number; longitude: number };
   deliveryPhotoUri?: string;
   items: OrderItem[];
 }
@@ -25,4 +25,6 @@ export type RootStackParamList = {
   Dashboard: undefined;
   OrderDetails: { order: Order };
   History: undefined;
-  Ch
+  Chat: { orderId: string; courierName: string; clientName: string };
+  Achievements: undefined;
+};
