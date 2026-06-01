@@ -25,4 +25,4 @@ export type RootStackParamList = {
   Dashboard: undefined;
   OrderDetails: { order: Order };
   History: undefined;
-};
+  Ch

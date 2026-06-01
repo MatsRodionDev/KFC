@@ -129,6 +129,14 @@ export default function OrderDetailsScreen({ route, navigation }: Props) {
 
   const callClient = () => { Linking.openURL(`tel:${order.clientPhone}`); };
 
+  const openChat = () => {
+    navigation.navigate('Chat', {
+      orderId: order.id,
+      courierName: 'Курьер',
+      clientName: order.clientName,
+    });
+  };
+
   const openNavigator = () => {
     const lat = currentTargetCoords.latitude;
     const lng = currentTargetCoords.longitude;
@@ -200,6 +208,7 @@ export default function OrderDetailsScreen({ route, navigation }: Props) {
           <View style={styles.quickActionsRow}>
             <TouchableOpacity style={styles.quickActionButton} onPress={callClient}><Text style={styles.quickActionText}>📞 Звонок</Text></TouchableOpacity>
             <TouchableOpacity style={[styles.quickActionButton, styles.navButton]} onPress={openNavigator}><Text style={[styles.quickActionText, {color: '#fff'}]}>🧭 Навигатор</Text></TouchableOpacity>
+            <TouchableOpacity style={[styles.quickActionButton, styles.chatButton]} onPress={openChat}><Text style={[styles.quickActionText, {color: '#fff'}]}>💬 Чат</Text></TouchableOpacity>
           </View>
 
           <TouchableOpacity style={styles.itemsButton} onPress={() => setIsModalVisible(true)}>
@@ -256,3 +265,44 @@ const styles = StyleSheet.create({
   errorText: { color: '#888', fontSize: 16 },
   
   details
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: { flex: 1, backgroundColor: '#fff' },
+  mapContainer: { backgroundColor: '#e0e0e0', justifyContent: 'center', alignItems: 'center' },
+  map: { width: '100%', height: '100%' },
+  errorText: { color: '#888', fontSize: 16 },
+
+  detailsScrollContent: { padding: 15, paddingBottom: 20 },
+
+  targetIndicator: { backgroundColor: '#f0f0f0', padding: 8, borderRadius: 8, marginBottom: 10, alignItems: 'center' },
+  targetIndicatorText: { fontSize: 14, fontWeight: '600', color: '#333' },
+  clientName: { fontSize: 22, fontWeight: 'bold', marginBottom: 10 },
+  quickActionsRow: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 15, gap: 8 },
+  quickActionButton: { flex: 1, backgroundColor: '#e8e8e8', padding: 12, borderRadius: 10, alignItems: 'center' },
+  navButton: { backgroundColor: '#007AFF' },
+  chatButton: { backgroundColor: '#34C759' },
+  quickActionText: { fontSize: 14, fontWeight: '600', color: '#333' },
+  itemsButton: { backgroundColor: '#f0f0f0', padding: 12, borderRadius: 8, marginBottom: 15, alignItems: 'center', borderWidth: 1, borderColor: '#ddd' },
+  itemsButtonText: { fontSize: 16, fontWeight: '600', color: '#333' },
+  addressBlock: { marginBottom: 10, padding: 5, borderRadius: 5 },
+  activeAddress: { backgroundColor: '#e8f0fe', borderWidth: 1, borderColor: '#d2e3fc' },
+  label: { fontSize: 13, color: '#666', marginBottom: 2 },
+  address: { fontSize: 16 },
+  price: { fontSize: 22, fontWeight: 'bold', color: '#28a745', marginTop: 5 },
+  actionButton: { backgroundColor: '#FF9500', padding: 18, margin: 15, borderRadius: 12, alignItems: 'center' },
+  actionButtonText: { color: '#fff', fontSize: 19, fontWeight: 'bold' },
+  photoSuccessBadge: { backgroundColor: '#28a745', padding: 10, borderRadius: 8, marginBottom: 15, alignItems: 'center' },
+  photoSuccessText: { color: '#fff', fontSize: 16, fontWeight: 'bold' },
+  cvBadge: { flexDirection: 'row', alignItems: 'center', backgroundColor: '#555', padding: 10, borderRadius: 8, marginBottom: 10 },
+  cvBadgeSuccess: { backgroundColor: '#1a7a3c' },
+  cvBadgeFailed: { backgroundColor: '#c0392b' },
+  cvBadgeText: { color: '#fff', fontSize: 14, fontWeight: '600', flexShrink: 1 },
+
+  modalOverlay: { flex: 1, backgroundColor: 'rgba(0,0,0,0.5)', justifyContent: 'flex-end' },
+  modalContent: { backgroundColor: '#fff', borderTopLeftRadius: 20, borderTopRightRadius: 20, padding: 20, maxHeight: '60%' },
+  modalTitle: { fontSize: 22, fontWeight: 'bold', marginBottom: 15, textAlign: 'center' },
+  modalList: { marginBottom: 20 },
+  modalItemRow: { flexDirection: 'row', justifyContent: 'space-between', paddingVertical

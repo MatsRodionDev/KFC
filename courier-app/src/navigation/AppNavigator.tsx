@@ -9,6 +9,7 @@ import DashboardScreen from '../screens/DashboardScreen';
 import OrderDetailsScreen from '../screens/OrderDetailsScreen';
 import HistoryScreen from '../screens/HistoryScreen';
 import RegisterScreen from '../screens/RegisterScreen';
+import ChatScreen from '../screens/ChatScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -28,9 +29,5 @@ export default function AppNavigator() {
             <Stack.Screen name="Dashboard" component={DashboardScreen} options={{ title: 'Смена' }} />
             <Stack.Screen name="OrderDetails" component={OrderDetailsScreen} options={{ title: 'Заказ' }} />
             <Stack.Screen name="History" component={HistoryScreen} options={{ title: 'История заказов' }} />
-          </>
-        )}
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
-}
+            <Stack.Screen
+              

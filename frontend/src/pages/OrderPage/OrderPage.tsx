@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import { orderService } from '../../services/api';
 import { Order, OrderStatus, PaymentStatus } from '../../types';
+import { ChatWidget } from '../../components/Chat/ChatWidget';
 import './OrderPage.css';
 
 export const OrderPage = () => {
@@ -250,12 +251,4 @@ export const OrderPage = () => {
             <button onClick={() => navigate('/history')} className="btn-back">
               ← Вернуться к истории заказов
             </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-
-
+          </
