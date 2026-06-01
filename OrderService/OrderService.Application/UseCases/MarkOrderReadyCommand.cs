@@ -63,17 +63,11 @@ public class MarkOrderReadyCommandHandler(
                 Message: cvResult.Message);
         }
 
-        // CV подтвердила — переводим статус
+        // CV подтвердила — переводим статус и генерируем QR-токен для курьера
         order.Status = OrderStatus.Ready;
+        order.PickupToken = Guid.NewGuid().ToString("N"); // 32-символьный hex-токен
         await unitOfWork.SaveChangesAsync(cancellationToken: cancellationToken);
 
         await orderStatusService.OrderStatusChanged(
             order.UserId,
-            new OrderSummaryDto(order.Id, order.Delivery.ServiceType, order.Status));
-
-        return new MarkOrderReadyResult(
-            Success: true,
-            CvVerified: true,
-            Message: cvResult.Message);
-    }
-}
+            new OrderSummaryDto(order.Id, order.Delivery.ServiceType, ord

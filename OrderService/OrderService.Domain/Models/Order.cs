@@ -9,4 +9,3 @@ public class Order
     public Delivery Delivery { get; set; }
     public Payment Payment { get; set; }
     public List<OrderItem> Items { get; set; } = [];
-}

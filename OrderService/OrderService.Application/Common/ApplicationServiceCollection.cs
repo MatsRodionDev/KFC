@@ -22,42 +22,45 @@ public static class ApplicationServiceCollection
             {
                 c.BaseAddress = new Uri("http://localhost:5079");
             });
-        
+
         services
             .AddRefitClient<ICoordinatesApi>()
             .ConfigureHttpClient(c =>
             {
                 c.BaseAddress = new Uri("https://nominatim.openstreetmap.org");
-                
                 c.DefaultRequestHeaders.UserAgent.ParseAdd("MyApp/1.0 (rodion.mats11@gmail.com)");
             });
-        
+
         services
             .AddRefitClient<IGeoApiClient>()
             .ConfigureHttpClient(c =>
             {
                 c.BaseAddress = new Uri("http://localhost:5172");
             });
-        
+
         services
             .AddRefitClient<IRestaurantClient>()
             .ConfigureHttpClient(c =>
             {
                 c.BaseAddress = new Uri("http://localhost:5113");
             });
-        
+
         services.AddSingleton<IConnectionMultiplexer>(sp =>
         {
             var configuration = "localhost:6380";
             return ConnectionMultiplexer.Connect(configuration);
         });
-        
+
         services.AddSingleton<IDistributedLockProvider>(sp =>
         {
             IConnectionMultiplexer multiplexer = sp.GetRequiredService<IConnectionMultiplexer>();
-            return new RedisDistributedSynchronizationProvider(multiplexer.GetDatabase(), options => options.BusyWaitSleepTime(TimeSpan.FromMilliseconds(10), TimeSpan.FromMilliseconds(200)));
+            return new RedisDistributedSynchronizationProvider(
+                multiplexer.GetDatabase(),
+                options => options.BusyWaitSleepTime(
+                    TimeSpan.FromMilliseconds(10),
+                    TimeSpan.FromMilliseconds(200)));
         });
-        
+
         return services
             .AddScoped<IQueryHandler<GetCurrentOrdersQuery, List<Order>>, GetCurrentOrdersQueryHandler>()
             .AddScoped<ICommandHandler<CartAddProductItemCommand, Guid>, CartAddProductItemCommandHandler>()
@@ -69,4 +72,8 @@ public static class ApplicationServiceCollection
             .AddScoped<IQueryHandler<GetOrderByIdQuery, Order>, GetOrderByIdQueryHandler>()
             .AddScoped<ICommandHandler<UpdateCardPaymentStatusCommand, Order>, UpdateCardPaymentStatusCommandHandler>()
             .AddScoped<ICommandHandler<OrderEventCommand, bool>, ProcessOrderEventHandler>()
-            .AddScoped<ICommandHandler<MarkOrde
+            .AddScoped<ICommandHandler<MarkOrderReadyCommand, MarkOrderReadyResult>, MarkOrderReadyCommandHandler>()
+            .AddScoped<ICommandHandler<ConfirmPickupCommand, ConfirmPickupResult>, ConfirmPickupCommandHandler>()
+            .AddMediatorDispatcher();
+    }
+}
