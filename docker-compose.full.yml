@@ -1,0 +1,355 @@
+# ============================================================
+#  Полный docker-compose для Программно-информационной системы
+#  доставки продуктов питания
+#
+#  Запуск:  docker compose -f docker-compose.full.yml up -d --build
+#  Остановка: docker compose -f docker-compose.full.yml down
+# ============================================================
+version: "3.9"
+
+networks:
+  kfc-net:
+    driver: bridge
+
+# ─── Общие переменные окружения для .NET сервисов ──────────
+x-db: &db-env
+  POSTGRES_HOST: postgresql
+  POSTGRES_PORT: "5432"
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: postgres
+
+x-rabbit: &rabbit-env
+  RABBITMQ_HOST: amqp://guest:guest@rabbitmq:5672
+  RABBITMQ_USERNAME: guest
+  RABBITMQ_PASSWORD: guest
+
+# ────────────────────────────────────────────────────────────
+services:
+
+  # ── Инфраструктура ────────────────────────────────────────
+
+  postgresql:
+    image: postgis/postgis:15-3.3
+    container_name: kfc-postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      ALLOW_IP_RANGE: "0.0.0.0/0"
+    ports:
+      - "5433:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    networks: [kfc-net]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  postgres-vector:
+    image: ankane/pgvector:latest
+    container_name: kfc-postgres-vector
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5434:5432"
+    volumes:
+      - pg_vector_data:/var/lib/postgresql/data
+    networks: [kfc-net]
+
+  redis:
+    image: redis:7-alpine
+    container_name: kfc-redis
+    restart: always
+    ports:
+      - "6380:6379"
+    networks: [kfc-net]
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: kfc-rabbitmq
+    restart: always
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    ports:
+      - "5673:5672"
+      - "15673:15672"
+    networks: [kfc-net]
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+      interval: 15s
+      timeout: 10s
+      retries: 5
+
+  temporal:
+    image: temporalio/auto-setup:1.20.0
+    container_name: kfc-temporal
+    depends_on:
+      postgresql:
+        condition: service_healthy
+    ports:
+      - "7233:7233"
+    environment:
+      DB: postgres12
+      DB_PORT: "5432"
+      POSTGRES_USER: postgres
+      POSTGRES_PWD: postgres
+      POSTGRES_SEEDS: postgresql
+      ENABLE_ES: "false"
+    networks: [kfc-net]
+
+  temporal-ui:
+    image: temporalio/ui:2.26.2
+    container_name: kfc-temporal-ui
+    ports:
+      - "8088:8080"
+    environment:
+      TEMPORAL_ADDRESS: temporal:7233
+    depends_on: [temporal]
+    networks: [kfc-net]
+
+  minio:
+    image: minio/minio
+    container_name: kfc-minio
+    restart: unless-stopped
+    environment:
+      MINIO_ROOT_USER: MINIO_ROOT_USER
+      MINIO_ROOT_PASSWORD: MINIO_ROOT_PASSWORD
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    command: server /data --console-address ":9001"
+    volumes:
+      - minio_data:/data
+    networks: [kfc-net]
+
+  pgadmin:
+    image: dpage/pgadmin4:8
+    container_name: kfc-pgadmin
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+    networks: [kfc-net]
+
+  # ── .NET Микросервисы ─────────────────────────────────────
+
+  catalog:
+    build:
+      context: .
+      dockerfile: Catalog/Dockerfile
+    container_name: kfc-catalog
+    ports:
+      - "5079:8080"
+    environment:
+      ASPNETCORE_URLS: http://+:8080
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__ApplicationDbContext: "Host=postgresql;Port=5432;Database=catalog6;Username=postgres;Password=postgres"
+      MinioOptions__Endpoint: minio:9000
+      MinioOptions__ImageUrl: minio:9000
+      MinioOptions__AccessKey: MINIO_ROOT_USER
+      MinioOptions__SecretKey: MINIO_ROOT_PASSWORD
+    depends_on:
+      postgresql:
+        condition: service_healthy
+    networks: [kfc-net]
+    restart: on-failure
+
+  order-service:
+    build:
+      context: .
+      dockerfile: OrderService/Dockerfile
+    container_name: kfc-order-service
+    ports:
+      - "5046:8080"
+    environment:
+      ASPNETCORE_URLS: http://+:8080
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__ApplicationDbContext: "Host=postgresql;Port=5432;Database=order;Username=postgres;Password=postgres"
+      MessageBrokerSettings__Host: amqp://guest:guest@rabbitmq:5672
+      MessageBrokerSettings__Username: guest
+      MessageBrokerSettings__Password: guest
+      Temporal__Address: temporal:7233
+      Temporal__Namespace: default
+      Temporal__TaskQueue: order-workflow-broker
+      CvService__BaseUrl: http://analytics-api:8000
+    depends_on:
+      postgresql:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+      temporal:
+        condition: service_started
+    networks: [kfc-net]
+    restart: on-failure
+
+  payment-service:
+    build:
+      context: .
+      dockerfile: PaymentService/Dockerfile
+    container_name: kfc-payment
+    ports:
+      - "5114:8080"
+    environment:
+      ASPNETCORE_URLS: http://+:8080
+      ASPNETCORE_ENVIRONMENT: Development
+      MessageBrokerSettings__Host: amqp://guest:guest@rabbitmq:5672
+      MessageBrokerSettings__Username: guest
+      MessageBrokerSettings__Password: guest
+      Temporal__Address: temporal:7233
+      Temporal__Namespace: default
+      Temporal__TaskQueue: payment-workflow-task-queue
+      Stripe__ApiKey: ${STRIPE_API_KEY:-sk_test_placeholder}
+      Stripe__WebhookSecret: ${STRIPE_WEBHOOK_SECRET:-whsec_placeholder}
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    networks: [kfc-net]
+    restart: on-failure
+
+  venue-service:
+    build:
+      context: .
+      dockerfile: VenueService/Dockerfile
+    container_name: kfc-venue
+    ports:
+      - "5113:8080"
+    environment:
+      ASPNETCORE_URLS: http://+:8080
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__DefaultConnection: "Host=postgresql;Port=5432;Database=venue;Username=postgres;Password=postgres"
+    depends_on:
+      postgresql:
+        condition: service_healthy
+    networks: [kfc-net]
+    restart: on-failure
+
+  geo-service:
+    build:
+      context: .
+      dockerfile: Geo/Dockerfile
+    container_name: kfc-geo
+    ports:
+      - "5172:8080"
+    environment:
+      ASPNETCORE_URLS: http://+:8080
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__Redis: redis:6379
+    depends_on: [redis]
+    networks: [kfc-net]
+    restart: on-failure
+
+  courier-tracker:
+    build:
+      context: .
+      dockerfile: CourierTracker/Dockerfile
+    container_name: kfc-courier-tracker
+    ports:
+      - "5050:8080"
+    environment:
+      ASPNETCORE_URLS: http://+:8080
+      ASPNETCORE_ENVIRONMENT: Development
+      MessageBrokerSettings__Host: amqp://guest:guest@rabbitmq:5672
+      MessageBrokerSettings__Username: guest
+      MessageBrokerSettings__Password: guest
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    networks: [kfc-net]
+    restart: on-failure
+
+  chat-service:
+    build:
+      context: .
+      dockerfile: ChatService/Dockerfile
+    container_name: kfc-chat
+    ports:
+      - "5200:8080"
+    environment:
+      ASPNETCORE_URLS: http://+:8080
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__ChatDb: "Host=postgresql;Port=5432;Database=chatservice;Username=postgres;Password=postgres"
+    depends_on:
+      postgresql:
+        condition: service_healthy
+    networks: [kfc-net]
+    restart: on-failure
+
+  # ── Analytics (Python) ────────────────────────────────────
+
+  analytics-api:
+    build:
+      context: ./Analytics system
+      dockerfile: Dockerfile
+    container_name: kfc-analytics
+    ports:
+      - "8000:8000"
+    environment:
+      DB_HOST: postgresql
+      DB_PORT: "5432"
+      DB_NAME: cafeteria
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      API_HOST: "0.0.0.0"
+      API_PORT: "8000"
+      API_RELOAD: "false"
+      API_LOG_LEVEL: info
+    volumes:
+      # Монтируем файл модели YOLO — не копируем в образ (слишком большой)
+      - ./Analytics system/yolov5l6u.pt:/app/yolov5l6u.pt:ro
+    depends_on:
+      postgresql:
+        condition: service_healthy
+    networks: [kfc-net]
+    restart: on-failure
+
+  # ── Веб-фронты ────────────────────────────────────────────
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_AUTH0_DOMAIN: ${AUTH0_DOMAIN:-dev-68w2668n3ozgs1cf.us.auth0.com}
+        VITE_AUTH0_CLIENT_ID: ${AUTH0_CLIENT_ID:-placeholder}
+        VITE_AUTH0_AUDIENCE: ${AUTH0_AUDIENCE:-https://kfc-uni-pir-221.com}
+    container_name: kfc-frontend
+    ports:
+      - "3000:80"
+    networks: [kfc-net]
+    restart: unless-stopped
+
+  frontend-crm:
+    build:
+      context: ./frontend-crm
+      dockerfile: Dockerfile
+      args:
+        VITE_AUTH0_DOMAIN: ${AUTH0_DOMAIN:-dev-68w2668n3ozgs1cf.us.auth0.com}
+        VITE_AUTH0_CLIENT_ID: ${AUTH0_CLIENT_ID:-placeholder}
+        VITE_AUTH0_AUDIENCE: ${AUTH0_AUDIENCE:-https://kfc-uni-pir-221.com}
+    container_name: kfc-crm
+    ports:
+      - "3001:80"
+    networks: [kfc-net]
+    restart: unless-stopped
+
+  # ── Stripe CLI (для dev webhook) ──────────────────────────
+  stripe-cli:
+    image: stripe/stripe-cli:latest
+    container_name: kfc-stripe-cli
+    command: listen --forward-to http://payment-service:8080/api/Webhooks
+    environment:
+      STRIPE_API_KEY: ${STRIPE_API_KEY:-sk_test_placeholder}
+    networks: [kfc-net]
+    depends_on: [payment-service]
+
+volumes:
+  pg_data:
+  pg_vector_data:
+  minio_data:

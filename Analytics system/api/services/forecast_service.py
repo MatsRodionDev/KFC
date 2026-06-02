@@ -1,14 +1,12 @@
+from __future__ import annotations
 import os
 import logging
 import asyncio
-import pandas as pd
 import psycopg2
-from prophet import Prophet
 import datetime
 from .email_service import EmailService
-import google.generativeai as genai
-from sqlalchemy import create_engine
 from typing import Dict, Any, List, Optional
+# pandas, Prophet, genai, sqlalchemy — ленивые импорты внутри методов
 
 logger = logging.getLogger(__name__)
 
@@ -18,7 +16,7 @@ class ForecastService:
     def __init__(self):
         # Переменные окружения для базы данных
         self.db_host = os.getenv("DB_HOST", "localhost")
-        self.db_port = os.getenv("DB_PORT", "5433")
+        self.db_port = os.getenv("DB_PORT", "5555")
         self.db_name = os.getenv("DB_NAME", "cafeteria")
         self.db_user = os.getenv("DB_USER", "admin")
         self.db_password = os.getenv("DB_PASS", "admin123")
@@ -41,12 +39,20 @@ class ForecastService:
         # Переменные окружения для Gemini
         self.gemini_api_key = os.getenv("GEMINI_API_KEY", "AIzaSyAqlIbkALELdtNcmAqEBKycoQZMqFV6cqQ")
         
-        # Инициализация Gemini
-        genai.configure(api_key=self.gemini_api_key)
-        # self.gemini_model = genai.GenerativeModel("gemini-1.5-flash")
-        self.gemini_model = genai.GenerativeModel("gemini-2.5-flash")
+        # Инициализация Gemini (ленивый импорт)
+        try:
+            import google.generativeai as genai
+            genai.configure(api_key=self.gemini_api_key)
+            self.gemini_model = genai.GenerativeModel("gemini-2.5-flash")
+        except (ImportError, Exception) as e:
+            logger.warning("Gemini недоступен: %s", e)
+            self.gemini_model = None
     
     async def generate_forecast(self, config: Dict[str, Any]) -> Dict[str, Any]:
+        import pandas as pd
+        from prophet import Prophet
+        from sqlalchemy import create_engine
+        import google.generativeai as genai
         """Генерация прогноза посещений"""
         try:
             logger.info("Начало генерации прогноза...")
@@ -106,6 +112,8 @@ class ForecastService:
             raise
     
     async def _get_data(self) -> pd.DataFrame:
+        import pandas as pd
+        from sqlalchemy import create_engine
         """Получение данных из базы данных"""
         try:
             conn_str = f"postgresql+psycopg2://{self.db_config['user']}:{self.db_config['password']}@{self.db_config['host']}:{self.db_config['port']}/{self.db_config['name']}"
@@ -126,6 +134,8 @@ class ForecastService:
             raise
     
     async def _forecast_camera(self, df: pd.DataFrame, camera_id: int, days_ahead: int = 3) -> Optional[pd.DataFrame]:
+        import pandas as pd
+        from sqlalchemy import create_engine
         """Создание прогноза для конкретной камеры"""
         try:
             camera_df = df[df["camera_id"] == camera_id][["ts", "visitors"]].copy()
@@ -171,6 +181,8 @@ class ForecastService:
             return None
     
     async def _generate_summary(self, camera_id: int, forecast: pd.DataFrame, df: pd.DataFrame, days_ahead: int) -> str:
+        import pandas as pd
+        from sqlalchemy import create_engine
         """Генерация текстового описания прогноза"""
         try:
             today = datetime.date.today()

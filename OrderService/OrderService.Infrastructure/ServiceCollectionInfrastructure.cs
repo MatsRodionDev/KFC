@@ -88,11 +88,20 @@ public static class ServiceCollectionInfrastructure
         {
             var analyticsBaseUrl = configuration["CvService:BaseUrl"] ?? "http://localhost:8000";
             client.BaseAddress = new Uri(analyticsBaseUrl);
-            client.Timeout = TimeSpan.FromSeconds(30);
+            client.Timeout = TimeSpan.FromSeconds(120);
         });
 
         return services
             .AddDbContext<ApplicationDbContext>(options
                 => options.UseNpgsql(dataSource))
             .AddCacheServices(configuration)
-            .AddHostedService<Ou
+            .AddHostedService<OutboxProcessingBackgroundService>()
+            .AddCommonEventBus()
+            .AddScoped<IOrderStatusService, OrderStatusService>()
+            .AddScoped<ITemporalService, TemporalService>()
+            .AddScoped<ICartRepository, CartRepository>()
+            .AddScoped<ICartItemRepository, CartItemRepository>()
+            .AddScoped<IOrderRepository, OrderRepository>()
+            .AddScoped<IUnitOfWork, UnitOfWork>();
+    }
+}

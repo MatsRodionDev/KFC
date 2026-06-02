@@ -10,7 +10,7 @@ services:
       POSTGRES_PASSWORD: admin123
       POSTGRES_DB: cafeteria
     ports:
-      - "5433:5432"
+      - "5555:5432"
     volumes:
       - timescale_data:/var/lib/postgresql/data
       - ./initdb:/docker-entrypoint-initdb.d 

@@ -56,4 +56,24 @@ internal sealed class OrderRepository(ApplicationDbContext context) : IOrderRepo
     {
         await context.AddAsync(paymentEvent, cancellationToken);
     }
+
+    public async Task<List<Order>> GetAvailableForCouriersAsync(CancellationToken cancellationToken)
+    {
+        return await context.Orders
+            .Include(o => o.Items)
+            .Where(o => o.Status == OrderStatus.Ready)
+            .OrderBy(o => o.Id)
+            .ToListAsync(cancellationToken);
+    }
+
+    public async Task<List<Order>> GetKitchenOrdersAsync(CancellationToken cancellationToken)
+    {
+        return await context.Orders
+            .Include(o => o.Items)
+            .Where(o => o.Status == OrderStatus.Paid
+                     || o.Status == OrderStatus.Cooking
+                     || o.Status == OrderStatus.Ready)
+            .OrderByDescending(o => o.Status)
+            .ToListAsync(cancellationToken);
+    }
 }

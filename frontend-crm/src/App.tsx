@@ -1,3 +1,4 @@
+import OrdersPage from './pages/OrdersPage'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { Header } from './components/Header'
 import { LoginPage, ProtectedRoute } from './components/auth'
@@ -12,7 +13,8 @@ const AppLayout = () => (
     <Header />
     <main>
       <Routes>
-        <Route path="/" element={<Navigate to="/dishes" replace />} />
+        <Route path="/" element={<Navigate to="/orders" replace />} />
+        <Route path="/orders" element={<OrdersPage />} />
         <Route path="/dishes" element={<DishesPage />} />
         <Route path="/ingredients" element={<IngredientsPage />} />
         <Route path="/toppings" element={<ToppingsPage />} />

@@ -12,7 +12,7 @@ import { CameraView, useCameraPermissions } from 'expo-camera';
 
 import { RootStackParamList, Order } from '../types';
 import { verifyDeliveryPhoto } from '../api/cvApi';
-import { confirmPickup, parseQrPayload } from '../api/orderApi';
+import { confirmPickup, parseQrPayload, confirmDelivery } from '../api/orderApi';
 
 type Props = {
   route: RouteProp<RootStackParamList, 'OrderDetails'>;
@@ -155,6 +155,8 @@ export default function OrderDetailsScreen({ route, navigation }: Props) {
         setCvState('success');
         setCvMessage(cv.message);
         setStatus('delivered');
+        // Уведомляем сервер: Shipped → Delivered
+        confirmDelivery(order.id).catch(() => {});
       } else {
         setCvState('failed');
         setCvMessage(cv.message);

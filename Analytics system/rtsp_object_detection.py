@@ -29,7 +29,7 @@ DEVICE = "cuda:0" if torch.cuda.is_available() else "cpu"
 
 #DB_HOST = "timescaledb"
 DB_HOST = "localhost"
-DB_PORT = 5433
+DB_PORT = 5455
 DB_NAME = "cafeteria"
 DB_USER = "admin"
 DB_PASSWORD = "admin123"

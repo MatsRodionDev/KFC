@@ -47,6 +47,14 @@ public class ProcessOrderEventHandler(IUnitOfWork unitOfWork, IOrderStatusServic
                 await unitOfWork.SaveChangesAsync(cancellationToken: cancellationToken);
                 break;
             
+
+            case EventType.OrderDelivered:
+                if (order.Status != OrderStatus.Shipped)
+                    return false;
+                order.Status = OrderStatus.Delivered;
+                await unitOfWork.SaveChangesAsync(cancellationToken: cancellationToken);
+                break;
+
             default:
                 return false;
         }

@@ -60,7 +60,7 @@ def get_camera_data_by_id(camera_id: int) -> Dict[str, Any]:
     try:
         connection = psycopg2.connect(
             host=os.getenv("DB_HOST", "localhost"),
-            port=int(os.getenv("DB_PORT", "5433")),
+            port=int(os.getenv("DB_PORT", "5455")),
             dbname=os.getenv("DB_NAME", "cafeteria"),
             user=os.getenv("DB_USER", "admin"),
             password=os.getenv("DB_PASSWORD", "admin123")
@@ -309,7 +309,7 @@ async def create_camera(camera_data: CameraCreateRequest):
     try:
         connection = psycopg2.connect(
             host=os.getenv("DB_HOST", "localhost"),
-            port=int(os.getenv("DB_PORT", "5433")),
+            port=int(os.getenv("DB_PORT", "5455")),
             dbname=os.getenv("DB_NAME", "cafeteria"),
             user=os.getenv("DB_USER", "admin"),
             password=os.getenv("DB_PASSWORD", "admin123")
@@ -363,7 +363,7 @@ async def get_cameras():
     try:
         connection = psycopg2.connect(
             host=os.getenv("DB_HOST", "localhost"),
-            port=int(os.getenv("DB_PORT", "5433")),
+            port=int(os.getenv("DB_PORT", "5455")),
             dbname=os.getenv("DB_NAME", "cafeteria"),
             user=os.getenv("DB_USER", "admin"),
             password=os.getenv("DB_PASSWORD", "admin123")
@@ -410,7 +410,7 @@ async def get_camera(camera_id: int):
     try:
         connection = psycopg2.connect(
             host=os.getenv("DB_HOST", "localhost"),
-            port=int(os.getenv("DB_PORT", "5433")),
+            port=int(os.getenv("DB_PORT", "5455")),
             dbname=os.getenv("DB_NAME", "cafeteria"),
             user=os.getenv("DB_USER", "admin"),
             password=os.getenv("DB_PASSWORD", "admin123")
@@ -455,7 +455,7 @@ async def update_camera(camera_id: int, camera_data: CameraUpdateRequest):
     try:
         connection = psycopg2.connect(
             host=os.getenv("DB_HOST", "localhost"),
-            port=int(os.getenv("DB_PORT", "5433")),
+            port=int(os.getenv("DB_PORT", "5455")),
             dbname=os.getenv("DB_NAME", "cafeteria"),
             user=os.getenv("DB_USER", "admin"),
             password=os.getenv("DB_PASSWORD", "admin123")
@@ -530,7 +530,7 @@ async def get_cameras_by_venue(venue_id: str):
     try:
         connection = psycopg2.connect(
             host=os.getenv("DB_HOST", "localhost"),
-            port=int(os.getenv("DB_PORT", "5433")),
+            port=int(os.getenv("DB_PORT", "5455")),
             dbname=os.getenv("DB_NAME", "cafeteria"),
             user=os.getenv("DB_USER", "admin"),
             password=os.getenv("DB_PASSWORD", "admin123")
@@ -579,7 +579,7 @@ async def delete_camera(camera_id: int):
     try:
         connection = psycopg2.connect(
             host=os.getenv("DB_HOST", "localhost"),
-            port=int(os.getenv("DB_PORT", "5433")),
+            port=int(os.getenv("DB_PORT", "5455")),
             dbname=os.getenv("DB_NAME", "cafeteria"),
             user=os.getenv("DB_USER", "admin"),
             password=os.getenv("DB_PASSWORD", "admin123")
@@ -608,4 +608,82 @@ async def delete_camera(camera_id: int):
 
 
 
-# ── CV Order Endpoints ──────────────────�
+# ── CV Order Endpoints ───────────────────────────────────────────────────────
+
+@app.post("/order/verify-completeness", response_model=VerifyCompletenessResponse)
+async def verify_order_completeness_endpoint(
+    image: UploadFile = File(..., description="Фото собранного заказа (JPEG/PNG)"),
+    order_items: str = Form(..., description='JSON-массив позиций: [{"name":"Бургер","quantity":2}]'),
+):
+    """
+    Верифицирует комплектность заказа по фотографии.
+    CV-модель подсчитывает видимые food-объекты и сравнивает с составом заказа.
+    Если объектов недостаточно — возвращает verified=false и статус заказа
+    не может быть переведён в Ready.
+    """
+    try:
+        items_data = json.loads(order_items)
+        expected_items = [OrderItemRequest(**item) for item in items_data]
+    except Exception:
+        raise HTTPException(
+            status_code=422,
+            detail='order_items должен быть валидным JSON-массивом вида [{"name":"Бургер","quantity":1}]',
+        )
+
+    image_bytes = await image.read()
+    if not image_bytes:
+        raise HTTPException(status_code=422, detail="Файл изображения пустой.")
+
+    try:
+        result = verify_order_completeness(
+            image_bytes,
+            [item.dict() for item in expected_items],
+        )
+        logger.info(
+            "verify-completeness: verified=%s, detected=%d, expected=%d",
+            result["verified"], result["food_objects_detected"], result["expected_total"],
+        )
+        return VerifyCompletenessResponse(**result)
+    except ValueError as e:
+        raise HTTPException(status_code=422, detail=str(e))
+    except Exception as e:
+        logger.exception("Ошибка верификации комплектности заказа")
+        raise HTTPException(status_code=500, detail=f"CV ошибка: {e}")
+
+
+@app.post("/order/verify-delivery", response_model=VerifyDeliveryResponse)
+async def verify_delivery_endpoint(
+    image: UploadFile = File(..., description="Фото у двери клиента (JPEG/PNG)"),
+):
+    """
+    Верифицирует фото доставки курьера.
+    CV-модель проверяет наличие объекта (пакет/посылка) в кадре.
+    При отсутствии объекта — verified=false, курьер должен переснять фото.
+    """
+    image_bytes = await image.read()
+    if not image_bytes:
+        raise HTTPException(status_code=422, detail="Файл изображения пустой.")
+
+    try:
+        result = verify_delivery_photo(image_bytes)
+        logger.info(
+            "verify-delivery: verified=%s, package=%s, objects=%s",
+            result["verified"], result["package_detected"],
+            list(result["detected_objects"].keys()),
+        )
+        return VerifyDeliveryResponse(**result)
+    except ValueError as e:
+        raise HTTPException(status_code=422, detail=str(e))
+    except Exception as e:
+        logger.exception("Ошибка верификации фото доставки")
+        raise HTTPException(status_code=500, detail=f"CV ошибка: {e}")
+
+
+if __name__ == "__main__":
+    uvicorn.run(
+        "main:app",
+        host=os.getenv("API_HOST", "0.0.0.0"),
+        port=int(os.getenv("API_PORT", "8000")),
+        reload=os.getenv("API_RELOAD", "true").lower() == "true",
+        log_level=os.getenv("API_LOG_LEVEL", "info")
+    )

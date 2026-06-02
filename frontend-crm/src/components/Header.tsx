@@ -18,6 +18,12 @@ export const Header = () => {
 
         <nav className="navigation">
           <Link
+            to="/orders"
+            className={`nav-link ${isActive('/orders') ? 'active' : ''}`}
+          >
+            Заказы
+          </Link>
+          <Link
             to="/dishes"
             className={`nav-link ${isActive('/dishes') ? 'active' : ''}`}
           >

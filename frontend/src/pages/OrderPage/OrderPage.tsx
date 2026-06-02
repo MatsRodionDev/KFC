@@ -251,4 +251,17 @@ export const OrderPage = () => {
             <button onClick={() => navigate('/history')} className="btn-back">
               ← Вернуться к истории заказов
             </button>
-          </
+          </div>
+        </div>
+      </div>
+
+      {/* Чат с курьером — доступен когда заказ в пути */}
+      {order.status === OrderStatus.Shipped && id && (
+        <ChatWidget
+          orderId={id}
+          customerName={order.userId ?? 'Клиент'}
+        />
+      )}
+    </div>
+  );
+};

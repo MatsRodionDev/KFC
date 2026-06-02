@@ -7,6 +7,8 @@ public interface IOrderRepository
     Task<Order?> GetByIdAsync(Guid orderId, CancellationToken cancellationToken);
     Task<List<Order>> GetByUserIdAsync(string userId, CancellationToken cancellationToken);
     Task<List<Order>> GetCurrentOrdersAsync(string userId, CancellationToken cancellationToken);
+    Task<List<Order>> GetAvailableForCouriersAsync(CancellationToken cancellationToken);
+    Task<List<Order>> GetKitchenOrdersAsync(CancellationToken cancellationToken);
     Task AddAsync(Order order, CancellationToken cancellationToken);
     void Update(Order order);
     void UpdatePayment(Payment payment);

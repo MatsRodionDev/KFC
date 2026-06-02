@@ -5,9 +5,8 @@ import threading
 import logging
 from typing import Dict, Any, Optional
 import cv2
-import torch
-from ultralytics import YOLO
 import psycopg2
+# torch/YOLO импортируются лениво внутри _init_model()
 from datetime import datetime
 from collections import Counter
 import pandas as pd
@@ -25,7 +24,7 @@ class DetectionService:
     def __init__(self):
         # Переменные окружения для базы данных
         self.db_host = os.getenv("DB_HOST", "localhost")
-        self.db_port = int(os.getenv("DB_PORT", "5433"))
+        self.db_port = int(os.getenv("DB_PORT", "5555"))
         self.db_name = os.getenv("DB_NAME", "cafeteria")
         self.db_user = os.getenv("DB_USER", "admin")
         self.db_password = os.getenv("DB_PASSWORD", "admin123")
@@ -74,6 +73,8 @@ class DetectionService:
     def _init_model(self, config: Dict[str, Any]):
         """Инициализация модели YOLO"""
         try:
+            import torch
+            from ultralytics import YOLO
             model_weights = config.get('model_weights', 'yolov5l6.pt')
             device = "cuda:0" if torch.cuda.is_available() else "cpu"
             
@@ -442,6 +443,7 @@ class RTSPReader:
             if self.cap.isOpened():
                 ret, frame = self.cap.read()
                 if ret:
+                   
                     with self.lock:
                         self.frame = frame
             else:

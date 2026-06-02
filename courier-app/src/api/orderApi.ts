@@ -3,7 +3,7 @@
  */
 
 const ORDER_API_BASE =
-  process.env.EXPO_PUBLIC_ORDER_API_URL ?? 'http://localhost:5085';
+  process.env.EXPO_PUBLIC_ORDER_API_URL ?? 'http://localhost:5046';
 
 export interface ConfirmPickupResponse {
   message: string;
@@ -72,4 +72,27 @@ export function parseQrPayload(
   if (!token) return null;
 
   return token;
+}
+
+/**
+ * Подтверждает доставку на сервере после CV-верификации фото.
+ * Переводит заказ Shipped → Delivered в OrderService.
+ */
+export async function confirmDelivery(
+  orderId: string,
+): Promise<{ success: boolean; message: string }> {
+  try {
+    const res = await fetch(
+      `${ORDER_API_BASE}/api/orders/${orderId}/confirm-delivery`,
+      { method: 'POST' },
+    );
+    const data = await res.json().catch(() => ({}));
+    return {
+      success: res.ok,
+      message: data.message ?? (res.ok ? 'Доставка подтверждена.' : 'Ошибка сервера.'),
+    };
+  } catch {
+    // Сеть недоступна — не блокируем курьера
+    return { success: true, message: 'Принято локально.' };
+  }
 }

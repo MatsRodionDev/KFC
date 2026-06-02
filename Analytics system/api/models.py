@@ -74,3 +74,30 @@ class StatusResponse(BaseModel):
     status: str
     message: str
     timestamp: datetime
+
+
+# ── CV Order Verification Models ────────────────────────────────────────────
+
+class OrderItemRequest(BaseModel):
+    """Позиция заказа, передаётся вместе с фото для верификации комплектности."""
+    name: str
+    quantity: int = 1
+
+
+class VerifyCompletenessResponse(BaseModel):
+    """Результат проверки комплектности заказа."""
+    verified: bool
+    detected_objects: Dict[str, int]
+    food_objects_detected: int
+    expected_total: int
+    missing_count: int
+    confidence_summary: str
+    message: str
+
+
+class VerifyDeliveryResponse(BaseModel):
+    """Результат проверки фото доставки."""
+    verified: bool
+    detected_objects: Dict[str, int]
+    package_detected: bool
+    message: str

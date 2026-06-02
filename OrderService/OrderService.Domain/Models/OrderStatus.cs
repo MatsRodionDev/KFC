@@ -7,5 +7,6 @@ public enum OrderStatus
     Cooking,
     Ready,
     Shipped,
-    Cancelled
+    Cancelled,
+    Delivered  // Курьер подтвердил доставку клиенту (фото + CV)
 }

@@ -1,3 +1,4 @@
+using Contracts.Events;
 using Contracts.Mediator;
 using Contracts.Payment;
 using Microsoft.AspNetCore.Mvc;
@@ -52,7 +53,6 @@ public class OrderController(IDispatcher dispatcher, ITemporalClient client) : C
     /// Если CV подтверждает — переводит заказ в Ready и генерирует PickupToken.
     /// </summary>
     [HttpPost("{id:guid}/verify-ready")]
-    [Consumes("multipart/form-data")]
     public async Task<IActionResult> VerifyOrderReady(
         Guid id,
         IFormFile image,
@@ -131,6 +131,69 @@ public class OrderController(IDispatcher dispatcher, ITemporalClient client) : C
 
         return Ok(new { message = result.Message });
     }
+    /// <summary>
+    /// Возвращает заказы в статусе Ready — доступные для принятия курьером.
+    /// GET /api/orders/available
+    /// </summary>
+    [HttpGet("available")]
+    public async Task<IActionResult> GetAvailableOrders(CancellationToken cancellationToken)
+    {
+        var orders = await dispatcher.Dispatch(new GetAvailableOrdersQuery(), cancellationToken);
+        return Ok(orders);
+    }
+
+
+    /// <summary>
+    /// Переводит заказ Paid → Cooking (оператор начал готовку).
+    /// POST /api/orders/{id}/start-cooking
+    /// </summary>
+    [HttpPost("{id:guid}/start-cooking")]
+    public async Task<IActionResult> StartCooking(Guid id, CancellationToken ct)
+    {
+        try
+        {
+            await client.SignalAsync<OrderWorkflow>(
+                id,
+                wf => wf.OrderEvent(new OrderEvent(
+                    Guid.NewGuid(), id, EventType.OrderCooking, DateTime.UtcNow)));
+            return Ok(new { message = "Заказ передан на кухню." });
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new { error = ex.Message });
+        }
+    }
+
+
+    /// <summary>GET /api/orders/kitchen — заказы для кухни (Paid + Cooking + Ready).</summary>
+    [HttpGet("kitchen")]
+    public async Task<IActionResult> GetKitchenOrders(CancellationToken ct)
+        => Ok(await dispatcher.Dispatch(new GetKitchenOrdersQuery(), ct));
+
+
+    /// <summary>
+    /// Подтверждение доставки курьером после CV-верификации фото.
+    /// Переводит заказ Shipped → Delivered.
+    /// POST /api/orders/{id}/confirm-delivery
+    /// </summary>
+    [HttpPost("{id:guid}/confirm-delivery")]
+    public async Task<IActionResult> ConfirmDelivery(Guid id, CancellationToken ct)
+    {
+        try
+        {
+            await client.SignalAsync<OrderWorkflow>(
+                id,
+                wf => wf.OrderEvent(new OrderEvent(
+                    Guid.NewGuid(), id, EventType.OrderDelivered, DateTime.UtcNow)));
+            return Ok(new { message = "Доставка подтверждена." });
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new { error = ex.Message });
+        }
+    }
+
+
 }
 
 /// <summary>Тело запроса подтверждения получения.</summary>

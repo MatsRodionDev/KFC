@@ -74,6 +74,8 @@ public static class ApplicationServiceCollection
             .AddScoped<ICommandHandler<OrderEventCommand, bool>, ProcessOrderEventHandler>()
             .AddScoped<ICommandHandler<MarkOrderReadyCommand, MarkOrderReadyResult>, MarkOrderReadyCommandHandler>()
             .AddScoped<ICommandHandler<ConfirmPickupCommand, ConfirmPickupResult>, ConfirmPickupCommandHandler>()
+            .AddScoped<IQueryHandler<GetAvailableOrdersQuery, List<Order>>, GetAvailableOrdersQueryHandler>()
+            .AddScoped<IQueryHandler<GetKitchenOrdersQuery, List<Order>>, GetKitchenOrdersQueryHandler>()
             .AddMediatorDispatcher();
     }
 }

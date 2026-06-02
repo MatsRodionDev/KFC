@@ -186,7 +186,7 @@ Analytics system/
 ```bash
 # База данных
 DB_HOST=localhost
-DB_PORT=5433
+DB_PORT=5455
 DB_NAME=cafeteria
 DB_USER=admin
 DB_PASSWORD=admin123
@@ -223,7 +223,7 @@ API_LOG_LEVEL=info
 
 ## 🐳 Docker сервисы
 
-- **timescaledb** (порт 5433) - База данных
+- **timescaledb** (порт 5455) - База данных
 - **pgadmin** (порт 8080) - Веб-интерфейс для БД
 - **grafana** (порт 3000) - Дашборды и визуализация
 - **analytics-api** (порт 8000) - REST API

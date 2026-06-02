@@ -31,7 +31,7 @@ def load_environment():
     # Устанавливаем значения по умолчанию если переменные не заданы
     defaults = {
         "DB_HOST": "localhost",
-        "DB_PORT": "5433",
+        "DB_PORT": "5555",
         "DB_NAME": "cafeteria",
         "DB_USER": "admin",
         "DB_PASS": "admin123",

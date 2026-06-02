@@ -70,4 +70,11 @@ public class MarkOrderReadyCommandHandler(
 
         await orderStatusService.OrderStatusChanged(
             order.UserId,
-            new OrderSummaryDto(order.Id, order.Delivery.ServiceType, ord
+            new OrderSummaryDto(order.Id, order.Delivery.ServiceType, order.Status));
+
+        return new MarkOrderReadyResult(
+            Success: true,
+            CvVerified: true,
+            Message: cvResult.Message);
+    }
+}

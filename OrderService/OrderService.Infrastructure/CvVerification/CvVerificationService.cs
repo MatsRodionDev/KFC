@@ -48,13 +48,14 @@ public sealed class CvVerificationService(
             response = await httpClient.PostAsync(
                 "/order/verify-completeness", content, cancellationToken);
         }
-        catch (HttpRequestException ex)
+        catch (Exception ex) when (ex is HttpRequestException
+                                     || ex is TaskCanceledException
+                                     || ex is OperationCanceledException)
         {
-            logger.LogError(ex, "CV-сервис недоступен");
-            // При недоступности сервиса — блокируем переход в Ready
+            logger.LogError(ex, "CV-сервис недоступен или не ответил вовремя");
             return new CvVerificationResult(
                 Verified: false,
-                Message: "CV-сервис недоступен. Повторите попытку позже.",
+                Message: "CV-сервис недоступен. Запустите Analytics API (python start_api.py) и повторите.",
                 FoodObjectsDetected: 0,
                 ExpectedTotal: 0,
                 MissingCount: -1);
