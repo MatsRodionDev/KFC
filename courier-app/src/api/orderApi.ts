@@ -2,8 +2,8 @@
  * Клиент к OrderService для операций курьера.
  */
 
-const ORDER_API_BASE =
-  process.env.EXPO_PUBLIC_ORDER_API_URL ?? 'http://localhost:5046';
+import { getOrderApiBase } from '../config/apiBase';
+import { loggedFetch } from './loggedFetch';
 
 export interface ConfirmPickupResponse {
   message: string;
@@ -21,13 +21,14 @@ export async function confirmPickup(
   token: string,
 ): Promise<{ success: boolean; message: string }> {
   try {
-    const res = await fetch(
-      `${ORDER_API_BASE}/api/orders/${orderId}/confirm-pickup`,
+    const res = await loggedFetch(
+      `${getOrderApiBase()}/api/orders/${orderId}/confirm-pickup`,
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ token }),
       },
+      'OrderAPI',
     );
 
     const data = await res.json();
@@ -82,9 +83,10 @@ export async function confirmDelivery(
   orderId: string,
 ): Promise<{ success: boolean; message: string }> {
   try {
-    const res = await fetch(
-      `${ORDER_API_BASE}/api/orders/${orderId}/confirm-delivery`,
+    const res = await loggedFetch(
+      `${getOrderApiBase()}/api/orders/${orderId}/confirm-delivery`,
       { method: 'POST' },
+      'OrderAPI',
     );
     const data = await res.json().catch(() => ({}));
     return {

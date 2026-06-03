@@ -3,8 +3,8 @@
  * Используется при подтверждении доставки фотографией.
  */
 
-// URL Analytics API — в реальном проекте берётся из переменных окружения
-const CV_API_BASE = process.env.EXPO_PUBLIC_CV_API_URL ?? 'http://localhost:8000';
+import { getCvApiBase } from '../config/apiBase';
+import { loggedFetch } from './loggedFetch';
 
 export interface VerifyDeliveryResult {
   verified: boolean;
@@ -30,11 +30,15 @@ export async function verifyDeliveryPhoto(
     type: 'image/jpeg',
   } as unknown as Blob);
 
-  const response = await fetch(`${CV_API_BASE}/order/verify-delivery`, {
-    method: 'POST',
-    body: formData,
-    // НЕ устанавливаем Content-Type вручную — fetch сам проставит boundary
-  });
+  const response = await loggedFetch(
+    `${getCvApiBase()}/order/verify-delivery`,
+    {
+      method: 'POST',
+      body: formData,
+      // НЕ устанавливаем Content-Type вручную — fetch сам проставит boundary
+    },
+    'CVAPI',
+  );
 
   if (!response.ok) {
     const text = await response.text();

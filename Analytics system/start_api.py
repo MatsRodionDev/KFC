@@ -133,9 +133,10 @@ def start_api():
         reload = os.getenv("API_RELOAD", "true").lower() == "true"
         log_level = os.getenv("API_LOG_LEVEL", "info")
         
-        print(f"🌐 API будет доступен по адресу: http://localhost:{port}")
-        print("📖 Документация API: http://localhost:8000/swagger/index.html")
-        print("📖 ReDoc документация: http://localhost:8000/swagger/redoc")
+        print(f"🌐 API (локально):     http://localhost:{port}")
+        print(f"🌐 API (LAN / телефон): http://<IP_ПК>:{port}  (например http://192.168.100.9:{port})")
+        print(f"📖 Swagger:            http://localhost:{port}/swagger/index.html")
+        print(f"📖 CV для курьера:     POST http://<IP_ПК>:{port}/order/verify-delivery")
         print("⏹️  Для остановки нажмите Ctrl+C")
         print("-" * 50)
         

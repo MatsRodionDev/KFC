@@ -21,17 +21,25 @@ builder.Services.AddCors(opt =>
 {
     opt.AddDefaultPolicy(policy =>
     {
-        // Фронт (Vite) + мобильное приложение (Expo)
         policy
-            .WithOrigins(
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials();
+
+        if (builder.Environment.IsDevelopment())
+        {
+            // Dev: Vite, Expo Go, courier-app по LAN (192.168.x.x)
+            policy.SetIsOriginAllowed(_ => true);
+        }
+        else
+        {
+            policy.WithOrigins(
                 "http://localhost:3000",
                 "http://localhost:5173",
                 "http://127.0.0.1:5173",
-                "http://localhost:8081",   // Expo Metro
-                "http://localhost:19006")  // Expo Web
-            .AllowAnyHeader()
-            .AllowAnyMethod()
-            .AllowCredentials();          // необходимо для SignalR
+                "http://localhost:8081",
+                "http://localhost:19006");
+        }
     });
 });
 

@@ -12,7 +12,15 @@ type Props = {
 };
 
 export default function DashboardScreen({ navigation }: Props) {
-  const { isOnline, toggleStatus, orders, logout, fetchOrders, isLoadingOrders } = useAppStore();
+  const {
+    isOnline,
+    toggleStatus,
+    orders,
+    logout,
+    fetchOrders,
+    isLoadingOrders,
+    ordersFetchError,
+  } = useAppStore();
 
   // Загружаем заказы при монтировании и при выходе на линию
   useEffect(() => {
@@ -112,9 +120,20 @@ export default function DashboardScreen({ navigation }: Props) {
               />
             }
             ListEmptyComponent={
-              <Text style={styles.emptyText}>
-                {isLoadingOrders ? '' : 'Нет доступных заказов'}
-              </Text>
+              <View style={styles.emptyWrap}>
+                {isLoadingOrders ? null : (
+                  <>
+                    <Text style={styles.emptyText}>
+                      {ordersFetchError
+                        ? 'Не удалось загрузить заказы'
+                        : 'Нет доступных заказов'}
+                    </Text>
+                    {ordersFetchError ? (
+                      <Text style={styles.errorHint}>{ordersFetchError}</Text>
+                    ) : null}
+                  </>
+                )}
+              </View>
             }
           />
         </>
@@ -148,5 +167,7 @@ const styles = StyleSheet.create({
   statusBadge:      { marginTop: 10, fontSize: 14, color: '#007AFF', fontWeight: 'bold' },
   offlineContainer: { flex: 1, justifyContent: 'center', alignItems: 'center' },
   offlineText:      { fontSize: 16, color: '#888', textAlign: 'center', padding: 20 },
-  emptyText:        { textAlign: 'center', marginTop: 30, fontSize: 16, color: '#888' },
+  emptyWrap:        { paddingHorizontal: 20, marginTop: 30 },
+  emptyText:        { textAlign: 'center', fontSize: 16, color: '#888' },
+  errorHint:        { textAlign: 'center', marginTop: 12, fontSize: 13, color: '#c62828', lineHeight: 20 },
 });

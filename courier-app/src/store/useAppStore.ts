@@ -2,6 +2,7 @@ import { create } from 'zustand';
 import { Order } from '../types';
 import { getNewlyUnlocked } from '../utils/achievements';
 import { fetchAvailableOrders } from '../api/ordersApi';
+import { logger } from '../utils/logger';
 import ordersData from '../data/mockOrders.json';
 
 interface User {
@@ -14,6 +15,7 @@ interface AppState {
   isOnline: boolean;
   orders: Order[];
   isLoadingOrders: boolean;
+  ordersFetchError: string | null;
   users: User[];
   shownAchievements: string[];
   pendingAchievement: string | null;
@@ -33,6 +35,7 @@ export const useAppStore = create<AppState>((set, get) => ({
   // Сохраняем mock-данные как историю (delivered), реальные подгружаются при fetchOrders
   orders: (ordersData as Order[]).filter(o => o.status === 'delivered'),
   isLoadingOrders: false,
+  ordersFetchError: null,
   users: [],
   shownAchievements: [],
   pendingAchievement: null,
@@ -56,18 +59,29 @@ export const useAppStore = create<AppState>((set, get) => ({
   toggleStatus: () => set(s => ({ isOnline: !s.isOnline })),
 
   fetchOrders: async () => {
-    set({ isLoadingOrders: true });
+    set({ isLoadingOrders: true, ordersFetchError: null });
+    logger.info('Store', 'fetchOrders start');
     try {
-      const liveOrders = await fetchAvailableOrders();
+      const { orders: liveOrders, error } = await fetchAvailableOrders();
       const { orders } = get();
-      // Сохраняем историю (delivered) + добавляем живые заказы
       const history = orders.filter(o => o.status === 'delivered');
-      // Не дублируем — убираем из истории если вдруг совпадает id
       const historyIds = new Set(liveOrders.map(o => o.id));
       const cleanHistory = history.filter(o => !historyIds.has(o.id));
-      set({ orders: [...liveOrders, ...cleanHistory] });
-    } catch {
-      // При ошибке оставляем что было
+      set({
+        orders: [...liveOrders, ...cleanHistory],
+        ordersFetchError: error ?? null,
+      });
+      logger.info('Store', 'fetchOrders done', {
+        live: liveOrders.length,
+        history: cleanHistory.length,
+        error,
+      });
+    } catch (error) {
+      logger.error('Store', 'fetchOrders failed', error);
+      set({
+        ordersFetchError:
+          error instanceof Error ? error.message : 'Ошибка загрузки заказов',
+      });
     } finally {
       set({ isLoadingOrders: false });
     }
