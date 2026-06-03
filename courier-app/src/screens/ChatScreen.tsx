@@ -19,6 +19,7 @@ import {
   ChatMessage,
   fetchMessageHistory,
 } from '../api/chatSignalR';
+import { appendUniqueChatMessage, dedupeChatMessages } from '../utils/chatMessages';
 
 type Props = {
   route: RouteProp<RootStackParamList, 'Chat'>;
@@ -39,27 +40,29 @@ export default function ChatScreen({ route }: Props) {
   // ── Инициализация ─────────────────────────────────────────────────────────
 
   useEffect(() => {
+    let cancelled = false;
     const conn = new ChatConnection();
     connRef.current = conn;
 
     const init = async () => {
-      // Загружаем историю через REST
       const history = await fetchMessageHistory(orderId);
-      setMessages(history);
+      if (cancelled) return;
+      setMessages(dedupeChatMessages(history));
       setIsLoading(false);
 
-      // Подключаемся к хабу
       try {
         await conn.start();
+        if (cancelled) return;
         await conn.joinRoom(orderId, courierName);
+        if (cancelled) return;
         setIsConnected(true);
       } catch (e) {
         console.warn('ChatHub connection failed:', e);
       }
 
-      // Слушаем входящие сообщения
       conn.onMessage((msg) => {
-        setMessages((prev) => [...prev, msg]);
+        if (cancelled) return;
+        setMessages((prev) => appendUniqueChatMessage(prev, msg));
         setTimeout(() => listRef.current?.scrollToEnd({ animated: true }), 100);
       });
     };
@@ -67,6 +70,8 @@ export default function ChatScreen({ route }: Props) {
     init();
 
     return () => {
+      cancelled = true;
+      connRef.current = null;
       conn.leaveRoom(orderId, courierName).catch(() => {});
       conn.offMessage();
       conn.stop().catch(() => {});

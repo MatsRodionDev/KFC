@@ -1,10 +1,14 @@
 import * as SignalR from '@microsoft/signalr';
 
-const CHAT_HUB_URL =
-  import.meta.env.VITE_CHAT_HUB_URL ?? 'http://localhost:5200/hubs/chat';
+const chatApiBase =
+  import.meta.env.VITE_CHAT_API_URL ??
+  (import.meta.env.DEV ? '' : 'http://localhost:5200');
 
-const CHAT_API_URL =
-  import.meta.env.VITE_CHAT_API_URL ?? 'http://localhost:5200';
+const CHAT_HUB_URL =
+  import.meta.env.VITE_CHAT_HUB_URL ??
+  (import.meta.env.DEV ? '/hubs/chat' : 'http://localhost:5200/hubs/chat');
+
+const CHAT_API_URL = chatApiBase || '';
 
 export interface ChatMessage {
   id: string;
@@ -64,6 +68,7 @@ export class ChatService {
   }
 
   onMessage(callback: OnMessageCallback): void {
+    this.connection.off('ReceiveMessage');
     this.connection.on('ReceiveMessage', callback);
   }
 

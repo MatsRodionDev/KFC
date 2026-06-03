@@ -3,12 +3,17 @@ import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import { orderService } from '../../services/api';
 import { Order, OrderStatus, PaymentStatus } from '../../types';
 import { ChatWidget } from '../../components/Chat/ChatWidget';
+import { useOrderStatusForOrder } from '../../hooks/useOrderStatusHub';
+import { useUserId } from '../../hooks/useUserId';
+import { isOrderShipped } from '../../utils/orderStatus';
 import './OrderPage.css';
 
 export const OrderPage = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
+  const userId = useUserId();
+  const { orderStatus: liveStatus } = useOrderStatusForOrder(userId, id);
   const [order, setOrder] = useState<Order | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -37,6 +42,12 @@ export const OrderPage = () => {
 
     fetchOrder();
   }, [id]);
+
+  useEffect(() => {
+    if (liveStatus == null || !order) return;
+    if (liveStatus === order.status) return;
+    setOrder((prev) => (prev ? { ...prev, status: liveStatus } : null));
+  }, [liveStatus, order?.status]);
 
   useEffect(() => {
     const payment = searchParams.get('payment');
@@ -255,8 +266,7 @@ export const OrderPage = () => {
         </div>
       </div>
 
-      {/* Чат с курьером — доступен когда заказ в пути */}
-      {order.status === OrderStatus.Shipped && id && (
+      {isOrderShipped(order.status) && id && (
         <ChatWidget
           orderId={id}
           customerName={order.userId ?? 'Клиент'}

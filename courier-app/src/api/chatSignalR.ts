@@ -67,6 +67,7 @@ export class ChatConnection {
   }
 
   onMessage(callback: OnMessageCallback): void {
+    this.connection.off('ReceiveMessage');
     this.connection.on('ReceiveMessage', (msg: ChatMessage) => {
       logger.info('ChatHub', '← ReceiveMessage', msg);
       callback(msg);

@@ -7,6 +7,8 @@ import { Order, OrderStatus, PaymentStatus, ServiceType } from '../../types';
 import { getCurrentPositionWithWatchFallback } from '../../utils/geolocation';
 import { useOrderStatusForOrder } from '../../hooks/useOrderStatusHub';
 import { useUserId } from '../../hooks/useUserId';
+import { ChatWidget } from '../../components/Chat/ChatWidget';
+import { isOrderShipped } from '../../utils/orderStatus';
 import './OrderCheckoutPage.css';
 
 export const OrderCheckoutPage = () => {
@@ -637,6 +639,13 @@ export const OrderCheckoutPage = () => {
             {isLoadingLocation ? 'Запрос...' : 'Повторить'}
           </button>
         </div>
+      )}
+
+      {isOrderShipped(order.status) && orderId && (
+        <ChatWidget
+          orderId={orderId}
+          customerName={order.userId ?? 'Клиент'}
+        />
       )}
     </div>
   );

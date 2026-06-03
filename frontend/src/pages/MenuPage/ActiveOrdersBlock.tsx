@@ -1,6 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { OrderStatus, ServiceType } from '../../types';
 import type { ActiveOrderSummary } from '../../hooks/useOrderStatusHub';
+import { isOrderShipped } from '../../utils/orderStatus';
 
 const ORDER_STATUS_LABELS: Record<string, string> = {
   Created: 'Создан',
@@ -66,7 +67,7 @@ export function ActiveOrdersBlock({ activeOrders, visible }: ActiveOrdersBlockPr
                       Оплатить
                     </button>
                   ) : (
-                    <Link to={paymentUrl} className="active-order-btn active-order-btn--details">
+                    <Link to={detailsUrl} className="active-order-btn active-order-btn--details">
                       Подробнее
                     </Link>
                   )}

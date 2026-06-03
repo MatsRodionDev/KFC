@@ -42,7 +42,16 @@ export default defineConfig({
         target: 'http://localhost:5088',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api\/chatclient/, '/api')
-      }
+      },
+      '/hubs/chat': {
+        target: 'http://localhost:5200',
+        changeOrigin: true,
+        ws: true,
+      },
+      '/api/messages': {
+        target: 'http://localhost:5200',
+        changeOrigin: true,
+      },
     }
   }
 })

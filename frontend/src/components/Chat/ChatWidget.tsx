@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { ChatService, ChatMessage, fetchChatHistory } from '../../services/chatService';
+import { appendUniqueChatMessage, dedupeChatMessages } from '../../utils/chatMessages';
 import './ChatWidget.css';
 
 interface Props {
@@ -16,39 +17,45 @@ export function ChatWidget({ orderId, customerName }: Props) {
 
   const serviceRef = useRef<ChatService | null>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
-
-  // ── Подключение ────────────────────────────────────────────────────────────
+  const isOpenRef = useRef(isOpen);
+  isOpenRef.current = isOpen;
 
   useEffect(() => {
+    let cancelled = false;
     const svc = new ChatService();
     serviceRef.current = svc;
 
     const init = async () => {
       const history = await fetchChatHistory(orderId);
-      setMessages(history);
+      if (cancelled) return;
+      setMessages(dedupeChatMessages(history));
 
       try {
         await svc.connect();
+        if (cancelled) return;
         await svc.joinRoom(orderId, customerName);
+        if (cancelled) return;
         setIsConnected(true);
       } catch (e) {
         console.warn('Chat connection failed:', e);
       }
 
       svc.onMessage((msg) => {
-        setMessages((prev) => [...prev, msg]);
-        if (!isOpen) setUnreadCount((n) => n + 1);
+        if (cancelled) return;
+        setMessages((prev) => appendUniqueChatMessage(prev, msg));
+        if (!isOpenRef.current) setUnreadCount((n) => n + 1);
       });
     };
 
     init();
 
     return () => {
+      cancelled = true;
+      serviceRef.current = null;
       svc.leaveRoom(orderId, customerName).catch(() => {});
       svc.offAll();
       svc.disconnect().catch(() => {});
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [orderId, customerName]);
 
   // Прокрутка вниз при новом сообщении
