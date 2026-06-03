@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { ActivityIndicator, View, StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useAppStore } from '../store/useAppStore';
@@ -17,9 +18,23 @@ import AchievementToast   from '../components/AchievementToast';
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function AppNavigator() {
-  const isAuthenticated   = useAppStore(s => s.isAuthenticated);
-  const pendingId         = useAppStore(s => s.pendingAchievement);
+  const isAuthenticated    = useAppStore(s => s.isAuthenticated);
+  const isSessionRestoring = useAppStore(s => s.isSessionRestoring);
+  const restoreSession     = useAppStore(s => s.restoreSession);
+  const pendingId          = useAppStore(s => s.pendingAchievement);
   const dismissAchievement = useAppStore(s => s.dismissAchievement);
+
+  useEffect(() => {
+    void restoreSession();
+  }, [restoreSession]);
+
+  if (isSessionRestoring) {
+    return (
+      <View style={styles.boot}>
+        <ActivityIndicator size="large" color="#007AFF" />
+      </View>
+    );
+  }
 
   const pendingAchievement = pendingId
     ? (ACHIEVEMENTS.find(a => a.id === pendingId) ?? null)
@@ -53,3 +68,7 @@ export default function AppNavigator() {
     </NavigationContainer>
   );
 }
+
+const styles = StyleSheet.create({
+  boot: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#f5f5f5' },
+});

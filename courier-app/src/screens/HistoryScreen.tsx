@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, Text, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
+import React, { useEffect } from 'react';
+import { View, Text, FlatList, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useAppStore } from '../store/useAppStore';
 import { Order, RootStackParamList } from '../types';
@@ -67,13 +67,19 @@ export default function HistoryScreen({ navigation }: Props) {
         </TouchableOpacity>
       </View>
 
-      <FlatList
-        data={historyOrders}
-        keyExtractor={item => item.id}
-        renderItem={renderItem}
-        contentContainerStyle={styles.list}
-        ListEmptyComponent={<Text style={styles.empty}>Вы ещё не выполнили ни одного заказа</Text>}
-      />
+      {isLoadingHistory ? (
+        <ActivityIndicator style={{ marginTop: 40 }} size="large" color="#007AFF" />
+      ) : (
+        <FlatList
+          data={historyOrders}
+          keyExtractor={item => item.id}
+          renderItem={renderItem}
+          contentContainerStyle={styles.list}
+          ListEmptyComponent={
+            <Text style={styles.empty}>Вы ещё не выполнили ни одного заказа</Text>
+          }
+        />
+      )}
     </View>
   );
 }

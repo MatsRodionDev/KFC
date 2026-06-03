@@ -13,6 +13,7 @@ import { CameraView, useCameraPermissions } from 'expo-camera';
 import { RootStackParamList, Order } from '../types';
 import { verifyDeliveryPhoto } from '../api/cvApi';
 import { confirmPickup, parseQrPayload, confirmDelivery } from '../api/orderApi';
+import { useAppStore } from '../store/useAppStore';
 
 type Props = {
   route: RouteProp<RootStackParamList, 'OrderDetails'>;
@@ -33,6 +34,13 @@ type QrState  = 'idle' | 'scanning'  | 'verifying' | 'success' | 'failed';
 export default function OrderDetailsScreen({ route, navigation }: Props) {
   const { order } = route.params;
   const [status, setStatus] = useState<Order['status']>(order.status);
+  const updateOrderStatus = useAppStore(s => s.updateOrderStatus);
+  const displayName = useAppStore(s => s.displayName);
+
+  const syncStatus = (next: Order['status']) => {
+    setStatus(next);
+    updateOrderStatus(order.id, next);
+  };
 
   // Map / location
   const [location, setLocation]       = useState<Location.LocationObjectCoords | null>(null);
@@ -118,7 +126,7 @@ export default function OrderDetailsScreen({ route, navigation }: Props) {
       // Даём секунду увидеть успех, затем закрываем
       setTimeout(() => {
         setQrVisible(false);
-        setStatus('picked_up');
+        syncStatus('picked_up');
       }, 1200);
     } else {
       setQrState('failed');
@@ -166,7 +174,7 @@ export default function OrderDetailsScreen({ route, navigation }: Props) {
     } catch {
       setCvState('success');
       setCvMessage('CV-сервис недоступен. Фото принято без верификации.');
-      setStatus('delivered');
+      syncStatus('delivered');
     }
   };
 
@@ -189,7 +197,11 @@ export default function OrderDetailsScreen({ route, navigation }: Props) {
   };
 
   const callClient    = () => Linking.openURL(`tel:${order.clientPhone}`);
-  const openChat      = () => navigation.navigate('Chat', { orderId: order.id, courierName: 'Курьер', clientName: order.clientName });
+  const openChat = () => navigation.navigate('Chat', {
+    orderId: order.id,
+    courierName: displayName || 'Курьер',
+    clientName: order.clientName,
+  });
   const openNavigator = () => {
     const { latitude: lat, longitude: lng } = currentTargetCoords;
     const label = isGoingToPickup ? 'Точка забора (А)' : 'Точка доставки (Б)';

@@ -51,3 +51,15 @@ export const getCvApiBase = (): string => {
   if (fromEnv) return fromEnv.replace(/\/$/, '');
   return resolveDevHost(8000);
 };
+
+let loggedCourierBase = false;
+
+export const getCourierApiBase = (): string => {
+  const fromEnv = process.env.EXPO_PUBLIC_COURIER_API_URL;
+  const base = fromEnv ? fromEnv.replace(/\/$/, '') : resolveDevHost(5055);
+  if (__DEV__ && !loggedCourierBase) {
+    loggedCourierBase = true;
+    logger.info('Config', 'Courier API base', { base });
+  }
+  return base;
+};
