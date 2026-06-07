@@ -14,6 +14,7 @@ import { RootStackParamList, Order } from '../types';
 import { verifyDeliveryPhoto } from '../api/cvApi';
 import { confirmPickup, parseQrPayload, confirmDelivery } from '../api/orderApi';
 import { useAppStore } from '../store/useAppStore';
+import { resolveClientPhone } from '../utils/phone';
 
 type Props = {
   route: RouteProp<RootStackParamList, 'OrderDetails'>;
@@ -32,14 +33,30 @@ type CvState  = 'idle' | 'verifying' | 'success' | 'failed';
 type QrState  = 'idle' | 'scanning'  | 'verifying' | 'success' | 'failed';
 
 export default function OrderDetailsScreen({ route, navigation }: Props) {
-  const { order } = route.params;
+  const { order: routeOrder } = route.params;
+  const storeOrder = useAppStore(s => s.orders.find(o => o.id === routeOrder.id));
+  const order = storeOrder ?? routeOrder;
+
   const [status, setStatus] = useState<Order['status']>(order.status);
   const updateOrderStatus = useAppStore(s => s.updateOrderStatus);
+  const fetchOrders = useAppStore(s => s.fetchOrders);
+  const loadHistory = useAppStore(s => s.loadHistory);
   const displayName = useAppStore(s => s.displayName);
+
+  const buildSnapshot = (next: Order['status']): Order => ({
+    ...order,
+    status: next,
+    clientPhone: resolveClientPhone(order.clientPhone),
+  });
 
   const syncStatus = (next: Order['status']) => {
     setStatus(next);
-    updateOrderStatus(order.id, next);
+    const snapshot = buildSnapshot(next);
+    updateOrderStatus(order.id, next, snapshot);
+    if (next === 'delivered') {
+      void fetchOrders();
+      void loadHistory();
+    }
   };
 
   // Map / location
@@ -66,6 +83,7 @@ export default function OrderDetailsScreen({ route, navigation }: Props) {
   const isLandscape        = width > height;
   const isGoingToPickup    = status === 'new' || status === 'accepted' || status === 'arrived_a';
   const currentTargetCoords = isGoingToPickup ? order.pickupCoords : order.destinationCoords;
+  const clientPhoneDisplay = resolveClientPhone(order.clientPhone);
 
   // ── Геолокация ────────────────────────────────────────────────────────────
   useEffect(() => {
@@ -162,8 +180,7 @@ export default function OrderDetailsScreen({ route, navigation }: Props) {
       if (cv.verified) {
         setCvState('success');
         setCvMessage(cv.message);
-        setStatus('delivered');
-        // Уведомляем сервер: Shipped → Delivered
+        syncStatus('delivered');
         confirmDelivery(order.id).catch(() => {});
       } else {
         setCvState('failed');
@@ -179,7 +196,15 @@ export default function OrderDetailsScreen({ route, navigation }: Props) {
   };
 
   const handleFinalCompletion = () => {
-    Alert.alert('Успешно', 'Заказ завершён. Фото прикреплено.', [{ text: 'ОК', onPress: () => navigation.goBack() }]);
+    if (status !== 'delivered') {
+      syncStatus('delivered');
+    } else {
+      void fetchOrders();
+      void loadHistory();
+    }
+    Alert.alert('Успешно', 'Заказ завершён. Фото прикреплено.', [
+      { text: 'ОК', onPress: () => navigation.goBack() },
+    ]);
   };
 
   // ── Главная кнопка действия ───────────────────────────────────────────────
@@ -188,7 +213,7 @@ export default function OrderDetailsScreen({ route, navigation }: Props) {
     if (status === 'arrived_b')  { takePhotoAndComplete(); return; }
     if (status === 'delivered')  { handleFinalCompletion(); return; }
     const next = STATUS_FLOW[status]?.next;
-    if (next) setStatus(next as Order['status']);
+    if (next) syncStatus(next as Order['status']);
   };
 
   const getActionButtonLabel = () => {
@@ -196,7 +221,20 @@ export default function OrderDetailsScreen({ route, navigation }: Props) {
     return STATUS_FLOW[status as keyof typeof STATUS_FLOW]?.label ?? '';
   };
 
-  const callClient    = () => Linking.openURL(`tel:${order.clientPhone}`);
+  const callClient = async () => {
+    const tel = resolveClientPhone(order.clientPhone);
+    const url = `tel:${tel}`;
+    try {
+      const can = await Linking.canOpenURL(url);
+      if (!can) {
+        Alert.alert('Звонок', `Наберите номер вручную:\n${tel}`);
+        return;
+      }
+      await Linking.openURL(url);
+    } catch {
+      Alert.alert('Звонок', `Не удалось открыть приложение телефона.\n${tel}`);
+    }
+  };
   const openChat = () => navigation.navigate('Chat', {
     orderId: order.id,
     courierName: displayName || 'Курьер',
@@ -273,6 +311,9 @@ export default function OrderDetailsScreen({ route, navigation }: Props) {
           )}
 
           <Text style={styles.clientName}>{order.clientName}</Text>
+          {clientPhoneDisplay ? (
+            <Text style={styles.clientPhone}>📞 {clientPhoneDisplay}</Text>
+          ) : null}
 
           <View style={styles.quickActionsRow}>
             <TouchableOpacity style={styles.quickActionButton} onPress={callClient}>
@@ -400,7 +441,8 @@ const styles = StyleSheet.create({
   detailsScrollContent: { padding: 15, paddingBottom: 20 },
   targetIndicator:      { backgroundColor: '#f0f0f0', padding: 8, borderRadius: 8, marginBottom: 10, alignItems: 'center' },
   targetIndicatorText:  { fontSize: 14, fontWeight: '600', color: '#333' },
-  clientName:           { fontSize: 22, fontWeight: 'bold', marginBottom: 10 },
+  clientName:           { fontSize: 22, fontWeight: 'bold', marginBottom: 4 },
+  clientPhone:          { fontSize: 15, color: '#007AFF', marginBottom: 10 },
 
   quickActionsRow:   { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 15, gap: 8 },
   quickActionButton: { flex: 1, backgroundColor: '#e8e8e8', padding: 12, borderRadius: 10, alignItems: 'center' },

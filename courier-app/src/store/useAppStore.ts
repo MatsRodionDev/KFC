@@ -41,7 +41,7 @@ interface AppState {
   toggleStatus: () => Promise<void>;
   fetchOrders: () => Promise<void>;
   loadHistory: () => Promise<void>;
-  updateOrderStatus: (id: string, status: Order['status']) => void;
+  updateOrderStatus: (id: string, status: Order['status'], snapshot?: Order) => void;
   persistOrder: (order: Order) => Promise<void>;
   dismissAchievement: () => void;
 }
@@ -156,12 +156,17 @@ export const useAppStore = create<AppState>((set, get) => ({
     set({ isLoadingOrders: true, ordersFetchError: null });
     logger.info('Store', 'fetchOrders start');
     try {
-      const [{ orders: liveOrders, error }, savedActive] = await Promise.all([
-        fetchAvailableOrders(),
-        courierId ? fetchCourierOrders(courierId, 'active') : Promise.resolve([]),
-      ]);
+      const [{ orders: liveOrders, error }, savedActive, savedHistory] =
+        await Promise.all([
+          fetchAvailableOrders(),
+          courierId ? fetchCourierOrders(courierId, 'active') : Promise.resolve([]),
+          courierId ? fetchCourierOrders(courierId, 'history') : Promise.resolve([]),
+        ]);
 
       const savedById = new Map(savedActive.map(o => [o.id, o]));
+      const completedIds = new Set(
+        savedHistory.map(o => o.id).filter(id => id.length > 0),
+      );
       const merged: Array<Order> = [];
 
       for (const saved of savedActive) {
@@ -169,7 +174,9 @@ export const useAppStore = create<AppState>((set, get) => ({
       }
 
       for (const live of liveOrders) {
-        if (!savedById.has(live.id)) merged.push(live);
+        if (!savedById.has(live.id) && !completedIds.has(live.id)) {
+          merged.push(live);
+        }
       }
 
       set({
@@ -261,14 +268,21 @@ export const useAppStore = create<AppState>((set, get) => ({
     if (!courierId) return;
 
     void (async () => {
-      if (status === 'new') {
-        await saveCourierOrder(courierId, updated);
-      } else {
-        await patchCourierOrderStatus(courierId, id, status);
-        await saveCourierOrder(courierId, updated);
-      }
-      if (isNew) {
-        await saveShownAchievements(courierId, shownAchievements);
+      try {
+        if (status === 'new') {
+          await saveCourierOrder(courierId, updated);
+        } else {
+          await patchCourierOrderStatus(courierId, id, status);
+          await saveCourierOrder(courierId, updated);
+        }
+        if (isNew) {
+          await saveShownAchievements(courierId, shownAchievements);
+        }
+        if (status === 'delivered') {
+          await get().loadHistory();
+        }
+      } catch (err) {
+        logger.warn('Store', 'updateOrderStatus persist failed', err);
       }
     })();
   },

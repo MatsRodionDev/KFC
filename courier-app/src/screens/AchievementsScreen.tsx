@@ -1,15 +1,22 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import {
   View, Text, StyleSheet, FlatList, TouchableOpacity,
 } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
 import { useAppStore } from '../store/useAppStore';
 import {
   ACHIEVEMENTS, getUnlocked, getNextAchievement, getTotalBonus,
 } from '../utils/achievements';
 
 export default function AchievementsScreen() {
-  const deliveryCount = useAppStore(
-    s => s.orders.filter(o => o.status === 'delivered').length,
+  const historyOrders = useAppStore(s => s.historyOrders);
+  const loadHistory = useAppStore(s => s.loadHistory);
+  const deliveryCount = historyOrders.length;
+
+  useFocusEffect(
+    useCallback(() => {
+      void loadHistory();
+    }, [loadHistory]),
   );
 
   const unlocked  = getUnlocked(deliveryCount);

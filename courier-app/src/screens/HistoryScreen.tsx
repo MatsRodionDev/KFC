@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useCallback } from 'react';
 import { View, Text, FlatList, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useAppStore } from '../store/useAppStore';
 import { Order, RootStackParamList } from '../types';
@@ -10,8 +11,13 @@ type Props = {
 };
 
 export default function HistoryScreen({ navigation }: Props) {
-  const { orders } = useAppStore();
-  const historyOrders = orders.filter(o => o.status === 'delivered');
+  const { historyOrders, loadHistory, isLoadingHistory } = useAppStore();
+
+  useFocusEffect(
+    useCallback(() => {
+      void loadHistory();
+    }, [loadHistory]),
+  );
   const deliveryCount = historyOrders.length;
   const totalEarned   = historyOrders.reduce((s, o) => s + o.price, 0);
   const totalBonus    = getTotalBonus(deliveryCount);

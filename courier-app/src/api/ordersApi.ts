@@ -5,6 +5,7 @@
 import { getOrderApiBase } from '../config/apiBase';
 import { logger } from '../utils/logger';
 import { Order } from '../types';
+import { DEFAULT_CLIENT_PHONE } from '../utils/phone';
 import { loggedFetch } from './loggedFetch';
 
 interface GeoPoint {
@@ -101,7 +102,7 @@ function mapServerOrder(s: ServerOrder): Order {
   return {
     id: s.id,
     clientName: `Клиент ${userLabel}`,
-    clientPhone: '',
+    clientPhone: DEFAULT_CLIENT_PHONE,
     addressA: pickup.label,
     addressB: delivery.label,
     price: s.totalPrice,

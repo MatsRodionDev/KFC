@@ -43,6 +43,9 @@ export function ActiveOrdersBlock({ activeOrders, visible }: ActiveOrdersBlockPr
             const statusKey = typeof order.status === 'number' ? OrderStatus[order.status] : 'Created';
             const unpaid = isUnpaid(order.status);
             const paymentUrl = `/order-checkout/${order.id}`;
+            const detailsUrl = isOrderShipped(order.status)
+              ? `/order/${order.id}`
+              : `/order-checkout/${order.id}`;
 
             return (
               <div

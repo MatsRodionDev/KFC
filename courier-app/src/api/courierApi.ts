@@ -4,6 +4,7 @@
 
 import { getCourierApiBase } from '../config/apiBase';
 import { Order } from '../types';
+import { DEFAULT_CLIENT_PHONE } from '../utils/phone';
 import { loggedFetch } from './loggedFetch';
 
 export type CourierAuth = {
@@ -54,7 +55,7 @@ const parseError = async (res: Response): Promise<string> => {
 export const mapDtoToOrder = (dto: CourierOrderDto): Order => ({
   id: dto.orderId,
   clientName: dto.clientName,
-  clientPhone: dto.clientPhone,
+  clientPhone: dto.clientPhone?.trim() || DEFAULT_CLIENT_PHONE,
   addressA: dto.addressA,
   addressB: dto.addressB,
   price: dto.price,
