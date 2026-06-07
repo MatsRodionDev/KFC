@@ -20,7 +20,7 @@ export const CustomProductBuilder = () => {
   const [selectedCategory, setSelectedCategory] = useState<ProductCategory | null>(null);
   const [ingredients, setIngredients] = useState<Ingredient[]>([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [_error, setError] = useState<string | null>(null);
   const [baseIngredient, setBaseIngredient] = useState<Ingredient | null>(null);
   const [baseIngredients, setBaseIngredients] = useState<Ingredient[]>([]);
   const [selectedIngredients, setSelectedIngredients] = useState<SelectedIngredient[]>([]);
@@ -174,7 +174,7 @@ export const CustomProductBuilder = () => {
     });
   };
 
-  const handleRemoveIngredient = (ingredientId: string) => {
+  const _handleRemoveIngredient = (ingredientId: string) => {
     setSelectedIngredients(prev => prev.filter(sel => sel.ingredient.id !== ingredientId));
   };
 

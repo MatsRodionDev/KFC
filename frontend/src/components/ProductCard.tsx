@@ -8,7 +8,7 @@ interface ProductCardProps {
 }
 
 export const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
-  const price = product.price ?? product.ingredientsPrice;
+  const price = product.price ?? product.ingredientsPrice ?? 0;
   const priceText = product.price ? `от ${price.toFixed(0)} ₽` : `${price.toFixed(0)} ₽`;
 
   const handleAddToCart = (e: React.MouseEvent) => {

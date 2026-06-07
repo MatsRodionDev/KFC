@@ -324,3 +324,32 @@
   }
 }
 
+
+.order-checkout-review-btn {
+  width: 100%;
+  background: #FFC107;
+  border: none;
+  border-radius: 10px;
+  padding: 13px 20px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #111;
+  cursor: pointer;
+  font-family: inherit;
+  margin-bottom: 10px;
+  transition: background 0.15s;
+}
+.order-checkout-review-btn:hover { background: #FFB300; }
+
+.order-checkout-review-done {
+  width: 100%;
+  background: #f0faf4;
+  border: 1.5px solid #a5d6a7;
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #2e7d32;
+  text-align: center;
+  margin-bottom: 10px;
+}

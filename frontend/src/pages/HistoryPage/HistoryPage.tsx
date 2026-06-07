@@ -126,7 +126,7 @@ export const HistoryPage = () => {
             </tr>
           </thead>
           <tbody>
-            {orders.map((order, index) => {
+            {orders.map((order, _index) => {
               const totalPrice = order.totalPrice || order.items?.reduce((sum, item) => {
                 return sum + item.price * item.quantity;
               }, 0) || 0;

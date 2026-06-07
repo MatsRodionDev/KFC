@@ -17,7 +17,7 @@ import type {
   StoreInfo,
   OrderResponse
 } from '../types';
-import { catalogApi, orderApi, paymentApi, geoApi, chatClientApi } from './apiConfig';
+import { catalogApi, orderApi, paymentApi, geoApi, chatClientApi, courierApi } from './apiConfig';
 
 // Catalog API
 export const catalogService = {
@@ -165,3 +165,28 @@ export const chatService = {
   }
 };
 
+
+
+// Courier API — отзывы и рейтинг
+export interface SubmitReviewRequest {
+  orderId: string;
+  rating: number;
+  comment?: string;
+}
+
+export interface CourierRatingResponse {
+  rating: number | null;
+  reviewCount: number;
+}
+
+export const courierService = {
+  /** Отправить отзыв по orderId — courierId определяется на бэкенде автоматически */
+  submitReviewByOrder: async (req: SubmitReviewRequest): Promise<void> => {
+    await courierApi.post('/couriers/reviews/by-order', req);
+  },
+
+  getRating: async (courierId: string): Promise<CourierRatingResponse> => {
+    const response = await courierApi.get<CourierRatingResponse>(`/couriers/${courierId}/rating`);
+    return response.data;
+  },
+};

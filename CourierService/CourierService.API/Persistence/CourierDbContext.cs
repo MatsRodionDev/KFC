@@ -7,6 +7,7 @@ public class CourierDbContext(DbContextOptions<CourierDbContext> options) : DbCo
 {
     public DbSet<Courier> Couriers => Set<Courier>();
     public DbSet<CourierOrder> CourierOrders => Set<CourierOrder>();
+    public DbSet<CourierReview> CourierReviews => Set<CourierReview>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -25,6 +26,17 @@ public class CourierDbContext(DbContextOptions<CourierDbContext> options) : DbCo
             e.HasOne(o => o.Courier)
                 .WithMany(c => c.Orders)
                 .HasForeignKey(o => o.CourierId)
+                .OnDelete(DeleteBehavior.Cascade);
+        });
+
+        modelBuilder.Entity<CourierReview>(e =>
+        {
+            // один отзыв на один заказ
+            e.HasIndex(r => new { r.CourierId, r.OrderId }).IsUnique();
+            e.HasIndex(r => r.CourierId);
+            e.HasOne(r => r.Courier)
+                .WithMany()
+                .HasForeignKey(r => r.CourierId)
                 .OnDelete(DeleteBehavior.Cascade);
         });
     }

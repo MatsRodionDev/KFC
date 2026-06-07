@@ -76,3 +76,4 @@ export const orderApi = setupAxiosInstance('/api/orders');
 export const paymentApi = setupAxiosInstance('/api/checkout');
 export const geoApi = setupAxiosInstance('/api/geo');
 export const chatClientApi = setupAxiosInstance('/api/chatclient');
+export const courierApi = setupAxiosInstance('/api/courier');

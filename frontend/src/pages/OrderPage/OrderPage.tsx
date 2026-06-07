@@ -188,12 +188,12 @@ export const OrderPage = () => {
                 <div key={item.id} className="receipt-item">
                   <div className="item-info">
                     <div className="item-name">{item.name}</div>
-                    {item.ingredients && item.ingredients.length > 0 && (
+                    {item.itemIngredients && item.itemIngredients.length > 0 && (
                       <div className="item-ingredients">
-                        {item.ingredients.map((ing, idx) => (
+                        {item.itemIngredients.map((ing, idx) => (
                           <span key={idx} className="ingredient-tag">
                             {ing.name}
-                            {idx < item.ingredients!.length - 1 ? ', ' : ''}
+                            {idx < item.itemIngredients!.length - 1 ? ', ' : ''}
                           </span>
                         ))}
                       </div>

@@ -139,7 +139,8 @@ export enum OrderStatus {
   Cooking = 2,
   Ready = 3,
   Shipped = 4,
-  Cancelled = 5
+  Cancelled = 5,
+  Delivered = 6
 }
 
 export interface OrderItemIngredient {

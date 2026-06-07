@@ -52,6 +52,11 @@ export default defineConfig({
         target: 'http://localhost:5200',
         changeOrigin: true,
       },
+      '/api/courier': {
+        target: 'http://localhost:5055',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api\/courier/, '/api')
+      },
     }
   }
 })

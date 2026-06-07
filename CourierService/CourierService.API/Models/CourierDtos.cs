@@ -43,3 +43,8 @@ public record SaveCourierOrderRequest(
     List<CourierOrderItemDto> Items);
 
 public record UpdateCourierOrderStatusRequest(string Status);
+
+public record SubmitReviewRequest(Guid OrderId, int Rating, string? Comment);
+public record SubmitReviewByOrderRequest(string OrderId, int Rating, string? Comment);
+public record ReviewDto(Guid Id, Guid OrderId, int Rating, string? Comment, DateTime CreatedAt);
+public record CourierRatingResponse(double? Rating, int ReviewCount);

@@ -8,6 +8,7 @@ import { getCurrentPositionWithWatchFallback } from '../../utils/geolocation';
 import { useOrderStatusForOrder } from '../../hooks/useOrderStatusHub';
 import { useUserId } from '../../hooks/useUserId';
 import { ChatWidget } from '../../components/Chat/ChatWidget';
+import { CourierReviewModal } from '../../components/CourierReviewModal';
 import { isOrderShipped } from '../../utils/orderStatus';
 import './OrderCheckoutPage.css';
 
@@ -27,6 +28,8 @@ export const OrderCheckoutPage = () => {
   const [userCoords, setUserCoords] = useState<[number, number] | null>(null);
   const [locationError, setLocationError] = useState<string | null>(null);
   const [isLoadingLocation, setIsLoadingLocation] = useState(false);
+  const [isReviewOpen, setIsReviewOpen] = useState(false);
+  const [reviewSubmitted, setReviewSubmitted] = useState(false);
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<any>(null);
   const markersRef = useRef<any[]>([]);
@@ -80,6 +83,21 @@ export const OrderCheckoutPage = () => {
     if (orderStatus === order.status) return;
     setOrder((prev) => (prev ? { ...prev, status: orderStatus } : null));
   }, [orderStatus, order?.status]);
+
+  /** Открываем форму отзыва когда заказ доставлен. */
+  useEffect(() => {
+    if (!order || reviewSubmitted) return;
+    const isDelivered =
+      order.status === OrderStatus.Delivered ||
+      order.status === 'Delivered' ||
+      (order.status as number) === 6;
+    if (isDelivered) {
+      const key = `review_submitted_${orderId}`;
+      if (!localStorage.getItem(key)) {
+        setIsReviewOpen(true);
+      }
+    }
+  }, [order?.status, orderId, reviewSubmitted]);
 
   const hideYandexElements = useCallback(() => {
     const elements = document.querySelectorAll(YANDEX_ELEMENTS_SELECTOR);
@@ -485,7 +503,8 @@ export const OrderCheckoutPage = () => {
       'Cooking': 'Готовится',
       'Ready': 'Готов к выдаче',
       'Shipped': 'Отправлен',
-      'Cancelled': 'Отменен'
+      'Cancelled': 'Отменен',
+      'Delivered': 'Доставлен'
     };
     return statusMap[statusValue] || String(status);
   };
@@ -622,6 +641,23 @@ export const OrderCheckoutPage = () => {
           </div>
         )}
 
+        {(order.status === OrderStatus.Delivered ||
+          order.status === 'Delivered' ||
+          (order.status as number) === 6) && !reviewSubmitted && (
+          <button
+            className="order-checkout-review-btn"
+            onClick={() => setIsReviewOpen(true)}
+          >
+            ⭐ Оценить курьера
+          </button>
+        )}
+
+        {reviewSubmitted && (
+          <div className="order-checkout-review-done">
+            ✓ Спасибо за отзыв!
+          </div>
+        )}
+
         <button className="order-checkout-back" onClick={() => navigate('/history')}>
           ← К истории заказов
         </button>
@@ -645,6 +681,19 @@ export const OrderCheckoutPage = () => {
         <ChatWidget
           orderId={orderId}
           customerName={order.userId ?? 'Клиент'}
+        />
+      )}
+
+      {orderId && (
+        <CourierReviewModal
+          isOpen={isReviewOpen}
+          orderId={orderId}
+          onClose={() => setIsReviewOpen(false)}
+          onSubmitted={() => {
+            setIsReviewOpen(false);
+            setReviewSubmitted(true);
+            localStorage.setItem(`review_submitted_${orderId}`, '1');
+          }}
         />
       )}
     </div>
