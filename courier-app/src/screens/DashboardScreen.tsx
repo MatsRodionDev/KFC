@@ -6,6 +6,7 @@ import {
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useAppStore } from '../store/useAppStore';
 import { RootStackParamList, Order } from '../types';
+import { getCourierLevel } from '../utils/achievements';
 
 type Props = {
   navigation: NativeStackNavigationProp<RootStackParamList, 'Dashboard'>;
@@ -20,7 +21,12 @@ export default function DashboardScreen({ navigation }: Props) {
     fetchOrders,
     isLoadingOrders,
     ordersFetchError,
+    historyOrders,
+    courierRating,
   } = useAppStore();
+
+  const deliveryCount = historyOrders.length;
+  const level         = getCourierLevel(deliveryCount);
 
   // Загружаем заказы при монтировании и при выходе на линию
   useEffect(() => {
@@ -75,6 +81,17 @@ export default function DashboardScreen({ navigation }: Props) {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
+        {/* Уровень и рейтинг курьера */}
+        <View style={[styles.levelBadge, { borderColor: level.color }]}>
+          <Text style={styles.levelIcon}>{level.icon}</Text>
+          <View>
+            <Text style={[styles.levelName, { color: level.color }]}>{level.name}</Text>
+            {courierRating !== null && (
+              <Text style={styles.ratingText}>⭐ {courierRating.toFixed(1)}</Text>
+            )}
+          </View>
+        </View>
+
         <View style={styles.statusRow}>
           <Text style={styles.statusText}>
             {isOnline ? '🟢 На линии' : '🔴 Офлайн'}
@@ -151,6 +168,21 @@ export default function DashboardScreen({ navigation }: Props) {
 const styles = StyleSheet.create({
   container:        { flex: 1, backgroundColor: '#f5f5f5' },
   header:           { padding: 15, backgroundColor: '#fff', borderBottomWidth: 1, borderColor: '#eee' },
+
+  levelBadge: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+    borderWidth: 2,
+    borderRadius: 10,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    marginBottom: 14,
+  },
+  levelIcon:   { fontSize: 28 },
+  levelName:   { fontSize: 16, fontWeight: 'bold' },
+  ratingText:  { fontSize: 13, color: '#FF9500', marginTop: 2 },
+
   statusRow:        { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 15 },
   statusText:       { fontSize: 18, fontWeight: '600' },
   historyBtn:       { backgroundColor: '#e8e8e8', padding: 10, borderRadius: 8, alignItems: 'center', marginBottom: 8 },

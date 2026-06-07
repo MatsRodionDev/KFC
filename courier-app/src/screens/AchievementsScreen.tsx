@@ -6,29 +6,78 @@ import { useFocusEffect } from '@react-navigation/native';
 import { useAppStore } from '../store/useAppStore';
 import {
   ACHIEVEMENTS, getUnlocked, getNextAchievement, getTotalBonus,
+  getCourierLevel, getNextLevel,
 } from '../utils/achievements';
 
 export default function AchievementsScreen() {
-  const historyOrders = useAppStore(s => s.historyOrders);
-  const loadHistory = useAppStore(s => s.loadHistory);
-  const deliveryCount = historyOrders.length;
+  const historyOrders   = useAppStore(s => s.historyOrders);
+  const loadHistory     = useAppStore(s => s.loadHistory);
+  const refreshRating   = useAppStore(s => s.refreshRating);
+  const courierRating   = useAppStore(s => s.courierRating);
+  const deliveryCount   = historyOrders.length;
 
   useFocusEffect(
     useCallback(() => {
       void loadHistory();
-    }, [loadHistory]),
+      void refreshRating();
+    }, [loadHistory, refreshRating]),
   );
 
-  const unlocked  = getUnlocked(deliveryCount);
-  const next      = getNextAchievement(deliveryCount);
-  const totalBonus = getTotalBonus(deliveryCount);
+  const unlocked       = getUnlocked(deliveryCount);
+  const next           = getNextAchievement(deliveryCount);
+  const totalBonus     = getTotalBonus(deliveryCount);
+  const currentLevel   = getCourierLevel(deliveryCount);
+  const nextLevel      = getNextLevel(deliveryCount);
 
   const progressToNext = next
     ? Math.min(deliveryCount / next.count, 1)
     : 1;
+  const progressToNextLevel = nextLevel
+    ? Math.min(
+        (deliveryCount - currentLevel.minDeliveries) /
+        (nextLevel.minDeliveries - currentLevel.minDeliveries),
+        1,
+      )
+    : 1;
 
   return (
     <View style={styles.container}>
+      {/* Карточка уровня */}
+      <View style={[styles.levelCard, { borderLeftColor: currentLevel.color }]}>
+        <View style={styles.levelLeft}>
+          <Text style={styles.levelIcon}>{currentLevel.icon}</Text>
+          <View>
+            <Text style={styles.levelName}>{currentLevel.name}</Text>
+            {courierRating !== null && (
+              <Text style={styles.ratingText}>⭐ {courierRating.toFixed(1)} / 5.0</Text>
+            )}
+          </View>
+        </View>
+        {nextLevel ? (
+          <View style={styles.levelRight}>
+            <Text style={styles.levelNextLabel}>До «{nextLevel.name}»</Text>
+            <Text style={styles.levelNextCount}>
+              {deliveryCount} / {nextLevel.minDeliveries}
+            </Text>
+            <View style={styles.levelProgressBg}>
+              <View
+                style={[
+                  styles.levelProgressFill,
+                  {
+                    width: `${progressToNextLevel * 100}%`,
+                    backgroundColor: nextLevel.color,
+                  },
+                ]}
+              />
+            </View>
+          </View>
+        ) : (
+          <Text style={{ color: currentLevel.color, fontWeight: 'bold', fontSize: 13 }}>
+            Макс. уровень
+          </Text>
+        )}
+      </View>
+
       {/* Шапка со статистикой */}
       <View style={styles.header}>
         <View style={styles.statBox}>
@@ -128,6 +177,34 @@ export default function AchievementsScreen() {
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#f5f5f5' },
+
+  levelCard: {
+    backgroundColor: '#fff',
+    marginHorizontal: 15,
+    marginTop: 12,
+    padding: 14,
+    borderRadius: 12,
+    borderLeftWidth: 5,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    shadowColor: '#000',
+    shadowOpacity: 0.06,
+    shadowRadius: 4,
+    elevation: 2,
+  },
+  levelLeft:      { flexDirection: 'row', alignItems: 'center', gap: 10 },
+  levelIcon:      { fontSize: 36 },
+  levelName:      { fontSize: 18, fontWeight: 'bold', color: '#111' },
+  ratingText:     { fontSize: 14, color: '#FF9500', marginTop: 2 },
+  levelRight:     { alignItems: 'flex-end', flex: 1, marginLeft: 12 },
+  levelNextLabel: { fontSize: 12, color: '#888' },
+  levelNextCount: { fontSize: 12, color: '#555', marginBottom: 4 },
+  levelProgressBg: {
+    height: 6, backgroundColor: '#e0e0e0', borderRadius: 3,
+    overflow: 'hidden', width: 100,
+  },
+  levelProgressFill: { height: '100%', borderRadius: 3 },
 
   header: {
     flexDirection: 'row',

@@ -12,6 +12,7 @@ import {
   fetchCourierProfile,
   fetchShownAchievements,
   saveShownAchievements,
+  fetchCourierRating,
 } from '../api/courierApi';
 import {
   saveCourierSession,
@@ -33,6 +34,7 @@ interface AppState {
   ordersFetchError: string | null;
   shownAchievements: Array<string>;
   pendingAchievement: string | null;
+  courierRating: number | null;
 
   restoreSession: () => Promise<void>;
   login: (phone: string, password: string) => Promise<string | null>;
@@ -44,6 +46,7 @@ interface AppState {
   updateOrderStatus: (id: string, status: Order['status'], snapshot?: Order) => void;
   persistOrder: (order: Order) => Promise<void>;
   dismissAchievement: () => void;
+  refreshRating: () => Promise<void>;
 }
 
 const applyAuth = (
@@ -68,6 +71,7 @@ export const useAppStore = create<AppState>((set, get) => ({
   ordersFetchError: null,
   shownAchievements: [],
   pendingAchievement: null,
+  courierRating: null,
 
   restoreSession: async () => {
     set({ isSessionRestoring: true });
@@ -81,10 +85,14 @@ export const useAppStore = create<AppState>((set, get) => ({
         return;
       }
 
-      const shown = await fetchShownAchievements(session.id);
+      const [shown, rating] = await Promise.all([
+        fetchShownAchievements(session.id),
+        fetchCourierRating(session.id),
+      ]);
       set({
         ...applyAuth(profile),
         shownAchievements: shown,
+        courierRating: rating,
       });
       logger.info('Store', 'session restored', { courierId: session.id });
     } catch (error) {
@@ -110,10 +118,14 @@ export const useAppStore = create<AppState>((set, get) => ({
       displayName: result.data.displayName,
     });
 
-    const shown = await fetchShownAchievements(result.data.id);
+    const [shown, rating] = await Promise.all([
+      fetchShownAchievements(result.data.id),
+      fetchCourierRating(result.data.id),
+    ]);
     set({
       ...applyAuth(result.data),
       shownAchievements: shown,
+      courierRating: rating,
       orders: [],
       historyOrders: [],
     });
@@ -135,6 +147,7 @@ export const useAppStore = create<AppState>((set, get) => ({
       historyOrders: [],
       shownAchievements: [],
       pendingAchievement: null,
+      courierRating: null,
     });
   },
 
@@ -280,6 +293,8 @@ export const useAppStore = create<AppState>((set, get) => ({
         }
         if (status === 'delivered') {
           await get().loadHistory();
+          // Обновляем рейтинг после доставки — пользователь мог оставить оценку
+          await get().refreshRating();
         }
       } catch (err) {
         logger.warn('Store', 'updateOrderStatus persist failed', err);
@@ -288,4 +303,11 @@ export const useAppStore = create<AppState>((set, get) => ({
   },
 
   dismissAchievement: () => set({ pendingAchievement: null }),
+
+  refreshRating: async () => {
+    const { courierId } = get();
+    if (!courierId) return;
+    const rating = await fetchCourierRating(courierId);
+    if (rating !== null) set({ courierRating: rating });
+  },
 }));

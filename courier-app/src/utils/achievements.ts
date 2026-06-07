@@ -115,3 +115,33 @@ export function getNextAchievement(deliveryCount: number): Achievement | null {
 export function getTotalBonus(deliveryCount: number): number {
   return getUnlocked(deliveryCount).reduce((sum, a) => sum + a.bonus, 0);
 }
+
+// ─── Уровни курьера ───────────────────────────────────────────────────────────
+
+export interface CourierLevel {
+  name: string;
+  icon: string;
+  color: string;
+  minDeliveries: number;
+}
+
+export const COURIER_LEVELS: CourierLevel[] = [
+  { name: 'Новичок',  icon: '🌱', color: '#78909C', minDeliveries: 0   },
+  { name: 'Опытный',  icon: '🎯', color: '#4CAF50', minDeliveries: 10  },
+  { name: 'Профи',    icon: '🏆', color: '#2196F3', minDeliveries: 25  },
+  { name: 'Мастер',   icon: '🌟', color: '#FF9800', minDeliveries: 50  },
+  { name: 'Легенда',  icon: '👑', color: '#F44336', minDeliveries: 100 },
+];
+
+/** Возвращает текущий уровень курьера на основе числа доставок. */
+export function getCourierLevel(deliveryCount: number): CourierLevel {
+  return (
+    [...COURIER_LEVELS].reverse().find(l => deliveryCount >= l.minDeliveries)
+    ?? COURIER_LEVELS[0]
+  );
+}
+
+/** Следующий уровень (или null если максимальный). */
+export function getNextLevel(deliveryCount: number): CourierLevel | null {
+  return COURIER_LEVELS.find(l => l.minDeliveries > deliveryCount) ?? null;
+}

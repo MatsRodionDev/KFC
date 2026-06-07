@@ -259,6 +259,20 @@ export const fetchShownAchievements = async (
   return Array.isArray(data) ? data.map(String) : [];
 };
 
+export const fetchCourierRating = async (
+  courierId: string,
+): Promise<number | null> => {
+  const base = getCourierApiBase();
+  const res = await loggedFetch(
+    `${base}/api/couriers/${courierId}/rating`,
+    { headers: { Accept: 'application/json' } },
+    'CourierAPI',
+  );
+  if (!res.ok) return null;
+  const data = await res.json();
+  return typeof data?.rating === 'number' ? data.rating : null;
+};
+
 export const saveShownAchievements = async (
   courierId: string,
   ids: Array<string>,
